@@ -37,7 +37,13 @@ class Player extends Collision{
     }
 
     update(){
+        // CONSERTAR. velocidade constante
+        // let gravity = 1
+        // if(gravity < 20){
+        //     gravity += 1
+        // }
         this.personagemPos.x += this.personagemPos.taxaX * this.velo;
         this.personagemPos.y += this.personagemPos.taxaY * this.velo;
+        // this.personagemPos.y += this.personagemPos.taxaY * gravity;
     }
 }

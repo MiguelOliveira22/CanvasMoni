@@ -1,4 +1,4 @@
-class Colision{
+class Collision{
     constructor(collisonPoints){
 
     }

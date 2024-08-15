@@ -1,6 +1,6 @@
-class Player extends AudioRequest{
+class Player extends Collision{
     constructor(/*String*/ imageSRC, /*Number*/ velocidade, /*Number[]*/ collisionPoints){
-        super("main.webm")
+        super()
         this.sprite = new Image();
         this.sprite.src = imageSRC;
         this.velo = velocidade;

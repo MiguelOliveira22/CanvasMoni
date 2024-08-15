@@ -18,6 +18,7 @@ addEventListener("DOMContentLoaded", () => {
     function tecla(ev){
         if(ev.key === "w"){
             KeyPresses.w = true;
+            new AudioRequest("main.webm");
         }
         if(ev.key === "s"){
             KeyPresses.s = true;
@@ -69,6 +70,4 @@ addEventListener("DOMContentLoaded", () => {
     window.addEventListener("keydown", tecla);
     window.addEventListener("keyup", teclaMenos);
     window.addEventListener("audiocall", sound);
-
-    jogador.send();
 });

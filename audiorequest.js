@@ -3,6 +3,8 @@ class AudioRequest{
         this.audio = new CustomEvent("audiocall", {
             detail: path
         });
+
+        this.send();
     }
 
     send(){

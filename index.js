@@ -45,15 +45,21 @@ addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function sound(trackname){
+        let au = new Audio("./" + trackname.detail);
+        au.volume = 0.1;
+        au.play();
+    }
+
     function loop(){
-        canvas.setAttribute("width", window.innerWidth - 10);
-        canvas.setAttribute("height", window.innerHeight - 20);
+        canvas.setAttribute("width", document.documentElement.clientWidth);
+        canvas.setAttribute("height", document.documentElement.clientHeight - 5);
 
         clear();
 
-        jogador.update()
+        jogador.update();
         jogador.mov(KeyPresses);
-        jogador.draw(ctx);
+        jogador.draw(ctx, canvas.width);
 
         requestAnimationFrame(loop);
     }
@@ -62,4 +68,7 @@ addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener("keydown", tecla);
     window.addEventListener("keyup", teclaMenos);
+    window.addEventListener("audiocall", sound);
+
+    jogador.send();
 });

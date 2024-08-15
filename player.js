@@ -1,5 +1,6 @@
-class Player{
+class Player extends AudioRequest{
     constructor(/*String*/ imageSRC, /*Number*/ velocidade, /*Number[]*/ collisionPoints){
+        super("main.webm")
         this.sprite = new Image();
         this.sprite.src = imageSRC;
         this.velo = velocidade;
@@ -12,11 +13,8 @@ class Player{
         this.collision = collisionPoints;
     }
 
-    get Main(){
-        return this.sprite;
-    }
-
-    draw(ctx){
+    draw(ctx, width){
+        // ctx.scale(this.personagemPos.taxaX, 1);
         ctx.drawImage(this.sprite, this.personagemPos.x, this.personagemPos.y, this.collision[1][0], this.collision[1][0]);
     }
 

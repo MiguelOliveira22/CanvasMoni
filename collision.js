@@ -1,0 +1,5 @@
+class Colision{
+    constructor(collisonPoints){
+
+    }
+}

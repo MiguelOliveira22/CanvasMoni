@@ -18,7 +18,6 @@ addEventListener("DOMContentLoaded", () => {
     function tecla(ev){
         if(ev.key === "w"){
             KeyPresses.w = true;
-            new AudioRequest("main.webm");
         }
         if(ev.key === "s"){
             KeyPresses.s = true;
@@ -61,6 +60,8 @@ addEventListener("DOMContentLoaded", () => {
         jogador.update();
         jogador.mov(KeyPresses);
         jogador.draw(ctx, canvas.width);
+
+        window.dispatchEvent(CollisionEvent().collision);
 
         requestAnimationFrame(loop);
     }

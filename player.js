@@ -1,6 +1,6 @@
 class Player extends Collision{
     constructor(/*String*/ imageSRC, /*Number*/ velocidade, /*Number[]*/ collisionPoints){
-        super()
+        super();
         this.sprite = new Image();
         this.sprite.src = imageSRC;
         this.velo = velocidade;
@@ -10,7 +10,7 @@ class Player extends Collision{
             taxaX: 0,
             taxaY: 0
         };
-        this.collision = collisionPoints;
+        this.collision = new Collision(collisionPoints);
     }
 
     draw(ctx, width){

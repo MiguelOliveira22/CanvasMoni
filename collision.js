@@ -6,8 +6,8 @@ class CollisionEvent{
 
 class Collision{
     constructor(collisonPoints){
-        this.vertices = collisonPoints;
-        this.addEventListener("collisionevent", this);
+        // this.vertices = collisonPoints;
+        // this.addEventListener("collisionevent", this);
     }
 
     testCollision(){

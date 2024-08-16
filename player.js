@@ -1,21 +1,27 @@
 class Player extends Collision{
-    constructor(/*String*/ imageSRC, /*Number*/ velocidade, /*Number[]*/ collisionPoints){
+    constructor(/*String*/ imageSRC, /*Number*/ velocidade, /*Number[]*/ /*collisionPoints*/){
         super();
         this.sprite = new Image();
         this.sprite.src = imageSRC;
         this.velo = velocidade;
+        this.gravity = 1;
         this.personagemPos = {
             x: 0,
             y: 0,
             taxaX: 0,
             taxaY: 0
         };
-        this.collision = new Collision(collisionPoints);
+        // this.collision = new Collision(collisionPoints);
     }
+
+    // draw(ctx, width){
+    //     // ctx.scale(this.personagemPos.taxaX, 1);
+    //     ctx.drawImage(this.sprite, this.personagemPos.x, this.personagemPos.y, this.collision[1][0], this.collision[1][0]);
+    // }
 
     draw(ctx, width){
         // ctx.scale(this.personagemPos.taxaX, 1);
-        ctx.drawImage(this.sprite, this.personagemPos.x, this.personagemPos.y, this.collision[1][0], this.collision[1][0]);
+        ctx.drawImage(this.sprite, this.personagemPos.x, this.personagemPos.y);
     }
 
     mov(KeyPresses){
@@ -37,13 +43,11 @@ class Player extends Collision{
     }
 
     update(){
-        // CONSERTAR. velocidade constante
-        // let gravity = 1
-        // if(gravity < 20){
-        //     gravity += 1
-        // }
+        if(this.gravity < 20){
+            this.gravity += 1
+        }
         this.personagemPos.x += this.personagemPos.taxaX * this.velo;
-        this.personagemPos.y += this.personagemPos.taxaY * this.velo;
-        // this.personagemPos.y += this.personagemPos.taxaY * gravity;
+        // this.personagemPos.y += this.personagemPos.taxaY * this.velo;
+        this.personagemPos.y += this.gravity;
     }
 }

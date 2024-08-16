@@ -61,7 +61,7 @@ addEventListener("DOMContentLoaded", () => {
         jogador.mov(KeyPresses);
         jogador.draw(ctx, canvas.width);
 
-        window.dispatchEvent(CollisionEvent().collision);
+        window.dispatchEvent(new CollisionEvent().collision);
 
         requestAnimationFrame(loop);
     }

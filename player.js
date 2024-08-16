@@ -43,11 +43,19 @@ class Player extends Collision{
     }
 
     update(){
-        if(this.gravity < 20){
+
+        this.personagemPos.x += this.personagemPos.taxaX * this.velo;
+        this.personagemPos.y += this.personagemPos.taxaY * this.velo;
+        // Colisão com o chão improvisado
+        if(this.gravity < 10){
             this.gravity += 1
         }
-        this.personagemPos.x += this.personagemPos.taxaX * this.velo;
-        // this.personagemPos.y += this.personagemPos.taxaY * this.velo;
-        this.personagemPos.y += this.gravity;
+        if(this.personagemPos.y < 700){
+            this.personagemPos.y += this.gravity;
+        }
+        else{
+            this.gravity = 0
+        }
+        console.log(this.personagemPos.y)
     }
 }

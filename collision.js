@@ -5,9 +5,11 @@ class CollisionEvent{
 }
 
 class Collision{
-    constructor(collisonPoints){
-        // this.vertices = collisonPoints;
-        // this.addEventListener("collisionevent", this);
+    constructor(collisonPoints, gravity){
+        this.vertices = collisonPoints;
+        this.gravity = gravity;
+
+        window.addEventListener("collisionevent", this.checkCollision);
     }
 
     testCollision(){

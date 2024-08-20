@@ -1,27 +1,19 @@
-class Player extends Collision{
-    constructor(/*String*/ imageSRC, /*Number*/ velocidade, /*Number[]*/ /*collisionPoints*/){
-        super();
-        this.sprite = new Image();
-        this.sprite.src = imageSRC;
+class Player{
+    constructor([imageSRC, hSprites, vSprites], /*Number*/ velocidade, /*Number[]*/ collisionPoints, /*Number*/ gravity){
+        this.sprites = new Sprites(imageSRC, hSprites, vSprites);
         this.velo = velocidade;
-        this.gravity = 1;
         this.personagemPos = {
             x: 0,
             y: 0,
             taxaX: 0,
             taxaY: 0
         };
-        // this.collision = new Collision(collisionPoints);
+        this.collision = new Collision(collisionPoints, gravity);
     }
 
-    // draw(ctx, width){
-    //     // ctx.scale(this.personagemPos.taxaX, 1);
-    //     ctx.drawImage(this.sprite, this.personagemPos.x, this.personagemPos.y, this.collision[1][0], this.collision[1][0]);
-    // }
-
-    draw(ctx, width){
+    draw(ctx){
         // ctx.scale(this.personagemPos.taxaX, 1);
-        ctx.drawImage(this.sprite, this.personagemPos.x, this.personagemPos.y);
+        ctx.drawImage(this.sprites.spriteArray, this.personagemPos.x, this.personagemPos.y, this.collision.vertices[1][0], this.collision.vertices[1][0]);
     }
 
     mov(KeyPresses){
@@ -43,19 +35,19 @@ class Player extends Collision{
     }
 
     update(){
-
         this.personagemPos.x += this.personagemPos.taxaX * this.velo;
         this.personagemPos.y += this.personagemPos.taxaY * this.velo;
+
         // Colisão com o chão improvisado
-        if(this.gravity < 10){
-            this.gravity += 1
+        if(this.collision.gravity < 10){
+            this.collision.gravity += 1
         }
-        if(this.personagemPos.y < 700){
-            this.personagemPos.y += this.gravity;
+
+        if(this.personagemPos.y < 650){
+            this.personagemPos.y += this.collision.gravity;
         }
         else{
-            this.gravity = 0
+            this.collision.gravity = 0
         }
-        console.log(this.personagemPos.y)
     }
 }

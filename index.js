@@ -2,7 +2,8 @@ addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("canvasMain");
     const ctx = canvas.getContext("2d");
 
-    const jogador = new Player("./Sprites/pixil-frame-0(1).png", 5, [[0, 0], [140, 140]]);
+    const jogador = new Player(["./Sprites/pixil-frame-0(1).png", 1, 1], 5, [[0, 0], [140, 140]], 1);
+    const collisor = new CollisionEvent().collision;
 
     let KeyPresses = {
         w: false,
@@ -61,7 +62,7 @@ addEventListener("DOMContentLoaded", () => {
         jogador.mov(KeyPresses);
         jogador.draw(ctx, canvas.width);
 
-        window.dispatchEvent(new CollisionEvent().collision);
+        window.dispatchEvent(collisor);
 
         requestAnimationFrame(loop);
     }

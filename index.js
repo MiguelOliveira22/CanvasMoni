@@ -2,9 +2,9 @@ addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("canvasMain");
     const ctx = canvas.getContext("2d");
 
-    const jogador = new Player(["./Sprites/pixil-frame-0(1).png", 1, 1], 5, [0, 10, 0, 10], 2);
+    const jogador = new Player(["./Sprites/pixil-frame-0(1).png", 1, 1], 5);
     const collisor = new CollisionEvent(jogador).collision;
-    // const background = new Object(["./Sprites/OIP.jpg", 1, 1], [0, 10, 0, 10]);
+    const background = new Object(["./Sprites/OIP.jpg", 1, 1], [0, 0], [0, 10, 0, 10], true);
 
     let KeyPresses = {
         w: false,
@@ -56,14 +56,14 @@ addEventListener("DOMContentLoaded", () => {
     function canvasUpdate(){
         canvas.setAttribute("width", 1280);
         canvas.setAttribute("height", 720);
-
-        // background.draw(ctx);
     }
 
     function playerRoutine(){
+        background.draw(ctx);
+        
         jogador.update();
         jogador.mov(KeyPresses);
-        jogador.draw(ctx, canvas.width);
+        jogador.draw(ctx);
     }
 
     function loop(){

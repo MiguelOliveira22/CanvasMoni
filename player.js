@@ -2,6 +2,7 @@ class Player{
     constructor([imageSRC, hSprites, vSprites], /*Number*/ velocidade){
         this.sprites = new Sprites(imageSRC, hSprites, vSprites);
         this.velo = velocidade;
+        this.gravity = 1;
         this.personagemPos = {
             x: 0,
             y: 0,
@@ -26,16 +27,16 @@ class Player{
         this.personagemPos.taxaY = 0;
         this.personagemPos.taxaX = 0;
 
-        if(KeyPresses.w){
+        if(KeyPresses.w && !KeyPresses.s){
             this.personagemPos.taxaY = -1;
         }
-        if(KeyPresses.s){
+        if(KeyPresses.s && !KeyPresses.w){
             this.personagemPos.taxaY = 1;
         }
-        if(KeyPresses.d){
+        if(KeyPresses.d && !KeyPresses.a){
             this.personagemPos.taxaX = 1;
         }
-        if(KeyPresses.a){
+        if(KeyPresses.a && !KeyPresses.d){
             this.personagemPos.taxaX = -1;
         }
     }
@@ -52,5 +53,6 @@ class Player{
         }
 
         this.personagemPos.x = this.nextX;
+        this.personagemPos.y = this.nextY;
     }
 }

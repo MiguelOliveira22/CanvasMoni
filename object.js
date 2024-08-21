@@ -1,14 +1,15 @@
-class Object extends Collision{
-    constructor([imageSRC, hSprites, vSprites], collisionPoints){
-        super(collisionPoints);
+class Object /*extends Collision*/{
+    constructor([imageSRC, hSprites, vSprites], [objx, objy], collisionPoints, collidable){
+        // super(collisionPoints);
         this.sprites = new Sprites(imageSRC, hSprites, vSprites);
+        this.collidable = collidable;
         this.objPos = {
-            x: 0,
-            y: 0
+            x: objx,
+            y: objy
         };
     }
 
     draw(ctx){
-        ctx.drawImage(this.sprites.spriteArray, this.objPos.x, this.objPos.y, this.vertices[1][0], this.vertices[1][0]);
+        ctx.drawImage(this.sprites.sheet, this.sprites.spriteArray[0][0][0], this.sprites.spriteArray[0][0][1], this.sprites.spriteArray[0][1][0], this.sprites.spriteArray[0][1][1], this.objPos.x, this.objPos.y, this.sprites.wSprites, this.sprites.aSprites);
     }
 }

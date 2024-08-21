@@ -1,8 +1,7 @@
 class Player{
-    constructor([imageSRC, hSprites, vSprites, sFrames], /*Number*/ velocidade){
+    constructor([imageSRC, hSprites, vSprites, sFrames], velocidade){
         this.sprites = new Sprites(imageSRC, hSprites, vSprites, sFrames);
         this.velo = velocidade;
-        this.gravity = 1;
         this.personagemPos = {
             x: 0,
             y: 0,
@@ -19,11 +18,11 @@ class Player{
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         if(this.direction == 0){
             ctx.scale(-1, 1);
-            ctx.drawImage(this.sprites.sheet, this.sprites.spriteArray[this.sprites.atual][0][0], this.sprites.spriteArray[0][0][1], this.sprites.spriteArray[0][1][0], this.sprites.spriteArray[0][1][1], -this.personagemPos.x, this.personagemPos.y, -this.sprites.wSprites, this.sprites.aSprites);
+            ctx.drawImage(this.sprites.sheet, this.sprites.spriteArray[this.sprites.atual][0], this.sprites.spriteArray[this.sprites.atual][1], this.sprites.wSprites, this.sprites.aSprites, -this.personagemPos.x, this.personagemPos.y, -this.sprites.wSprites, this.sprites.aSprites);
         }
         else{
             ctx.scale(1, 1);
-            ctx.drawImage(this.sprites.sheet, this.sprites.spriteArray[this.sprites.atual][0][0], this.sprites.spriteArray[0][0][1], this.sprites.spriteArray[0][1][0], this.sprites.spriteArray[0][1][1], this.personagemPos.x, this.personagemPos.y, this.sprites.wSprites, this.sprites.aSprites);
+            ctx.drawImage(this.sprites.sheet, this.sprites.spriteArray[this.sprites.atual][0], this.sprites.spriteArray[this.sprites.atual][1], this.sprites.wSprites, this.sprites.aSprites, this.personagemPos.x, this.personagemPos.y, this.sprites.wSprites, this.sprites.aSprites);
         }
     }
 

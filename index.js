@@ -3,8 +3,7 @@ addEventListener("DOMContentLoaded", () => {
     const ctx = canvas.getContext("2d");
 
     const jogador = new Player(["./Sprites/walkingsheetbro.png", 7, 1, 100], 5);
-    // const collisor = new CollisionEvent(jogador).collision;
-    const background = new Object(["./Sprites/OIP.jpg", 1, 1, 60], [0, 0], [0, 10, 0, 10], true, true, 0);
+    const background = new Object(["./Sprites/OIP.jpg", 1, 1, 60], [0, 0], [[0, 0], [200, 200]], true, true, 10);
 
     let KeyPresses = {
         w: false,

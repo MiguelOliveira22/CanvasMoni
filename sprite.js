@@ -12,7 +12,7 @@ class Sprites{
         this.fps = 1000 / sFrames;
         for(let i = 0; i < this.hSprites; i ++){
             for(let j = 0; j < this.vSprites; j ++){
-                this.spriteArray.push([[(i * (this.wSprites)), j * (this.aSprites)], [(i + 1) * this.wSprites, (j + 1) * this.aSprites]]);
+                this.spriteArray.push([(i * (this.wSprites)), j * (this.aSprites)]);
             }
         }
     }

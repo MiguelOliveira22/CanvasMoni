@@ -1,37 +1,36 @@
-class CollisionEvent{
+/* class CollisionEvent{
     constructor(playerobj){
         this.collision = new CustomEvent("collisionevent", {
             player: playerobj
         });
     }
-}
+} */
 
 class Collision{
-    constructor(collisonPoints){
+    constructor(collisonPoints, collidable){
         this.vertices = collisonPoints;
+        this.collidable = collidable;
 
-        window.addEventListener("collisionevent", this.testCollision);
+        // window.addEventListener("collisionevent", this.testCollision);
     }
 
-    testCollision(player){
-        console.log(player.playerobj)
-        var x = player.player.nextX;
-        var y = player.player.nextY;
+    testCollision(){
+        console.log(1);
+        /*
+        if(this.collidable){
+            if(y > 650){
+                player.personagemPos.y = 650;
+            }
+            else{
+                player.personagemPos.y = y;
+            }
 
-        console.log(x, y);
-
-        if(y > 650){
-            player.personagemPos.y = 650;
-        }
-        else{
-            player.personagemPos.y = y;
-        }
-
-        if(x > 650){
-            player.personagemPos.x = 650;
-        }
-        else{
-            player.personagemPos.x = x;
-        }
+            if(x > 650){
+                player.personagemPos.x = 650;
+            }
+            else{
+                player.personagemPos.x = x;
+            }
+        } */
     }
 }

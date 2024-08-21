@@ -1,18 +1,37 @@
 class CollisionEvent{
-    constructor(){
-        this.collision = new CustomEvent("collisionevent");
+    constructor(playerobj){
+        this.collision = new CustomEvent("collisionevent", {
+            player: playerobj
+        });
     }
 }
 
 class Collision{
-    constructor(collisonPoints, gravity){
+    constructor(collisonPoints){
         this.vertices = collisonPoints;
-        this.gravity = gravity;
 
-        window.addEventListener("collisionevent", this.checkCollision);
+        window.addEventListener("collisionevent", this.testCollision);
     }
 
-    testCollision(){
-        console.log(0);
+    testCollision(player){
+        console.log(player.playerobj)
+        var x = player.player.nextX;
+        var y = player.player.nextY;
+
+        console.log(x, y);
+
+        if(y > 650){
+            player.personagemPos.y = 650;
+        }
+        else{
+            player.personagemPos.y = y;
+        }
+
+        if(x > 650){
+            player.personagemPos.x = 650;
+        }
+        else{
+            player.personagemPos.x = x;
+        }
     }
 }

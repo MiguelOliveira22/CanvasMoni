@@ -1,5 +1,5 @@
 class Player{
-    constructor([imageSRC, hSprites, vSprites], /*Number*/ velocidade, /*Number[]*/ collisionPoints, /*Number*/ gravity){
+    constructor([imageSRC, hSprites, vSprites], /*Number*/ velocidade){
         this.sprites = new Sprites(imageSRC, hSprites, vSprites);
         this.velo = velocidade;
         this.personagemPos = {
@@ -8,12 +8,18 @@ class Player{
             taxaX: 0,
             taxaY: 0
         };
-        this.collision = new Collision(collisionPoints, gravity);
+        this.direction = 1;
     }
 
     draw(ctx){
-        // ctx.scale(this.personagemPos.taxaX, 1);
-        ctx.drawImage(this.sprites.spriteArray, this.personagemPos.x, this.personagemPos.y, this.collision.vertices[1][0], this.collision.vertices[1][0]);
+        if(this.direction == 0){
+            ctx.scale(-1, 1);
+            ctx.drawImage(this.sprites.spriteArray, -this.personagemPos.x, this.personagemPos.y);
+        }
+        else{
+            ctx.scale(1, 1);
+            ctx.drawImage(this.sprites.spriteArray, this.personagemPos.x, this.personagemPos.y);
+        }
     }
 
     mov(KeyPresses){
@@ -35,19 +41,7 @@ class Player{
     }
 
     update(){
-        this.personagemPos.x += this.personagemPos.taxaX * this.velo;
-        this.personagemPos.y += this.personagemPos.taxaY * this.velo;
-
-        // Colisão com o chão improvisado
-        if(this.collision.gravity < 10){
-            this.collision.gravity += 1
-        }
-
-        if(this.personagemPos.y < 650){
-            this.personagemPos.y += this.collision.gravity;
-        }
-        else{
-            this.collision.gravity = 0
-        }
+        this.nextX = this.personagemPos.x + (this.personagemPos.taxaX * this.velo);
+        this.nextY = this.personagemPos.y + (this.personagemPos.taxaY * this.velo);
     }
 }

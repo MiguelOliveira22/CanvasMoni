@@ -14,11 +14,11 @@ class Player{
     draw(ctx){
         if(this.direction == 0){
             ctx.scale(-1, 1);
-            ctx.drawImage(this.sprites.spriteArray, -this.personagemPos.x, this.personagemPos.y);
+            ctx.drawImage(this.sprites.sheet, this.sprites.spriteArray[0][0][0], this.sprites.spriteArray[0][0][1], this.sprites.spriteArray[0][1][0], this.sprites.spriteArray[0][1][1], -this.personagemPos.x, this.personagemPos.y, (this.personagemPos.x + this.sprites.wSprites), (this.personagemPos.y + this.sprites.aSprites));
         }
         else{
             ctx.scale(1, 1);
-            ctx.drawImage(this.sprites.spriteArray, this.personagemPos.x, this.personagemPos.y);
+            ctx.drawImage(this.sprites.sheet, this.sprites.spriteArray[0][0][0], this.sprites.spriteArray[0][0][1], this.sprites.spriteArray[0][1][0], this.sprites.spriteArray[0][1][1], this.personagemPos.x, this.personagemPos.y, (this.personagemPos.x + this.sprites.wSprites), (this.personagemPos.y + this.sprites.aSprites));
         }
     }
 

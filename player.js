@@ -10,6 +10,8 @@ class Player{
             taxaY: 0
         };
         this.direction = 1;
+
+        this.update()
     }
 
     draw(ctx){
@@ -53,8 +55,5 @@ class Player{
         else if(this.nextX < this.personagemPos.x){
             this.direction = 0;
         }
-
-        this.personagemPos.x = this.nextX;
-        this.personagemPos.y = this.nextY;
     }
 }

@@ -1,0 +1,13 @@
+- Equipe:
+	RA 24143 - Miguel Oliveira de Queiroz
+	RA 24147 - Pietro Tiago Pedreira Amaral
+	RA 24528 - Henrique Hideki Inoue
+
+- Ideia De Jogo:
+	Um Dungeon Crawler, semelhante ao jogo "Dead Cells".
+
+	O protagonista, Bro Colins, o qual é um brócolis, começa o jogo sendo arremessado da janela do quarto do chefe final, Dave, o humano, enquanto o chefe profere o seu ódio por legumes. O protagonista cai em um buraco no quintal onde foi arremessado e ganha vida para completar sua vingança contra Dave, o humano. Bro agora terá que desbravar o buraco e vencer os seus perigos para chegar a casa de Dave novamente.
+
+- 28/08:
+- 11/09:
+- 17/09: 

@@ -1,22 +1,13 @@
-/* class CollisionEvent{
-    constructor(playerobj){
-        this.collision = new CustomEvent("collisionevent", {
-            player: playerobj
-        });
-    }
-} */
-
 class Collision{
     constructor(collisonPoints, collidable){
         this.vertices = collisonPoints;
         this.collidable = collidable;
-
-        // window.addEventListener("collisionevent", this.testCollision);
     }
 
-    testCollision(){
-        console.log(1);
-        /*
+    testCollision(player){
+        let x = player.nextX;
+        let y = player.nextY;
+
         if(this.collidable){
             if(y > 650){
                 player.personagemPos.y = 650;
@@ -25,12 +16,12 @@ class Collision{
                 player.personagemPos.y = y;
             }
 
-            if(x > 650){
-                player.personagemPos.x = 650;
+            if(x > 850){
+                player.personagemPos.x = 850;
             }
             else{
                 player.personagemPos.x = x;
             }
-        } */
+        }
     }
 }

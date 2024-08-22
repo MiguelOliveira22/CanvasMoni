@@ -2,6 +2,8 @@ class Player{
     constructor([imageSRC, hSprites, vSprites, sFrames], velocidade){
         this.sprites = new Sprites(imageSRC, hSprites, vSprites, sFrames);
         this.velo = velocidade;
+        this.veloY = 0;
+        this.gravity = 3;
         this.personagemPos = {
             x: 0,
             y: 0,
@@ -9,6 +11,7 @@ class Player{
             taxaY: 0
         };
         this.direction = 1;
+        this.collided = false;
 
         this.update()
     }
@@ -27,14 +30,19 @@ class Player{
     }
 
     mov(KeyPresses){
-        this.personagemPos.taxaY = 0;
+        if(this.personagemPos.taxaY < this.gravity){
+            this.personagemPos.taxaY += this.gravity / 2;
+        }
+        else{
+            this.personagemPos.taxaY = this.gravity;
+        }
         this.personagemPos.taxaX = 0;
 
-        if(KeyPresses.w && !KeyPresses.s){
-            this.personagemPos.taxaY = -1;
+        if((KeyPresses.w && !KeyPresses.s) && this.collided){
+            this.personagemPos.taxaY += -10;
         }
         if(KeyPresses.s && !KeyPresses.w){
-            this.personagemPos.taxaY = 1;
+            // this.personagemPos.taxaY = 1;
         }
         if(KeyPresses.d && !KeyPresses.a){
             this.personagemPos.taxaX = 1;

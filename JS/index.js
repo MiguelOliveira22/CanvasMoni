@@ -2,14 +2,15 @@ addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("canvasMain");
     const ctx = canvas.getContext("2d");
 
-    const jogador = new Player(["./Sprites/walkingsheetbro.png", 7, 1, 100], 5);
-    const background = new Object(["./Sprites/OIP.jpg", 1, 1, 60], [0, 0], [[0, 0], [200, 200]], true, true, 10);
+    const jogador = new Player(["../Sprites/walkingsheetbro.png", 7, 1, 100], 5);
+    const background = new Object(["../Sprites/OIP.jpg", 1, 1, 60], [0, 0], [[-10, 1000], [200, 1200]], true, false, true, 10, 0);
 
     let KeyPresses = {
         w: false,
         s: false,
         d: false,
         a: false,
+        e: false,
     };
 
     function clear(){
@@ -29,6 +30,9 @@ addEventListener("DOMContentLoaded", () => {
         if(ev.key === "a"){
             KeyPresses.a = true;
         }
+        if(ev.key === "e"){
+            KeyPresses.e = true;
+        }
     }
     
     function teclaMenos(ev){
@@ -44,10 +48,13 @@ addEventListener("DOMContentLoaded", () => {
         if(ev.key === "a"){
             KeyPresses.a = false;
         }
+        if(ev.key === "e"){
+            KeyPresses.e = false;
+        }
     }
 
     function sound(trackname){
-        let au = new Audio("./" + trackname.detail);
+        let au = new Audio("../Audio/" + trackname.detail);
         au.volume = 0.1;
         au.play();
     }

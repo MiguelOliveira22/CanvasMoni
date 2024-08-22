@@ -1,6 +1,6 @@
 class Object extends Collision{
-    constructor([imageSRC, hSprites, vSprites, sFrames], [objx, objy], collisionPoints, collidable, bg, paralax){
-        super(collisionPoints, collidable);
+    constructor([imageSRC, hSprites, vSprites, sFrames], [objx, objy], collisionPoints, collidable, interectable, bg, paralax, id){
+        super(collisionPoints, collidable, interectable);
         this.sprites = new Sprites(imageSRC, hSprites, vSprites, sFrames);
         this.bg = bg;
         this.paralax = paralax;
@@ -9,6 +9,9 @@ class Object extends Collision{
             x: objx,
             y: objy
         };
+        this.id = id;
+
+        window.addEventListener("interaction", this.isInteracting);
     }
 
     draw(ctx, canvas){
@@ -27,4 +30,6 @@ class Object extends Collision{
             this.parala = 0;
         }
     }
+
+    isInteracting(id){}
 }

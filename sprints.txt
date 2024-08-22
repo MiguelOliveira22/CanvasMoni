@@ -8,6 +8,6 @@
 
 	O protagonista, Bro Colins, o qual é um brócolis, começa o jogo sendo arremessado da janela do quarto do chefe final, Dave, o humano, enquanto o chefe profere o seu ódio por legumes. O protagonista cai em um buraco no quintal onde foi arremessado e ganha vida para completar sua vingança contra Dave, o humano. Bro agora terá que desbravar o buraco e vencer os seus perigos para chegar a casa de Dave novamente.
 
-- 28/08:
-- 11/09:
-- 17/09: 
+- 28/08: Sistema de baús, de aúdio em faixa e de inventário simples
+- 11/09: Sistema de colisão finalizado, inimigos e projeteis
+- 17/09: Sistema de particulas simples, bosses, gravidade e level design

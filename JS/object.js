@@ -11,7 +11,6 @@ class Object extends Collision{
         };
         this.id = id;
 
-        window.addEventListener("interaction", this.isInteracting);
     }
 
     draw(ctx, canvas){
@@ -28,13 +27,6 @@ class Object extends Collision{
         this.parala += this.paralax;
         if(this.parala > canvas.width){
             this.parala = 0;
-        }
-    }
-
-    isInteracting(){
-        if(this.interacting && this.interactable){
-            this.interactable = false;
-            console.log('mui pika');
         }
     }
 }

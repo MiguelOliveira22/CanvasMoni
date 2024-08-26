@@ -4,6 +4,10 @@ class Collision{
         this.collidable = collidable;
         this.interactable = interactable;
         this.interacting = false;
+
+        if(this.interactable){
+            window.addEventListener("interaction", this.isInteracting);
+        }
     }
 
     testCollision(player){
@@ -53,6 +57,17 @@ class Collision{
             else{
                 this.interacting = false;
             }
+        }
+    }
+
+    isInteracting(){
+        console.log(1);
+        window.removeEventListener('interaction', this.isInteracting);
+        this.interactable = false;
+        if(this.interacting && this.interactable){
+            this.interactable = false;
+            console.log('mui pika');
+            
         }
     }
 }

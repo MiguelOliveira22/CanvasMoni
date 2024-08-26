@@ -13,6 +13,8 @@ class Player{
         this.direction = 1;
         this.collided = false;
 
+        this.ev = new Event('interaction');
+
         this.update()
     }
 
@@ -49,6 +51,10 @@ class Player{
         }
         if(KeyPresses.a && !KeyPresses.d){
             this.personagemPos.taxaX = -1;
+        }
+
+        if(KeyPresses.e){
+            window.dispatchEvent(this.ev);
         }
     }
 

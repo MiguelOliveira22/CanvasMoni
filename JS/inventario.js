@@ -1,11 +1,13 @@
 class Inventario{
     constructor(){
         this.items = {
-            1: "Banana"
+            1: "Banana",
+            2: "Carro"
         }
 
         this.usable = {
-            1: false
+            1: false,
+            2: false
         }
     }
 

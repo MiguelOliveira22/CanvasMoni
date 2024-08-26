@@ -3,6 +3,7 @@ class Collision{
         this.vertices = collisonPoints;
         this.collidable = collidable;
         this.interactable = interactable;
+        this.interacting = false;
     }
 
     testCollision(player){
@@ -43,8 +44,14 @@ class Collision{
         if(this.interactable){
             if(x > this.vertices[0][0] && x < this.vertices[1][0]){
                 if(y > this.vertices[0][1] && y < this.vertices[1][1]){
-                    // window.dispatchEvent(); // Evento de interação com id
+                    this.interacting = true;
                 }
+                else{
+                    this.interacting = false;
+                }
+            }
+            else{
+                this.interacting = false;
             }
         }
     }

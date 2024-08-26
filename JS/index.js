@@ -3,7 +3,9 @@ addEventListener("DOMContentLoaded", () => {
     const ctx = canvas.getContext("2d");
 
     const jogador = new Player(["../Sprites/walkingsheetbro.png", 7, 1, 100], 5);
-    const background = new Object(["../Sprites/OIP.jpg", 1, 1, 60], [0, 0], [[-10, 100], [200, 200]], true, true, true, 10, 0);
+    const background = new Object(["../Sprites/OIP.jpg", 1, 1, 60], [0, 0], [[-10, 100], [200, 200]], true, false, true, 10, 0);
+
+    const baupika = new Object(["../Sprites/pixilart-drawing(2).png", 1, 1, 60], [0, 0], [[-10, 50], [200, 150]], true, true, false, 0, 0);
 
     let KeyPresses = {
         w: false,
@@ -70,10 +72,14 @@ addEventListener("DOMContentLoaded", () => {
 
     function playerRoutine(){
         background.draw(ctx, canvas);
+
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        baupika.draw(ctx, canvas);
         
         jogador.update();
 
         background.testCollision(jogador);
+        baupika.testCollision(jogador);
 
         jogador.mov(KeyPresses);
         jogador.draw(ctx);

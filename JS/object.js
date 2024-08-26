@@ -31,5 +31,10 @@ class Object extends Collision{
         }
     }
 
-    isInteracting(id){}
+    isInteracting(){
+        if(this.interacting && this.interactable){
+            this.interactable = false;
+            console.log('mui pika');
+        }
+    }
 }

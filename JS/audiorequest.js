@@ -1,7 +1,8 @@
 class AudioRequest{
     constructor(path){
         this.audio = new CustomEvent("audiocall", {
-            detail: path
+            detail: path,
+            faixa: trackid
         });
 
         this.send();

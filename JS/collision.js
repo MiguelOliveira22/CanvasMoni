@@ -11,14 +11,13 @@ class Collision{
 
         if(this.collidable){
             if(x > this.vertices[0][0] && x < this.vertices[1][0]){
-                if(y > this.vertices[0][1] && y < this.vertices[1][1]){
+                if(y > this.vertices[0][1] + 10 && y < this.vertices[1][1] + 10){
                     player.personagemPos.x = player.personagemPos.x;
-                    player.collided = true;
                 }
                 else{
                     player.personagemPos.x = x;
-                    player.collided = false;
                 }
+                player.collided = false;
             }
             else{
                 player.personagemPos.x = x;
@@ -26,7 +25,7 @@ class Collision{
             }
 
             if(y > this.vertices[0][1] && y < this.vertices[1][1]){
-                if(x > this.vertices[0][0] && x < this.vertices[1][0]){
+                if(x > this.vertices[0][0] + 10 && x < this.vertices[1][0] + 10){
                     player.personagemPos.y = player.personagemPos.y;
                     player.collided = true;
                 }
@@ -44,7 +43,7 @@ class Collision{
         if(this.interactable){
             if(x > this.vertices[0][0] && x < this.vertices[1][0]){
                 if(y > this.vertices[0][1] && y < this.vertices[1][1]){
-                    window.dispatchEvent(); // Evento de interação com id
+                    // window.dispatchEvent(); // Evento de interação com id
                 }
             }
         }

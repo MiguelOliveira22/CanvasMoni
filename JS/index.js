@@ -3,7 +3,7 @@ addEventListener("DOMContentLoaded", () => {
     const ctx = canvas.getContext("2d");
 
     const jogador = new Player(["../Sprites/walkingsheetbro.png", 7, 1, 100], 5);
-    const background = new Object(["../Sprites/OIP.jpg", 1, 1, 60], [0, 0], [[-10, 1000], [200, 1200]], true, false, true, 10, 0);
+    const background = new Object(["../Sprites/OIP.jpg", 1, 1, 60], [0, 0], [[-10, 100], [200, 200]], true, true, true, 10, 0);
 
     let KeyPresses = {
         w: false,
@@ -53,10 +53,14 @@ addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    var au = [new Audio()];
     function sound(trackname){
-        let au = new Audio("../Audio/" + trackname.detail);
-        au.volume = 0.1;
-        au.play();
+        if(!au[trackname.trackid].paused){
+            au[trackname.trackid].pause();
+        }
+        au[trackname.trackid] = new Audio("../Audio/" + trackname.detail);
+        au[trackname.trackid].volume = 0.1;
+        au[trackname.trackid].play();
     }
 
     function canvasUpdate(){
@@ -73,6 +77,10 @@ addEventListener("DOMContentLoaded", () => {
 
         jogador.mov(KeyPresses);
         jogador.draw(ctx);
+
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.font = '24px SMW';
+        ctx.fillText("Como Assim Joey? O Que Tu fez?", 100, 100);
     }
 
     function loop(){

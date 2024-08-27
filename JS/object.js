@@ -10,10 +10,10 @@ class Object extends Collision{
             y: objy
         };
         this.id = id;
-
     }
 
     draw(ctx, canvas){
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
         this.sprites.clockVal();
         ctx.translate(this.parala, 0);
         if(this.bg){
@@ -29,4 +29,16 @@ class Object extends Collision{
             this.parala = 0;
         }
     }
+
+    drawCollision(ctx){
+        this.drawColl(ctx, this.objPos.x, this.objPos.y);
+    }
+
+    testCollision(player){
+        this.collisionTest(player, this.objPos.x, this.objPos.y);
+    }
+
+    collisionTest(player){
+        this.collTest(player, this.objPos.x, this.objPos.y)
+    };
 }

@@ -3,9 +3,10 @@ addEventListener("DOMContentLoaded", () => {
     const ctx = canvas.getContext("2d");
 
     const jogador = new Player(["../Sprites/walkingsheetbro.png", 7, 1, 100], 5);
-    const background = new Object(["../Sprites/OIP.jpg", 1, 1, 60], [0, 0], [[-10, 100], [200, 200]], true, false, true, 10, 0);
+    const background = new Object(["../Sprites/OIP.jpg", 1, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 10, 0);
+    const ground = new Object(["", 1, 1, 60], [100, 500], [[0, 0], [2000, 100]], true, true, false, 10, 0);
 
-    const baupika = new Object(["../Sprites/pixilart-drawing(2).png", 1, 1, 60], [0, 0], [[-10, 50], [200, 150]], true, true, false, 0, 0);
+    const baupika = new Object(["../Sprites/pixilart-drawing(2).png", 1, 1, 60], [300, 300], [[0, 0], [200, 150]], false, true, false, 0, 0);
 
     let KeyPresses = {
         w: false,
@@ -79,12 +80,15 @@ addEventListener("DOMContentLoaded", () => {
         jogador.update();
 
         background.testCollision(jogador);
+        background.drawCollision(ctx);
+        ground.drawCollision(ctx);
+        ground.testCollision(jogador);
+        baupika.drawCollision(ctx);
         baupika.testCollision(jogador);
 
         jogador.mov(KeyPresses);
         jogador.draw(ctx);
 
-        ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.font = '24px SMW';
         ctx.fillText("Como Assim Joey? O Que Tu fez?", 100, 100);
     }

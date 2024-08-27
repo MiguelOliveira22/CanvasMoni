@@ -1,5 +1,9 @@
 class Sprites{
     constructor(path, h, v, sFrames){
+        this.reconstruct(path, h, v, sFrames);
+    }
+
+    reconstruct(path, h, v, sFrames){
         this.sheet = new Image();
         this.sheet.src = path;
         this.spriteArray = [];

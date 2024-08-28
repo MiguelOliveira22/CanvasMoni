@@ -34,11 +34,7 @@ class Object extends Collision{
         this.drawColl(ctx, this.objPos.x, this.objPos.y);
     }
 
-    testCollision(player){
-        this.collisionTest(player, this.objPos.x, this.objPos.y);
-    }
-
     collisionTest(player){
-        this.collTest(player, this.objPos.x, this.objPos.y)
-    };
+        this.collTest(player, this.objPos.x, this.objPos.y);
+    }
 }

@@ -20,9 +20,13 @@ class Inventario{
     }
 
     drawBoxItem(ctx){
-        for(var i = 0; i <= 2; i++){
+        let quantItems = 0
+        for(var i in this.items){
+            quantItems += 1
+        }
+        
+        for(var i = 0; i < quantItems; i++){
             if(this.usable[i]){
-                //w: 1280 h:720
                 let y = 600 - (i * 100)
                 ctx.fillRect(1150, y, 60, 60)
                 ctx.stroke()

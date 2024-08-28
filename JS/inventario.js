@@ -20,14 +20,11 @@ class Inventario{
     }
 
     drawBoxItem(ctx){
-        for(let i = 0; this.items.length; i++){
-            console.log("a")
+        for(var i = 0; i <= 2; i++){
             if(this.usable[i]){
-                console.log("b")
                 //w: 1280 h:720
-                let x = 1280 - (i * 60)
-                let y = 720 - (i * 40)
-                ctx.rect(x, y, 120, 80)
+                let y = 600 - (i * 100)
+                ctx.fillRect(1150, y, 60, 60)
                 ctx.stroke()
             }
         }

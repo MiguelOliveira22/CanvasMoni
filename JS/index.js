@@ -78,6 +78,8 @@ addEventListener("DOMContentLoaded", () => {
         
         ground.collisionTest(jogador);
 
+        jogador.inventario.drawBoxItem(ctx);
+
         jogador.mov(KeyPresses);
         jogador.draw(ctx);
         jogador.drawCollision(ctx);

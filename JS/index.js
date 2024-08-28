@@ -6,7 +6,7 @@ addEventListener("DOMContentLoaded", () => {
     const background = new Object(["../Sprites/OIP.jpg", 1, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 10, 0);
     const ground = new Object(["", 1, 1, 60], [0, 500], [[0, 0], [2000, 100]], true, false, false, 10, 0);
 
-    const baupika = new Object(["../Sprites/pixilart-drawing(2).png", 1, 1, 60], [0, 0], [[0, 0], [200, 150]], false, true, false, 0, 0);
+    const baupika = new Object(["../Sprites/PixelArt/bau-sprite.png", 8, 1, 1], [0, 0], [[0, 0], [200, 150]], false, true, false, 0, 0);
 
     const ma = new AudioRequest();
 

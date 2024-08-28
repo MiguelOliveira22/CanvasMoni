@@ -18,4 +18,19 @@ class Inventario{
         this.usable[id] = true;
         console.log(this.items[id], this.usable[id]);
     }
+
+    drawBoxItem(ctx){
+        for(let i = 0; this.items.length; i++){
+            console.log("a")
+            if(this.usable[i]){
+                console.log("b")
+                //w: 1280 h:720
+                let x = 1280 - (i * 60)
+                let y = 720 - (i * 40)
+                ctx.rect(x, y, 120, 80)
+                ctx.stroke()
+            }
+        }
+    }
+    
 }

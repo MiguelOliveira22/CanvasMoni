@@ -29,6 +29,7 @@ class Inventario{
     }
 
     drawBoxItem(ctx){
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
         for(let i = 0; i < this.quantItems; i++){
             if(this.usable[i]){
                 let y = 600 - (i * 100)

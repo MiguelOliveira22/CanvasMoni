@@ -3,10 +3,10 @@ addEventListener("DOMContentLoaded", () => {
     const ctx = canvas.getContext("2d");
 
     const jogador = new Player(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 150]], 5);
-    const background = new Object(["../Sprites/OIP.jpg", 1, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 10, 0);
+    const background = new Object(["../Sprites/PixelArt/pixilart-drawing.png", 1, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 10, 0);
     const ground = new Object(["", 1, 1, 60], [0, 500], [[0, 0], [2000, 100]], true, false, false, 10, 0);
 
-    const baupika = new Object(["../Sprites/PixelArt/bau-sprite.png", 8, 1, 1], [0, 0], [[0, 0], [200, 150]], false, true, false, 0, 0);
+    const baupika = new Object(["../Sprites/PixelArt/bau-sprite.png", 8, 1, 1], [500, 500], [[-20, -20], [200, 150]], false, true, false, 0, 0);
 
     const ma = new AudioRequest();
 
@@ -82,6 +82,7 @@ addEventListener("DOMContentLoaded", () => {
     }
 
     function playerRoutine(){
+        ctx.fillStyle = "#1305FF";
         jogador.update();
 
         background.update(ctx, canvas, jogador, false);
@@ -91,11 +92,11 @@ addEventListener("DOMContentLoaded", () => {
         
         ground.collisionTest(jogador);
 
-        jogador.inventario.drawBoxItem(ctx);
-        jogador.inventario.changeItem(KeyPresses)
-
         jogador.mov(KeyPresses);
         jogador.draw(ctx);
+        
+        jogador.inventario.drawBoxItem(ctx);
+        jogador.inventario.changeItem(KeyPresses);
     }
 
     function loop(){

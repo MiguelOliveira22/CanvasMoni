@@ -3,13 +3,15 @@ class Inventario{
         this.items = {
             0: "Mão",
             1: "Palito De Dente",
-            2: "Carro"
+            2: "Carro",
+            3: "James"
         }
 
         this.usable = {
             0: true,
             1: false,
-            2: false
+            2: false,
+            3: false
         }
         
         this.quantItems = 0

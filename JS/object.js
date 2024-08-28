@@ -10,6 +10,13 @@ class Object extends Collision{
             y: objy
         };
         this.id = id;
+        this.children = [];
+        this.sizeChildren = 0;
+    }
+
+    createItem(obj){
+        obj.children[this.sizeChildren] = new Item(["../Sprites/pixil-frame-0.png", 1, 1, 60], [110, 110], [[0,0], [100, 100]], 1);
+        obj.sizeChildren += 1;
     }
 
     draw(ctx, canvas){
@@ -34,21 +41,28 @@ class Object extends Collision{
         }
     }
 
-    update(ctx, canvas, jogador, KeyPresses){
+    update(ctx, canvas, jogador, KeyPresses, hitboxshow, action){
         this.draw(ctx, canvas);
-        this.collisionTest(jogador, KeyPresses);
+        this.collisionTest(jogador, KeyPresses, action);
+        if(hitboxshow){
+            this.drawCollision(ctx);
+        }
+        for(let ins = 0; ins < this.sizeChildren; ins ++){
+            this.children[ins].update(ctx, jogador, KeyPresses, false);
+        }
     }
 
     drawCollision(ctx){
         this.drawColl(ctx, this.objPos.x, this.objPos.y);
     }
 
-    collisionTest(player, KeyPresses){
+    collisionTest(player, KeyPresses, callback){
         this.collTest(player, KeyPresses, this.objPos.x, this.objPos.y);
         if(this.interactable){
             if(KeyPresses.e && this.interacting){
                 this.interactable = false;
                 this.interacting = false;
+                callback();
             }
         }
     }

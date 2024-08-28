@@ -1,5 +1,6 @@
 class AudioRequest{
-    constructor(path){
+    constructor(path, trackid){
+        console.log(1)
         this.audio = new CustomEvent("audiocall", {
             detail: path,
             faixa: trackid

@@ -6,7 +6,7 @@ class Collision{
         this.interacting = false;
     }
 
-    collTest(player, posX, posY){
+    collTest(player, KeyPresses, posX, posY){
         let x = player.nextX;
         let y = player.nextY;
 
@@ -42,21 +42,22 @@ class Collision{
         }
 
         if(this.interactable){
-            console.log(x, this.vertices[0][0] + posX)
             if(x >= this.vertices[0][0] + posX && x <= this.vertices[1][0] + posX){
                 if(y >= this.vertices[0][1] + posY && y <= this.vertices[1][1] + posY){
-                    if(true){
-                        this.interactable = false;
-                        console.log('mui pika');
-                    }
+                    this.interacting = true;
                 }
+                else{
+                    this.interacting = false;
+                }
+            }
+            else{
+                this.interacting = false;
             }
         }
     }
 
     drawColl(ctx, posX, posY){
         ctx.setTransform(1, 0, 0, 1, 0, 0);
-        console.log(12)
         ctx.fillRect(this.vertices[0][0] + posX, this.vertices[0][1] + posY, this.vertices[1][0] - this.vertices[0][0], this.vertices[1][1] - this.vertices[0][1]);
     }
 }

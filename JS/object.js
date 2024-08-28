@@ -14,6 +14,10 @@ class Object extends Collision{
 
     draw(ctx, canvas){
         ctx.setTransform(1, 0, 0, 1, 0, 0);
+        if(this.interacting && this.interactable){
+            ctx.font = '24px SMW';
+            ctx.fillText("Como Assim Joey? O Que Tu fez?", 100, 100);
+        }
         this.sprites.clockVal();
         ctx.translate(this.parala, 0);
         if(this.bg){
@@ -34,7 +38,13 @@ class Object extends Collision{
         this.drawColl(ctx, this.objPos.x, this.objPos.y);
     }
 
-    collisionTest(player){
-        this.collTest(player, this.objPos.x, this.objPos.y);
+    collisionTest(player, KeyPresses){
+        this.collTest(player, KeyPresses, this.objPos.x, this.objPos.y);
+        if(this.interactable){
+            if(KeyPresses.e && this.interacting){
+                this.interactable = false;
+                this.interacting = false;
+            }
+        }
     }
 }

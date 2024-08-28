@@ -2,6 +2,7 @@ class Player extends Collision{
     constructor([imageSRC, hSprites, vSprites, sFrames], collisionPoints, velocidade){
         super(collisionPoints, false, false)
         this.sprites = new Sprites(imageSRC, hSprites, vSprites, sFrames);
+        this.inventario = new Inventario();
         this.velo = velocidade;
         this.veloY = 0;
         this.gravity = 2;
@@ -51,10 +52,6 @@ class Player extends Collision{
         }
         if(KeyPresses.a && !KeyPresses.d){
             this.personagemPos.taxaX = -1;
-        }
-
-        if(KeyPresses.e){
-            window.dispatchEvent(this.ev);
         }
     }
 

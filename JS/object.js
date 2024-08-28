@@ -34,6 +34,11 @@ class Object extends Collision{
         }
     }
 
+    update(ctx, canvas, jogador, KeyPresses){
+        this.draw(ctx, canvas);
+        this.collisionTest(jogador, KeyPresses);
+    }
+
     drawCollision(ctx){
         this.drawColl(ctx, this.objPos.x, this.objPos.y);
     }

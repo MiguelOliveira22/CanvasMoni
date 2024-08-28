@@ -1,15 +1,15 @@
 class AudioRequest{
-    constructor(path, trackid){
-        console.log(1)
-        this.audio = new CustomEvent("audiocall", {
-            detail: path,
-            faixa: trackid
-        });
-
-        this.send();
+    constructor(){
+        this.au = [new Audio(), new Audio(), new Audio(), new Audio(), new Audio()];
     }
 
-    send(){
-        window.dispatchEvent(this.audio);
+    send(trackname, trackid){
+        console.log(this.au);
+        if(!this.au[trackid].paused){
+            this.au[trackid].pause();
+        }
+        this.au[trackid] = new Audio("../Audio/" + trackname);
+        this.au[trackid].volume = 1;
+        this.au[trackid].play();
     }
 }

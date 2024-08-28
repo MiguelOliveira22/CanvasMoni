@@ -20,6 +20,11 @@ class Item extends Collision{
         ctx.drawImage(this.sprites.sheet, this.sprites.spriteArray[this.sprites.atual][0], this.sprites.spriteArray[this.sprites.atual][1], this.sprites.wSprites, this.sprites.aSprites, this.objPos.x, this.objPos.y, this.sprites.wSprites, this.sprites.aSprites);
     }
 
+    update(ctx, jogador, KeyPresses){
+        this.draw(ctx);
+        this.collisionTest(jogador, KeyPresses);
+    }
+
     drawCollision(ctx){
         this.drawColl(ctx, this.objPos.x, this.objPos.y);
     }

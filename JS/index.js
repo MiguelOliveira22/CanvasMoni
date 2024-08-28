@@ -7,14 +7,8 @@ addEventListener("DOMContentLoaded", () => {
     const ground = new Object(["", 1, 1, 60], [0, 500], [[0, 0], [2000, 100]], true, false, false, 10, 0);
 
     const baupika = new Object(["../Sprites/pixilart-drawing(2).png", 1, 1, 60], [0, 0], [[0, 0], [200, 150]], false, true, false, 0, 0);
-    const mani = new Item(["../Sprites/walkingsheetbro.png", 7, 1, 100], [110, 110], [[0,0], [100, 100]], 1);
 
     const ma = new AudioRequest();
-
-    ma.send('main.webm', 0);
-    ma.send('Course_590_00.wav', 1);
-    ma.send('Course_590_01.wav', 2);
-    ma.send('Course_590_01_01.wav', 3);
 
     let KeyPresses = {
         w: false,
@@ -22,6 +16,8 @@ addEventListener("DOMContentLoaded", () => {
         d: false,
         a: false,
         e: false,
+        1: false,
+        2: false
     };
 
     function clear(){
@@ -43,6 +39,16 @@ addEventListener("DOMContentLoaded", () => {
         }
         if(ev.key === "e"){
             KeyPresses.e = true;
+            ma.send('main.webm', 0);
+            ma.send('Course_590_00.wav', 1);
+            ma.send('Course_590_01.wav', 2);
+            ma.send('Course_590_01_01.wav', 3);
+        }
+        if(ev.key === "1"){
+            KeyPresses[1] = true;
+        }
+        if(ev.key === "2"){
+            KeyPresses[2] = true;
         }
     }
     
@@ -62,6 +68,12 @@ addEventListener("DOMContentLoaded", () => {
         if(ev.key === "e"){
             KeyPresses.e = false;
         }
+        if(ev.key === "1"){
+            KeyPresses[1] = false;
+        }
+        if(ev.key === "2"){
+            KeyPresses[2] = false;
+        }
     }
 
     function canvasUpdate(){
@@ -72,17 +84,18 @@ addEventListener("DOMContentLoaded", () => {
     function playerRoutine(){
         jogador.update();
 
-        background.update(ctx, canvas, jogador);
-        mani.update(ctx, jogador, KeyPresses);
-        baupika.update(ctx, canvas, jogador, KeyPresses);
+        background.update(ctx, canvas, jogador, false);
+        baupika.update(ctx, canvas, jogador, KeyPresses, false, () => {
+            baupika.createItem(baupika);
+        });
         
         ground.collisionTest(jogador);
 
         jogador.inventario.drawBoxItem(ctx);
+        jogador.inventario.changeItem(KeyPresses)
 
         jogador.mov(KeyPresses);
         jogador.draw(ctx);
-        jogador.drawCollision(ctx);
     }
 
     function loop(){

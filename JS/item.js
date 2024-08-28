@@ -7,6 +7,7 @@ class Item extends Collision{
             y: objy
         };
         this.id = id;
+        this.drawable = true;
     }
 
     draw(ctx){
@@ -17,11 +18,17 @@ class Item extends Collision{
         }
         this.sprites.clockVal();
         ctx.translate(this.parala, 0);
+        ctx.fillRect(110, 110, 150, 150)
         ctx.drawImage(this.sprites.sheet, this.sprites.spriteArray[this.sprites.atual][0], this.sprites.spriteArray[this.sprites.atual][1], this.sprites.wSprites, this.sprites.aSprites, this.objPos.x, this.objPos.y, this.sprites.wSprites, this.sprites.aSprites);
     }
 
-    update(ctx, jogador, KeyPresses){
-        this.draw(ctx);
+    update(ctx, jogador, KeyPresses, hitboxshow){
+        if(hitboxshow){
+            this.drawCollision(ctx);
+        }
+        if(this.drawable){
+            this.draw(ctx);
+        }
         this.collisionTest(jogador, KeyPresses);
     }
 
@@ -33,9 +40,10 @@ class Item extends Collision{
         this.collTest(player, KeyPresses, this.objPos.x, this.objPos.y);
         if(this.interactable){
             if(KeyPresses.e && this.interacting){
-                player.inventario.unlockById(this.id);
                 this.interactable = false;
                 this.interacting = false;
+                this.drawable = false;
+                player.inventario.unlockById(this.id);
             }
         }
     }

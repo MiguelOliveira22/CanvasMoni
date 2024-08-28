@@ -22,6 +22,8 @@ addEventListener("DOMContentLoaded", () => {
         d: false,
         a: false,
         e: false,
+        1: false,
+        2: false
     };
 
     function clear(){
@@ -44,6 +46,12 @@ addEventListener("DOMContentLoaded", () => {
         if(ev.key === "e"){
             KeyPresses.e = true;
         }
+        if(ev.key === "1"){
+            KeyPresses[1] = true;
+        }
+        if(ev.key === "2"){
+            KeyPresses[2] = true;
+        }
     }
     
     function teclaMenos(ev){
@@ -62,6 +70,12 @@ addEventListener("DOMContentLoaded", () => {
         if(ev.key === "e"){
             KeyPresses.e = false;
         }
+        if(ev.key === "1"){
+            KeyPresses[1] = false;
+        }
+        if(ev.key === "2"){
+            KeyPresses[2] = false;
+        }
     }
 
     function canvasUpdate(){
@@ -79,6 +93,7 @@ addEventListener("DOMContentLoaded", () => {
         ground.collisionTest(jogador);
 
         jogador.inventario.drawBoxItem(ctx);
+        jogador.inventario.changeItem(KeyPresses)
 
         jogador.mov(KeyPresses);
         jogador.draw(ctx);

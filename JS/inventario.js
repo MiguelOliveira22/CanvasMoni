@@ -11,6 +11,13 @@ class Inventario{
             1: false,
             2: false
         }
+        
+        this.quantItems = 0
+        for(let i in this.items){
+            this.quantItems += 1
+        }
+
+        this.currentItem = 0
     }
 
     unlockById(id){
@@ -20,12 +27,7 @@ class Inventario{
     }
 
     drawBoxItem(ctx){
-        let quantItems = 0
-        for(var i in this.items){
-            quantItems += 1
-        }
-        
-        for(var i = 0; i < quantItems; i++){
+        for(let i = 0; i < this.quantItems; i++){
             if(this.usable[i]){
                 let y = 600 - (i * 100)
                 ctx.fillRect(1150, y, 60, 60)
@@ -34,4 +36,21 @@ class Inventario{
         }
     }
     
+    changeItem(keyPresses){
+        if(keyPresses[1] == true){
+            if(this.currentItem != this.quantItems - 1 && this.usable[this.currentItem + 1] == true){
+                this.currentItem += 1
+
+                console.log(this.currentItem)
+            }
+        }
+        if(keyPresses[2] == true){
+            if(this.currentItem != 0){
+                this.currentItem -= 1
+
+                console.log(this.currentItem)
+            }
+        }
+        
+    }
 }

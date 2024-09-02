@@ -43,7 +43,6 @@ class Inventario{
         if(keyPresses[1] == true){
             if(this.currentItem != this.quantItems - 1 && this.usable[this.currentItem + 1] == true){
                 this.currentItem += 1
-
                 console.log(this.currentItem)
             }
         }
@@ -55,5 +54,11 @@ class Inventario{
             }
         }
         
+    }
+
+    setItem(enter){
+        if(this.currentItem <= this.quantItems && this.currentItem >= 0){
+            this.currentItem = enter;
+        }
     }
 }

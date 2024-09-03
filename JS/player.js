@@ -4,16 +4,16 @@ class Player extends Collision{
         this.sprites = new Sprites(imageSRC, hSprites, vSprites, sFrames);
         this.inventario = new Inventario();
         this.velo = velocidade;
-        this.veloY = 0;
         this.gravity = 2;
+        this.direction = true;
+        this.collided = false;
+
         this.personagemPos = {
             x: 0,
             y: 0,
             taxaX: 0,
             taxaY: 0
         };
-        this.direction = 1;
-        this.collided = false;
 
         this.update();
     }
@@ -21,7 +21,7 @@ class Player extends Collision{
     draw(ctx){
         this.sprites.clockVal();
         ctx.setTransform(1, 0, 0, 1, 0, 0);
-        if(this.direction == 0){
+        if(!this.direction){
             ctx.scale(-1, 1);
             ctx.drawImage(this.sprites.sheet, this.sprites.spriteArray[this.sprites.atual][0], this.sprites.spriteArray[this.sprites.atual][1], this.sprites.wSprites, this.sprites.aSprites, -this.personagemPos.x, this.personagemPos.y, -this.sprites.wSprites, this.sprites.aSprites);
         }
@@ -33,18 +33,20 @@ class Player extends Collision{
 
     mov(KeyPresses){
         if(this.personagemPos.taxaY < this.gravity){
-            this.personagemPos.taxaY += this.gravity / 2;
+
+            this.personagemPos.taxaY = 0/*(this.gravity / 2)*/;
         }
         else{
             this.personagemPos.taxaY = this.gravity;
         }
+
         this.personagemPos.taxaX = 0;
 
-        if((KeyPresses.w && !KeyPresses.s) && this.collided){
-            this.personagemPos.taxaY += -10;
+        if(KeyPresses.w && !KeyPresses.s){
+            this.personagemPos.taxaY = -1;
         }
         if(KeyPresses.s && !KeyPresses.w){
-            // this.personagemPos.taxaY = 1;
+            this.personagemPos.taxaY = 1;
         }
         if(KeyPresses.d && !KeyPresses.a){
             this.personagemPos.taxaX = 1;
@@ -59,10 +61,10 @@ class Player extends Collision{
         this.nextY = this.personagemPos.y + (this.personagemPos.taxaY * this.velo);
         
         if(this.nextX > this.personagemPos.x){
-            this.direction = 1;
+            this.direction = true;
         }
         else if(this.nextX < this.personagemPos.x){
-            this.direction = 0;
+            this.direction = false;
         }
     }
 

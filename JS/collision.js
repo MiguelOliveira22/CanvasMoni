@@ -10,32 +10,17 @@ class Collision{
         let x = player.nextX;
         let y = player.nextY;
 
+        console.log();
+
         if(this.collidable){
-            if(x >= (this.vertices[0][0] - posX) && x <= (this.vertices[1][0] - posX)){
-                if(y >= (this.vertices[0][1] + posY + 10) && y <= (this.vertices[1][1] + posY + 10)){
-                    player.personagemPos.x = player.personagemPos.x;
-                }
-                else{
-                    player.personagemPos.x = x;
-                }
-                player.collided = false;
+            if(player.vertices[1][0] + x >= (this.vertices[0][0] + posX) && player.vertices[0][0] + x <= (this.vertices[1][0] + posX) &&
+               player.vertices[1][1] + y >= (this.vertices[0][1] + posY) && player.vertices[1][0] + y <= (this.vertices[1][1] + posY)){
+                player.personagemPos.x = this.vertices[0][0] + posX + player.personagemPos.x;
+                player.personagemPos.y = this.vertices[0][1] + posX + player.personagemPos.y;
+                player.collided = true;
             }
             else{
                 player.personagemPos.x = x;
-                player.collided = false;
-            }
-
-            if(y >= (this.vertices[0][1] + posY) && y <= (this.vertices[1][1] + posY)){
-                if(x >= (this.vertices[0][0] + posX + 10) && x <= (this.vertices[1][0] + posX + 10)){
-                    player.personagemPos.y = player.personagemPos.y;
-                    player.collided = true;
-                }
-                else{
-                    player.personagemPos.y = y;
-                    player.collided = false;
-                }
-            }
-            else{
                 player.personagemPos.y = y;
                 player.collided = false;
             }

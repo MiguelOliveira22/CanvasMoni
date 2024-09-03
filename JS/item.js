@@ -14,7 +14,7 @@ class Item extends Collision{
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         if(this.interacting && this.interactable){
             ctx.font = '24px SMW';
-            ctx.fillText("Como Assim Joey? O Que Tu fez?", 100, 100);
+            ctx.fillText("Pressione E Para Coletar", 100, 100);
         }
         this.sprites.clockVal();
         ctx.translate(this.parala, 0);

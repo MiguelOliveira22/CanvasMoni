@@ -25,7 +25,7 @@ class Object extends Collision{
         this.sprites.clockVal();
         if(this.interacting && this.interactable){
             ctx.font = '24px SMW';
-            ctx.fillText("Como Assim Joey? O Que Tu fez?", 100, 100);
+            ctx.fillText("Pressione E Para Interagir", 100, 100);
         }
         ctx.translate(this.parala, 0);
         if(this.bg){

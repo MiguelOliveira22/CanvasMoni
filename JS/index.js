@@ -3,10 +3,10 @@ addEventListener("DOMContentLoaded", () => {
     const ctx = canvas.getContext("2d");
 
     const jogador = new Player(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 150]], 5);
-    const background = new Object(["../Sprites/PixelArt/pixilart-drawing.png", 1, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 10, 0);
-    const ground = new Object(["", 1, 1, 60], [0, 500], [[0, 0], [2000, 100]], true, false, false, 10, 0);
+    //const background = new Object(["../Sprites/PixelArt/pixilart-drawing.png", 1, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 10, 0);
+    const ground = new Object(["", 1, 1, 60], [0, 625], [[0, 0], [2000, 100]], true, false, false, 10, 0);
 
-    const baupika = new Object(["../Sprites/PixelArt/bau-sprite.png", 8, 1, 1000], [500, 500], [[-20, -20], [200, 150]], false, true, false, 0, 0);
+    //const baupika = new Object(["../Sprites/PixelArt/bau-sprite.png", 8, 1, 1000], [500, 500], [[-20, -20], [200, 150]], false, true, false, 0, 0);
 
     const ma = new AudioRequest();
 
@@ -39,10 +39,6 @@ addEventListener("DOMContentLoaded", () => {
         }
         if(ev.key === "e"){
             KeyPresses.e = true;
-            ma.send('main.webm', 0);
-            ma.send('Course_590_00.wav', 1);
-            ma.send('Course_590_01.wav', 2);
-            ma.send('Course_590_01_01.wav', 3);
         }
         if(ev.key === "1"){
             KeyPresses[1] = true;
@@ -85,31 +81,42 @@ addEventListener("DOMContentLoaded", () => {
         ctx.fillStyle = "#1305FF";
         jogador.update();
 
-        background.update(ctx, canvas, jogador, false);
+        /*background.update(ctx, canvas, jogador, false);
         baupika.update(ctx, canvas, jogador, KeyPresses, false, () => {
             baupika.createItem(baupika);
-        });
+        });*/
         
         ground.collisionTest(jogador);
+        ground.drawCollision(ctx);
 
         jogador.mov(KeyPresses);
         jogador.draw(ctx);
+        jogador.drawCollision(ctx)
         
         jogador.inventario.drawBoxItem(ctx);
         jogador.inventario.changeItem(KeyPresses);
     }
 
     function loop(){
-        canvasUpdate();
-        clear();
-
-        playerRoutine()
-
-        requestAnimationFrame(loop);
+        setTimeout(() => {
+            canvasUpdate();
+            clear();
+    
+            playerRoutine()
+    
+            requestAnimationFrame(loop);
+        }, 1)
     }
 
     loop();
 
     window.addEventListener("keydown", tecla);
     window.addEventListener("keyup", teclaMenos);
+
+    /*
+        ma.send('main.webm', 0);
+        ma.send('Course_590_00.wav', 1);
+        ma.send('Course_590_01.wav', 2);
+        ma.send('Course_590_01_01.wav', 3);
+    */
 });

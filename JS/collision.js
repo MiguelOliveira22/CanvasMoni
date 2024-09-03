@@ -13,8 +13,8 @@ class Collision{
         console.log();
 
         if(this.collidable){
-            if(player.vertices[1][0] + x >= (this.vertices[0][0] + posX) && player.vertices[0][0] + x <= (this.vertices[1][0] + posX) &&
-               player.vertices[1][1] + y >= (this.vertices[0][1] + posY) && player.vertices[1][0] + y <= (this.vertices[1][1] + posY)){
+            if(player.vertices[1][0] + x > (this.vertices[0][0] + posX) && player.vertices[0][0] + x < (this.vertices[1][0] + posX) &&
+               player.vertices[1][1] + y > (this.vertices[0][1] + posY) && player.vertices[1][0] + y < (this.vertices[1][1] + posY)){
                 player.personagemPos.x = this.vertices[0][0] + posX + player.personagemPos.x;
                 player.personagemPos.y = this.vertices[0][1] + posX + player.personagemPos.y;
                 player.collided = true;
@@ -27,13 +27,9 @@ class Collision{
         }
 
         if(this.interactable){
-            if(x >= this.vertices[0][0] + posX && x <= this.vertices[1][0] + posX){
-                if(y >= this.vertices[0][1] + posY && y <= this.vertices[1][1] + posY){
-                    this.interacting = true;
-                }
-                else{
-                    this.interacting = false;
-                }
+            if(player.vertices[1][0] + x > (this.vertices[0][0] + posX) && player.vertices[0][0] + x < (this.vertices[1][0] + posX) &&
+               player.vertices[1][1] + y > (this.vertices[0][1] + posY) && player.vertices[1][0] + y < (this.vertices[1][1] + posY)){
+                this.interacting = true;
             }
             else{
                 this.interacting = false;

@@ -16,7 +16,7 @@ class Object extends Collision{
 
     createItem(obj){
         this.sprites.atual = 7;
-        obj.children[this.sizeChildren] = new Item(["../Sprites/pixil-frame-0.png", 1, 1, 1], [400, 500], [[0,0], [100, 100]], 1);
+        obj.children[this.sizeChildren] = new Item(["../Sprites/pixil-frame-0.png", 1, 1, 1], [400, 400], [[0,0], [100, 100]], 1);
         obj.sizeChildren += 1;
     }
 

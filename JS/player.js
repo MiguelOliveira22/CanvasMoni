@@ -34,19 +34,20 @@ class Player extends Collision{
     mov(KeyPresses){
         if(this.personagemPos.taxaY < this.gravity){
 
-            this.personagemPos.taxaY = 0/*(this.gravity / 2)*/;
+            this.personagemPos.taxaY += (this.gravity / 2);
         }
         else{
             this.personagemPos.taxaY = this.gravity;
         }
 
+        if(this.collided && this.personagemPos.taxaY > 0){
+            this.personagemPos.taxaY = 0;
+        }
+
         this.personagemPos.taxaX = 0;
 
-        if(KeyPresses.w && !KeyPresses.s){
-            this.personagemPos.taxaY = -1;
-        }
-        if(KeyPresses.s && !KeyPresses.w){
-            this.personagemPos.taxaY = 1;
+        if((KeyPresses.w && !KeyPresses.s) && this.collided){
+            this.personagemPos.taxaY += -10;
         }
         if(KeyPresses.d && !KeyPresses.a){
             this.personagemPos.taxaX = 1;

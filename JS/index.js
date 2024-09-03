@@ -2,11 +2,11 @@ addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("canvasMain");
     const ctx = canvas.getContext("2d");
 
-    const jogador = new Player(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 150]], 5);
-    //const background = new Object(["../Sprites/PixelArt/pixilart-drawing.png", 1, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 10, 0);
+    const jogador = new Player(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5);
+    const background = new Object(["../Sprites/PixelArt/pixilart-drawing.png", 1, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 10, 0);
     const ground = new Object(["", 1, 1, 60], [0, 625], [[0, 0], [2000, 100]], true, false, false, 10, 0);
 
-    //const baupika = new Object(["../Sprites/PixelArt/bau-sprite.png", 8, 1, 1000], [500, 500], [[-20, -20], [200, 150]], false, true, false, 0, 0);
+    const baupika = new Object(["../Sprites/PixelArt/bau-sprite.png", 8, 1, 1000], [500, 500], [[-20, -20], [200, 150]], false, true, false, 0, 0);
 
     const ma = new AudioRequest();
 
@@ -81,31 +81,27 @@ addEventListener("DOMContentLoaded", () => {
         ctx.fillStyle = "#1305FF";
         jogador.update();
 
-        /*background.update(ctx, canvas, jogador, false);
+        background.update(ctx, canvas, jogador, false);
         baupika.update(ctx, canvas, jogador, KeyPresses, false, () => {
             baupika.createItem(baupika);
-        });*/
+        });
         
         ground.collisionTest(jogador);
-        ground.drawCollision(ctx);
 
         jogador.mov(KeyPresses);
         jogador.draw(ctx);
-        jogador.drawCollision(ctx)
         
         jogador.inventario.drawBoxItem(ctx);
         jogador.inventario.changeItem(KeyPresses);
     }
 
     function loop(){
-        setTimeout(() => {
-            canvasUpdate();
-            clear();
-    
-            playerRoutine()
-    
-            requestAnimationFrame(loop);
-        }, 1)
+        canvasUpdate();
+        clear();
+
+        playerRoutine()
+
+        requestAnimationFrame(loop);
     }
 
     loop();

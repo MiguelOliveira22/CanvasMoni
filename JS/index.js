@@ -80,8 +80,8 @@ addEventListener("DOMContentLoaded", () => {
     }
 
     function playerRoutine(){
-        ctx.fillStyle = "#1305FF";
         jogador.update();
+        inimigo.update();
 
         background.update(ctx, canvas, jogador, false);
         baupika.update(ctx, canvas, jogador, KeyPresses, false, () => {
@@ -89,10 +89,10 @@ addEventListener("DOMContentLoaded", () => {
         });
         
         ground.collisionTest(jogador);
+        ground.collisionTest(inimigo);
 
         inimigo.mov()
         inimigo.draw(ctx)
-        inimigo.changeDirection()
 
         jogador.mov(KeyPresses);
         jogador.draw(ctx);

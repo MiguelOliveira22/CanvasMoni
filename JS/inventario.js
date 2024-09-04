@@ -32,9 +32,10 @@ class Inventario{
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         for(let i = 0; i < this.quantItems; i++){
             if(this.usable[i]){
+                ctx.beginPath()
                 let y = 600 - (i * 100)
+                ctx.fillStyle = "white"
                 ctx.fillRect(1150, y, 60, 60)
-                ctx.stroke()
             }
         }
     }

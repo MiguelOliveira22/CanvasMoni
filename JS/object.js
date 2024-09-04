@@ -24,6 +24,8 @@ class Object extends Collision{
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         this.sprites.clockVal();
         if(this.interacting && this.interactable){
+            ctx.beginPath()
+            ctx.fillStyle = "#1305FF";
             ctx.font = '24px SMW';
             ctx.fillText("Pressione E Para Interagir", 100, 100);
         }

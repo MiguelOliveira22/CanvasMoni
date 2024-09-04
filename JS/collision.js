@@ -15,14 +15,28 @@ class Collision{
         if(this.collidable){
             if(player.vertices[1][0] + x > (this.vertices[0][0] + posX) && player.vertices[0][0] + x < (this.vertices[1][0] + posX) &&
                player.vertices[1][1] + y > (this.vertices[0][1] + posY) && player.vertices[1][0] + y < (this.vertices[1][1] + posY)){
-                player.personagemPos.x = this.vertices[0][0] + posX + player.personagemPos.x;
-                player.personagemPos.y = this.vertices[0][1] + posX + player.personagemPos.y;
+                try{
+                    player.personagemPos.x = this.vertices[0][0] + posX + player.personagemPos.x;
+                    player.personagemPos.y = this.vertices[0][1] + posX + player.personagemPos.y;
+                }
+                catch{
+                    player.enemyPos.x = this.vertices[0][0] + posX + player.enemyPos.x;
+                    player.enemyPos.y = this.vertices[0][1] + posX + player.enemyPos.y;
+                }
                 player.collided = true;
             }
             else{
-                player.personagemPos.x = x;
-                player.personagemPos.y = y;
+                try{
+                    player.personagemPos.x = x;
+                    player.personagemPos.y = y;
+                }
+                catch{
+                    player.enemyPos.x = x;
+                    player.enemyPos.y = y;
+                    
+                }
                 player.collided = false;
+                
             }
         }
 

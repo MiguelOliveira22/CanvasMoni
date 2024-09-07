@@ -1,25 +1,27 @@
 class Inventario{
-    constructor(){
+    constructor(iteminicial){
         this.items = {
             0: "Mão",
             1: "Palito De Dente",
             2: "Carro",
             3: "James"
-        }
+        };
 
         this.usable = {
             0: true,
             1: false,
             2: false,
             3: false
-        }
+        };
         
-        this.quantItems = 0
+        this.quantItems = 0;
         for(let i in this.items){
-            this.quantItems += 1
+            this.quantItems += 1;
         }
 
-        this.currentItem = 0
+        this.currentItem = iteminicial;
+
+        this.unlockById(iteminicial);
     }
 
     unlockById(id){

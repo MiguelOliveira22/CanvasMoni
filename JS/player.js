@@ -2,7 +2,7 @@ class Player extends Collision{
     constructor([imageSRC, hSprites, vSprites, sFrames], collisionPoints, velocidade, gravity){
         super(collisionPoints, false, false)
         this.sprites = new Sprites(imageSRC, hSprites, vSprites, sFrames);
-        this.inventario = new Inventario();
+        this.inventario = new Inventario(0);
         this.velo = velocidade;
         this.gravity = gravity;
         this.direction = true;

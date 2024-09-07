@@ -2,11 +2,12 @@ addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("canvasMain");
     const ctx = canvas.getContext("2d");
 
-    const jogador = new Player(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5);
+    const jogador = new Player(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 2);
     const background = new Object(["../Sprites/PixelArt/pixilart-drawing.png", 1, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 10, 0);
     const ground = new Object(["", 1, 1, 60], [0, 625], [[0, 0], [2000, 100]], true, false, false, 10, 0);
 
     const inimigo = new Inimigo(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5);
+    const pellet = new Projetil(["../Sprites/walkingsheetbro.png", 7, 1, 100], [0, 0], [[10, 0], [125, 130]]);
 
     const baupika = new Object(["../Sprites/PixelArt/bau-sprite.png", 8, 1, 1000], [500, 500], [[-20, -20], [200, 150]], false, true, false, 0, 0);
 
@@ -82,9 +83,10 @@ addEventListener("DOMContentLoaded", () => {
     function playerRoutine(){
         jogador.update();
         inimigo.update();
+        pellet.update(ctx, jogador, KeyPresses);
 
         background.update(ctx, canvas, jogador, false);
-        baupika.update(ctx, canvas, jogador, KeyPresses, false, () => {
+        baupika.update(ctx, canvas, jogador, KeyPresses, () => {
             baupika.createItem(baupika);
         });
         

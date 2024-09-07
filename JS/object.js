@@ -20,6 +20,11 @@ class Object extends Collision{
         obj.sizeChildren += 1;
     }
 
+    talk(){
+        // Conversa
+        this.interactable = true;
+    }
+
     draw(ctx, canvas){
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         this.sprites.clockVal();
@@ -44,12 +49,9 @@ class Object extends Collision{
         }
     }
 
-    update(ctx, canvas, jogador, KeyPresses, hitboxshow, action){
+    update(ctx, canvas, jogador, KeyPresses, action){
         this.draw(ctx, canvas);
         this.collisionTest(jogador, KeyPresses, action);
-        if(hitboxshow){
-            this.drawCollision(ctx);
-        }
         for(let ins = 0; ins < this.sizeChildren; ins ++){
             this.children[ins].update(ctx, jogador, KeyPresses, false);
         }

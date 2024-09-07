@@ -21,10 +21,7 @@ class Item extends Collision{
         ctx.drawImage(this.sprites.sheet, this.sprites.spriteArray[this.sprites.atual][0], this.sprites.spriteArray[this.sprites.atual][1], this.sprites.wSprites, this.sprites.aSprites, this.objPos.x, this.objPos.y, this.sprites.wSprites, this.sprites.aSprites);
     }
 
-    update(ctx, jogador, KeyPresses, hitboxshow){
-        if(hitboxshow){
-            this.drawCollision(ctx);
-        }
+    update(ctx, jogador, KeyPresses){
         if(this.drawable){
             this.draw(ctx);
         }

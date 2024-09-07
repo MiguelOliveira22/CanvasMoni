@@ -7,10 +7,10 @@ class Inimigo extends Collision{
         this.direction = true;
         this.collided = false;
         this.enemyPos = {
-            x:Math.floor(Math.random() * 1000),
-            y:Math.floor(Math.random() * 300),
-            taxaX:0,
-            taxaY:0
+            x: Math.floor(Math.random() * 1000),
+            y: Math.floor(Math.random() * 300),
+            taxaX: 0,
+            taxaY: 0
         }
         this.update()
     }
@@ -39,10 +39,10 @@ class Inimigo extends Collision{
     }
 
     draw(ctx){
-        ctx.beginPath()
+        ctx.beginPath();
         this.sprites.clockVal();
         ctx.setTransform(1, 0, 0, 1, 0, 0);
-        ctx.fillStyle = "red"
+        ctx.fillStyle = "red";
         ctx.fillRect(this.enemyPos.x, this.enemyPos.y, 60, 60)
     }
 

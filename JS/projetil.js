@@ -11,13 +11,12 @@ class Projetil extends Collision{
     draw(ctx){
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         this.sprites.clockVal();
-        this.drawCollision(ctx)
         ctx.drawImage(this.sprites.sheet, this.sprites.spriteArray[this.sprites.atual][0], this.sprites.spriteArray[this.sprites.atual][1], this.sprites.wSprites, this.sprites.aSprites, this.objPos.x, this.objPos.y, this.sprites.wSprites, this.sprites.aSprites);
     }
 
-    update(ctx, jogador, KeyPresses, action){
+    update(ctx, jogador){
         this.draw(ctx);
-        this.collTest(jogador, KeyPresses, this.objPos.x, this.objPos.y);
+        this.collTest(jogador, this.objPos.x, this.objPos.y);
     }
 
     drawCollision(ctx){

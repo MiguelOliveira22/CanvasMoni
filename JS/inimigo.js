@@ -6,6 +6,7 @@ class Inimigo extends Collision{
         this.gravity = 2;
         this.direction = true;
         this.collided = false;
+        this.hp = 100;
         this.enemyPos = {
             x: Math.floor(Math.random() * 1000),
             y: Math.floor(Math.random() * 300),

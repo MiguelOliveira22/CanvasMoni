@@ -9,7 +9,7 @@ addEventListener("DOMContentLoaded", () => {
     const inimigo = new Inimigo(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5);
     const pellet = new Projetil(["../Sprites/walkingsheetbro.png", 7, 1, 100], [0, 0], [[10, 0], [125, 130]]);
 
-    const baupika = new Object(["../Sprites/PixelArt/bau-sprite.png", 8, 1, 1000], [500, 500], [[-20, -20], [200, 150]], false, true, false, 0, 0);
+    const bauteste = new Object(["../Sprites/PixelArt/bau-sprite.png", 8, 1, 1000], [500, 500], [[-20, -20], [200, 150]], false, true, false, 0, 0);
 
     const ma = new AudioRequest();
 
@@ -83,11 +83,12 @@ addEventListener("DOMContentLoaded", () => {
     function playerRoutine(){
         jogador.update();
         inimigo.update();
-        pellet.update(ctx, jogador, KeyPresses);
+        pellet.update(ctx, jogador);
 
-        background.update(ctx, canvas, jogador, false);
-        baupika.update(ctx, canvas, jogador, KeyPresses, () => {
-            baupika.createItem(baupika);
+        background.update(ctx, canvas, jogador, KeyPresses);
+        bauteste.update(ctx, canvas, jogador, KeyPresses, () => {
+            bauteste.createItem(bauteste);
+            bauteste.talk(ctx);
         });
         
         ground.collisionTest(jogador);

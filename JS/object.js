@@ -20,8 +20,12 @@ class Object extends Collision{
         obj.sizeChildren += 1;
     }
 
-    talk(){
-        // Conversa
+    talk(ctx){
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.beginPath();
+        ctx.fillStyle = "#1305FF";
+        ctx.font = '24px SMW';
+        ctx.fillText("Meu Nome Rafael Ser", 300, 100);
         this.interactable = true;
     }
 
@@ -49,9 +53,9 @@ class Object extends Collision{
         }
     }
 
-    update(ctx, canvas, jogador, KeyPresses, action){
+    update(ctx, canvas,  jogador, KeyPresses, callback = () => {}){
         this.draw(ctx, canvas);
-        this.collisionTest(jogador, KeyPresses, action);
+        this.collisionTest(jogador, KeyPresses, callback);
         for(let ins = 0; ins < this.sizeChildren; ins ++){
             this.children[ins].update(ctx, jogador, KeyPresses, false);
         }
@@ -61,9 +65,9 @@ class Object extends Collision{
         this.drawColl(ctx, this.objPos.x, this.objPos.y);
     }
 
-    collisionTest(player, KeyPresses, callback){
-        this.collTest(player, KeyPresses, this.objPos.x, this.objPos.y);
-        if(this.interactable){
+    collisionTest(player, KeyPresses = null, callback = () => {}){
+        this.collTest(player, this.objPos.x, this.objPos.y);
+        if(this.interactable && KeyPresses != null){
             if(KeyPresses.e && this.interacting){
                 this.interactable = false;
                 this.interacting = false;

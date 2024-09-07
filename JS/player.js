@@ -7,6 +7,7 @@ class Player extends Collision{
         this.gravity = gravity;
         this.direction = true;
         this.collided = false;
+        this.hp = 100;
         this.personagemPos = {
             x: 0,
             y: 0,

@@ -6,11 +6,9 @@ class Collision{
         this.interacting = false;
     }
 
-    collTest(player, KeyPresses, posX, posY){
+    collTest(player, posX, posY){
         let x = player.nextX;
         let y = player.nextY;
-
-        console.log();
 
         if(this.collidable){
             if(player.vertices[1][0] + x > (this.vertices[0][0] + posX) && player.vertices[0][0] + x < (this.vertices[1][0] + posX) &&

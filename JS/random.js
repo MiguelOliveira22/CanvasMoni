@@ -22,14 +22,12 @@ class RandomUse{
 class MapGen extends RandomUse{
     constructor(seed){
         super(seed);
-        this.random = new RandomUse(seed + 10).randomInt;
 
         this.width = 30;
         this.height = 30;
         this.physicalCells = 20;
         this.logicalCells = 0;
 
-        this.turnBias = 0.13;
         this.upBias = 0.68;
         this.downBias = 0.68;
         this.leftBias = 1;

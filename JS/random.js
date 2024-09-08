@@ -65,7 +65,7 @@ class MapGen extends RandomUse{
             this.x = this.path[this.ends[this.endsWhich].id].pos.x;
             this.y = this.path[this.ends[this.endsWhich].id].pos.y;
             if(this.y + 1 < this.height){
-                if(Math.floor(this.lastRandGenerated / (this.mod / 4)) == 0 && !this.tiles[this.x][this.y + 1]){
+                if(Math.floor((this.lastRandGenerated / (this.mod / 4)) * this.upBias) == 0 && !this.tiles[this.x][this.y + 1]){
                     this.cycled = true;
                     this.y ++;
                     this.tiles[this.x][this.y] = true;
@@ -76,7 +76,7 @@ class MapGen extends RandomUse{
                 }
             }
             if(this.x + 1 < this.width){
-                if(Math.floor(this.lastRandGenerated / (this.mod / 4)) == 1 && !this.tiles[this.x + 1][this.y]){
+                if(Math.floor((this.lastRandGenerated / (this.mod / 4)) * this.rightBias) == 1 && !this.tiles[this.x + 1][this.y]){
                     this.cycled = true;
                     this.x ++;
                     this.tiles[this.x][this.y] = true;
@@ -87,7 +87,7 @@ class MapGen extends RandomUse{
                 }
             }
             if(this.y - 1 >= 0){
-                if(Math.floor(this.lastRandGenerated / (this.mod / 4)) == 2 && !this.tiles[this.x][this.y - 1]){
+                if(Math.floor((this.lastRandGenerated / (this.mod / 4)) * this.downBias) == 2 && !this.tiles[this.x][this.y - 1]){
                     this.cycled = true;
                     this.y --;
                     this.tiles[this.x][this.y] = true;
@@ -98,7 +98,7 @@ class MapGen extends RandomUse{
                 }
             }
             if(this.x - 1 >= 0){
-                if(Math.floor(this.lastRandGenerated / (this.mod / 4)) == 3 && !this.tiles[this.x - 1][this.y]){
+                if(Math.floor((this.lastRandGenerated / (this.mod / 4)) * this.leftBias) == 3 && !this.tiles[this.x - 1][this.y]){
                     this.cycled = true;
                     this.x --;
                     this.tiles[this.x][this.y] = true;
@@ -120,7 +120,7 @@ class MapGen extends RandomUse{
                 this.endsWhich = !this.endsWhich;
             }
 
-            if(this.cycles > 2){ // Se ciclar dá um break!
+            if(this.cycles >= 10){ // Se ciclar dá um break!
                 break;
             }
         }
@@ -170,5 +170,5 @@ class Room{
     }
 }
 
-let mapper = new MapGen(40960);
+let mapper = new MapGen(1);
 mapper.genMap();

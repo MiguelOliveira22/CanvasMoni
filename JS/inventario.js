@@ -1,5 +1,5 @@
 class Inventario{
-    constructor(iteminicial){
+    constructor(iteminicial = 0){
         this.items = {
             0: "Mão",
             1: "Palito De Dente",

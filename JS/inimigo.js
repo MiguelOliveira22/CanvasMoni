@@ -43,8 +43,17 @@ class Inimigo extends Collision{
         ctx.beginPath();
         this.sprites.clockVal();
         ctx.setTransform(1, 0, 0, 1, 0, 0);
-        ctx.fillStyle = "red";
-        ctx.fillRect(this.enemyPos.x, this.enemyPos.y, 60, 60)
+        this.drawCollision(ctx);
+        /*
+        if(!this.direction){
+            ctx.scale(-1, 1);
+            ctx.drawImage(this.sprites.sheet, this.sprites.spriteArray[this.sprites.atual][0], this.sprites.spriteArray[this.sprites.atual][1], this.sprites.wSprites, this.sprites.aSprites, -this.personagemPos.x, this.personagemPos.y, -this.sprites.wSprites, this.sprites.aSprites);
+        }
+        else{
+            ctx.scale(1, 1);
+            ctx.drawImage(this.sprites.sheet, this.sprites.spriteArray[this.sprites.atual][0], this.sprites.spriteArray[this.sprites.atual][1], this.sprites.wSprites, this.sprites.aSprites, this.personagemPos.x, this.personagemPos.y, this.sprites.wSprites, this.sprites.aSprites);
+        }
+        */
     }
 
     update(){
@@ -60,6 +69,7 @@ class Inimigo extends Collision{
     }
 
     drawCollision(ctx){
+        ctx.fillStyle = "red";
         this.drawColl(ctx, this.enemyPos.x, this.enemyPos.y);
     }
 }

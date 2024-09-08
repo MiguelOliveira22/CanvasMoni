@@ -39,7 +39,7 @@ class Item extends Collision{
                 this.interactable = false;
                 this.interacting = false;
                 this.drawable = false;
-                player.inventario.unlockById(this.id);
+                player[0].inventario.unlockById(this.id);
                 callback();
             }
         }

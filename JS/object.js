@@ -10,14 +10,14 @@ class Object extends Collision{
             y: objy
         };
         this.id = id;
-        this.children = [];
+        this.childrens = [];
         this.sizeChildren = 0;
     }
 
-    createItem(obj){
+    createItem(){
         this.sprites.atual = 7;
-        obj.children[this.sizeChildren] = new Item(["../Sprites/pixil-frame-0.png", 1, 1, 1], [400, 400], [[0,0], [100, 100]], 1);
-        obj.sizeChildren += 1;
+        this.childrens[this.sizeChildren] = new Item(["../Sprites/pixil-frame-0.png", 1, 1, 1], [400, 400], [[0,0], [100, 100]], 1);
+        this.sizeChildren += 1;
     }
 
     talk(ctx){
@@ -57,7 +57,7 @@ class Object extends Collision{
         this.draw(ctx, canvas);
         this.collisionTest(jogador, KeyPresses, callback);
         for(let ins = 0; ins < this.sizeChildren; ins ++){
-            this.children[ins].update(ctx, jogador, KeyPresses, false);
+            this.childrens[ins].update(ctx, jogador, KeyPresses, false);
         }
     }
 
@@ -71,7 +71,7 @@ class Object extends Collision{
             if(KeyPresses.e && this.interacting){
                 this.interactable = false;
                 this.interacting = false;
-                callback();
+                callback(player);
             }
         }
     }

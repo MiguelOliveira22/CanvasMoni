@@ -14,6 +14,8 @@ class Player extends Collision{
             taxaX: 0,
             taxaY: 0
         };
+        this.childrens = [];
+        this.sizeChildren = 0;
         this.update();
     }
 
@@ -53,9 +55,14 @@ class Player extends Collision{
         if(KeyPresses.a && !KeyPresses.d){
             this.personagemPos.taxaX = -1;
         }
+
+        if(KeyPresses.q){
+            this.childrens[this.sizeChildren] = new Projetil(["../Sprites/walkingsheetbro.png", 7, 1, 100], [this.personagemPos.x, this.personagemPos.y], [[10, 0], [125, 130]], this.inventario.currentItem, 0);
+            this.sizeChildren += 1;
+        }
     }
 
-    update(){
+    update(ctx){
         this.nextX = this.personagemPos.x + (this.personagemPos.taxaX * this.velo);
         this.nextY = this.personagemPos.y + (this.personagemPos.taxaY * this.velo);
         
@@ -64,6 +71,10 @@ class Player extends Collision{
         }
         else if(this.nextX < this.personagemPos.x){
             this.direction = false;
+        }
+
+        for(let ins = 0; ins < this.sizeChildren; ins ++){
+            this.childrens[ins].update(ctx, this);
         }
     }
 

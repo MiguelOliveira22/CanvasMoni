@@ -46,96 +46,101 @@ class MapGen extends RandomUse{
             }
         }
 
-        this.path[this.logicalCells] = new Room(this.logicalCells, true);
-        this.logicalCells ++;
+        this.ends = new Array(2);
+        this.endsWhich = false;
 
         this.x = this.width / 2;
         this.y = this.height / 2;
 
-        this.tiles[this.x][this.y] = true;
+        this.path[this.logicalCells] = new Room(this.logicalCells, [this.x, this.y]);
+        this.ends[this.endsWhich] = this.path[this.logicalCells];
+        this.ends[!this.endsWhich] = this.ends[this.endsWhich];
+        this.endsWhich = !this.endsWhich;
+        this.logicalCells ++;
 
-        this.lastRandRound = this.lastRandGenerated + this.lastRandGenerated % 2;
+        this.tiles[this.x][this.y] = true;
+        
         while(this.logicalCells < this.physicalCells){
             this.cycled = false;
-            console.log(this.logicalCells)
+            this.x = this.path[this.ends[this.endsWhich].id].pos.x;
+            this.y = this.path[this.ends[this.endsWhich].id].pos.y;
             if(this.y + 1 < this.height){
-                if(Math.floor(this.lastRandRound / 10240) == 0 && !this.tiles[this.x][this.y + 1]){
+                if(Math.floor(this.lastRandGenerated / (this.mod / 4)) == 0 && !this.tiles[this.x][this.y + 1]){
                     this.cycled = true;
                     this.y ++;
                     this.tiles[this.x][this.y] = true;
-                    this.path[this.logicalCells] = new Room(this.logicalCells);
-                    this.path[this.logicalCells].setSides(null, null, this.logicalCells - 1);
-                    this.path[this.logicalCells - 1].setSides(this.logicalCells);
+                    this.path[this.logicalCells] = new Room(this.logicalCells, [this.x, this.y]);
+                    this.path[this.logicalCells].setSides(null, null, this.ends[this.endsWhich].id);
+                    this.path[this.ends[this.endsWhich].id].setSides(this.logicalCells);
+                    this.ends[this.endsWhich] = this.path[this.logicalCells];
                 }
             }
             if(this.x + 1 < this.width){
-                if(Math.floor(this.lastRandRound / 10240) == 1 && !this.tiles[this.x + 1][this.y]){
+                if(Math.floor(this.lastRandGenerated / (this.mod / 4)) == 1 && !this.tiles[this.x + 1][this.y]){
                     this.cycled = true;
                     this.x ++;
                     this.tiles[this.x][this.y] = true;
-                    this.path[this.logicalCells] = new Room(this.logicalCells);
-                    this.path[this.logicalCells].setSides(null, null, null, this.logicalCells - 1);
-                    this.path[this.logicalCells - 1].setSides(null, this.logicalCells);
+                    this.path[this.logicalCells] = new Room(this.logicalCells, [this.x, this.y]);
+                    this.path[this.logicalCells].setSides(null, null, null, this.ends[this.endsWhich].id);
+                    this.path[this.ends[this.endsWhich].id].setSides(null, this.logicalCells);
+                    this.ends[this.endsWhich] = this.path[this.logicalCells];
                 }
             }
             if(this.y - 1 >= 0){
-                if(Math.floor(this.lastRandRound / 10240) == 2 && !this.tiles[this.x][this.y - 1]){
+                if(Math.floor(this.lastRandGenerated / (this.mod / 4)) == 2 && !this.tiles[this.x][this.y - 1]){
                     this.cycled = true;
                     this.y --;
                     this.tiles[this.x][this.y] = true;
-                    this.path[this.logicalCells] = new Room(this.logicalCells);
-                    this.path[this.logicalCells].setSides(this.logicalCells - 1);
-                    this.path[this.logicalCells - 1].setSides(null, null, this.logicalCells);
+                    this.path[this.logicalCells] = new Room(this.logicalCells, [this.x, this.y]);
+                    this.path[this.logicalCells].setSides(this.ends[this.endsWhich].id);
+                    this.path[this.ends[this.endsWhich].id].setSides(null, null, this.logicalCells);
+                    this.ends[this.endsWhich] = this.path[this.logicalCells];
                 }
             }
             if(this.x - 1 >= 0){
-                if(Math.floor(this.lastRandRound / 10240) == 3 && !this.tiles[this.x - 1][this.y]){
+                if(Math.floor(this.lastRandGenerated / (this.mod / 4)) == 3 && !this.tiles[this.x - 1][this.y]){
                     this.cycled = true;
                     this.x --;
                     this.tiles[this.x][this.y] = true;
-                    this.path[this.logicalCells] = new Room(this.logicalCells);
-                    this.path[this.logicalCells].setSides(null, this.logicalCells - 1);
-                    this.path[this.logicalCells - 1].setSides(null, null, null, this.logicalCells);
+                    this.path[this.logicalCells] = new Room(this.logicalCells, [this.x, this.y]);
+                    this.path[this.logicalCells].setSides(null, this.ends[this.endsWhich].id);
+                    this.path[this.ends[this.endsWhich].id].setSides(null, null, null, this.logicalCells);
+                    this.ends[this.endsWhich] = this.path[this.logicalCells];
                 }
             }
 
             this.randomInt();
-            this.lastRandRound = this.lastRandGenerated + this.lastRandGenerated % 2;
+
             if(this.cycled){
+                this.cycles = 0;
                 this.logicalCells ++;
             }
-        }
-        if(Math.floor(this.lastRandRound / 10240) == 0){
-            this.path[this.logicalCells] = new Room(this.logicalCells);
-            this.path[this.logicalCells].setSides(null, null, this.logicalCells - 1);
-            this.path[this.logicalCells - 1].setSides(this.logicalCells);
-        }
-        else if(Math.floor(this.lastRandRound / 10240) == 1){
-            this.path[this.logicalCells] = new Room(this.logicalCells);
-            this.path[this.logicalCells].setSides(null, null, null, this.logicalCells - 1);
-            this.path[this.logicalCells - 1].setSides(null, this.logicalCells);
-        }
-        else if(Math.floor(this.lastRandRound / 10240) == 2){
-            this.path[this.logicalCells] = new Room(this.logicalCells);
-            this.path[this.logicalCells].setSides(this.logicalCells - 1);
-            this.path[this.logicalCells - 1].setSides(null, null, this.logicalCells);
-        }
-        else if(Math.floor(this.lastRandRound / 10240) == 3){
-            this.path[this.logicalCells] = new Room(this.logicalCells);
-            this.path[this.logicalCells].setSides(null, this.logicalCells - 1);
-            this.path[this.logicalCells - 1].setSides(null, null, null, this.logicalCells);
-        }
+            else{
+                this.cycles ++;
+                this.endsWhich = !this.endsWhich;
+            }
 
-        for(let i = 0; i <= this.physicalCells; i ++){
-            console.log(this.path[i]);
+            if(this.cycles > 2){ // Se ciclar dá um break!
+                break;
+            }
+        }
+        this.path[this.ends[this.endsWhich].id].setSpawn();
+        this.path[this.ends[!this.endsWhich].id].setExit();
+
+        for(let i = 0; i < this.physicalCells; i ++){
+            console.log(this.path[i])
         }
     }
 }
 
 class Room{
-    constructor(id, spawn = false, exit = false){
+    constructor(id, [x, y], spawn = false, exit = false){
         this.spawn = spawn;
         this.exit = exit;
+        this.pos = {
+            x: x,
+            y: y
+        }
         this.sides = [null, null, null, null];
         this.id = id;
     }
@@ -154,6 +159,10 @@ class Room{
             l = this.sides[3];
         }
         this.sides = [u, r, d, l]
+    }
+
+    setSpawn(){
+        this.spawn = true;
     }
 
     setExit(){

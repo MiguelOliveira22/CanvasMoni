@@ -48,6 +48,7 @@ class Player extends Collision{
 
         if((KeyPresses.w && !KeyPresses.s) && this.collided){
             this.personagemPos.taxaY += -10;
+            this.collided = false;
         }
         if(KeyPresses.d && !KeyPresses.a){
             this.personagemPos.taxaX = 1;

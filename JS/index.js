@@ -2,14 +2,6 @@ addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("canvasMain");
     const ctx = canvas.getContext("2d");
 
-    const jogador = [new Player(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 2), new Inimigo(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5)];
-    const background = new Object(["../Sprites/PixelArt/pixilart-drawing.png", 1, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 10, 0);
-    const ground = new Object(["", 1, 1, 60], [0, 625], [[0, 0], [2000, 100]], true, false, false, 10, 0);
-
-    const bauteste = new Object(["../Sprites/PixelArt/bau-sprite.png", 8, 1, 1000], [500, 500], [[-20, -20], [200, 150]], false, true, false, 0, 0);
-
-    const ma = new AudioRequest();
-
     let KeyPresses = {
         w: false,
         s: false,
@@ -85,22 +77,25 @@ addEventListener("DOMContentLoaded", () => {
     }
 
     function playerRoutine(){
-        jogador[0].update(ctx);
-        jogador[1].update();
+        entidades[0].update(ctx);
+        entidades[1].update();
 
-        background.update(ctx, canvas, jogador, KeyPresses);
-        bauteste.update(ctx, canvas, jogador, KeyPresses, () => { bauteste.createItem() });
+        background.update(ctx, canvas, entidades, KeyPresses);
+        bauteste.update(ctx, canvas, entidades, KeyPresses, () => {
+            bauteste.createItem();
+            bauteste.talk(ctx);
+        });
         
-        ground.collisionTest(jogador);
+        ground.collisionTest(entidades);
 
-        jogador[1].mov()
-        jogador[1].draw(ctx)
+        entidades[1].mov()
+        entidades[1].draw(ctx)
 
-        jogador[0].mov(KeyPresses);
-        jogador[0].draw(ctx);
+        entidades[0].mov(KeyPresses);
+        entidades[0].draw(ctx);
         
-        jogador[0].inventario.drawBoxItem(ctx);
-        jogador[0].inventario.changeItem(KeyPresses);
+        entidades[0].inventario.drawBoxItem(ctx);
+        entidades[0].inventario.changeItem(KeyPresses);
     }
 
     function loop(){
@@ -111,6 +106,12 @@ addEventListener("DOMContentLoaded", () => {
 
         requestAnimationFrame(loop);
     }
+
+    const entidades = [new Player(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 2), new Inimigo(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5)];
+    const background = new Object(["../Sprites/PixelArt/pixilart-drawing.png", 1, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 10, 0);
+    const ground = new Object(["", 1, 1, 60], [0, 625], [[0, 0], [2000, 100]], true, false, false, 10, 0);
+
+    const bauteste = new Object(["../Sprites/PixelArt/bau-sprite.png", 8, 1, 1000], [500, 500], [[-20, -20], [200, 150]], false, true, false, 0, 0);
 
     loop();
 

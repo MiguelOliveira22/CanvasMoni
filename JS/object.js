@@ -2,6 +2,7 @@ class Object extends Collision{
     constructor([imageSRC, hSprites, vSprites, sFrames], [objx, objy], collisionPoints, collidable, interectable, bg, paralax, id){
         super(collisionPoints, collidable, interectable);
         this.sprites = new Sprites(imageSRC, hSprites, vSprites, sFrames);
+        this.getter = new RandomItem(12345);
         this.bg = bg;
         this.paralax = paralax;
         this.parala = 0;
@@ -12,12 +13,19 @@ class Object extends Collision{
         this.id = id;
         this.childrens = [];
         this.sizeChildren = 0;
+        this.drawable = true;
     }
 
     createItem(){
         this.sprites.atual = 7;
-        this.childrens[this.sizeChildren] = new Item(["../Sprites/pixil-frame-0.png", 1, 1, 1], [400, 400], [[0,0], [100, 100]], 1);
+        this.childrens[this.sizeChildren] = this.getter.getItem();
         this.sizeChildren += 1;
+    }
+
+    addInventory(player){
+        this.drawable = false;
+        player[0].inventario.unlockById(this.id);
+        callback();
     }
 
     talk(ctx){
@@ -54,11 +62,14 @@ class Object extends Collision{
     }
 
     update(ctx, canvas,  jogador, KeyPresses, callback = () => {}){
-        this.draw(ctx, canvas);
-        this.collisionTest(jogador, KeyPresses, callback);
-        for(let ins = 0; ins < this.sizeChildren; ins ++){
-            this.childrens[ins].update(ctx, jogador, KeyPresses, false);
+        if(this.drawable){
+            this.draw(ctx, canvas);
         }
+        this.collisionTest(jogador, KeyPresses, callback);
+
+        this.childrens.forEach((childuse) => {
+            childuse.update(ctx, jogador, KeyPresses, false);
+        });
     }
 
     drawCollision(ctx){
@@ -71,7 +82,7 @@ class Object extends Collision{
             if(KeyPresses.e && this.interacting){
                 this.interactable = false;
                 this.interacting = false;
-                callback(player);
+                callback();
             }
         }
     }

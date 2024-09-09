@@ -20,6 +20,23 @@ class RandomUse{
     }
 }
 
+class RandomItem extends RandomUse{
+    constructor(seed){
+        super(seed);
+
+        this.possibilidades = {
+            0: new Item(["../Sprites/pixil-frame-0.png", 1, 1, 1], [400, 400], [[0,0], [100, 100]], 1),
+            1: new Item(["../Sprites/pixil-frame-0.png", 2, 1, 1], [400, 400], [[0,0], [100, 100]], 2),
+            2: new Item(["../Sprites/pixil-frame-0.png", 3, 1, 1], [400, 400], [[0,0], [100, 100]], 3),
+        };
+    }
+
+    getItem(){
+        let selected = this.randomIntRange(this.possibilidades.length);
+        return this.possibilidades[selected];
+    }
+}
+
 class MapGen extends RandomUse{
     constructor(seed){
         super(seed);

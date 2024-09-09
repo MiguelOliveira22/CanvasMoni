@@ -6,9 +6,9 @@ class Collision{
         this.interacting = false;
     }
 
-    collTest(playe, posX, posY){
-        for(let i = 0; i < playe.length; i ++){
-            let player = playe[0];
+    collTest(playe = [], posX, posY){
+        this.interacting = false;
+        playe.forEach((player) => {
             let x = player.nextX;
             let y = player.nextY;
 
@@ -35,8 +35,6 @@ class Collision{
                         player.enemyPos.y = y;
                         
                     }
-                    player.collided = false;
-                    
                 }
             }
 
@@ -45,11 +43,8 @@ class Collision{
                    player.vertices[1][1] + y > (this.vertices[0][1] + posY) && player.vertices[1][0] + y < (this.vertices[1][1] + posY)){
                     this.interacting = true;
                 }
-                else{
-                    this.interacting = false;
-                }
             }
-        }
+        });
     }
 
     drawColl(ctx, posX, posY){

@@ -73,9 +73,9 @@ class Player extends Collision{
             this.direction = false;
         }
 
-        for(let ins = 0; ins < this.sizeChildren; ins ++){
-            this.childrens[ins].update(ctx, this);
-        }
+        this.childrens.forEach((childrensobj) => {
+            childrensobj.update(ctx, [this]);
+        });
     }
 
     drawCollision(ctx){

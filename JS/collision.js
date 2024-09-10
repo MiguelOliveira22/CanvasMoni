@@ -47,6 +47,14 @@ class Collision{
         });
     }
 
+    collDamage(entidades){
+        //console.log(entidades)
+        //Errado, mas a aula começou
+        if(this.vertices[0][0] + entidades[0].personagemPos.x > this.vertices[0][0] + entidades[1].enemyPos.x &&
+           this.vertices[1][0] + entidades[0].personagemPos.x < this.vertices[1][0] + entidades[1].enemyPos.x
+        ){console.log("a")}
+    }
+
     drawColl(ctx, posX, posY){
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.fillRect(this.vertices[0][0] + posX, this.vertices[0][1] + posY, this.vertices[1][0] - this.vertices[0][0], this.vertices[1][1] - this.vertices[0][1]);

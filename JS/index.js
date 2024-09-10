@@ -96,6 +96,8 @@ addEventListener("DOMContentLoaded", () => {
         
         entidades[0].inventario.drawBoxItem(ctx);
         entidades[0].inventario.changeItem(KeyPresses);
+
+        entidades[0].collDamage(entidades)
     }
 
     function loop(){

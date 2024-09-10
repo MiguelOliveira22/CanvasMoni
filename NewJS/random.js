@@ -25,9 +25,9 @@ class RandomItem extends RandomUse{
         super(seed);
 
         this.possibilidades = {
-            0: new Objeto(["../Sprites/pixil-frame-0.png", 1, 1, 1], [400, 400], [[0,0], [100, 100]], 1),
-            1: new Objeto(["../Sprites/pixil-frame-0.png", 2, 1, 1], [400, 400], [[0,0], [100, 100]], 2),
-            2: new Objeto(["../Sprites/pixil-frame-0.png", 3, 1, 1], [400, 400], [[0,0], [100, 100]], 3),
+            0: new Objeto(["../Sprites/pixil-frame-0.png", 1, 1, 1], [400, 400], [[0,0], [100, 100]], false, true, false, 0, 1, true),
+            1: new Objeto(["../Sprites/pixil-frame-0.png", 2, 1, 1], [400, 400], [[0,0], [100, 100]], false, true, false, 0, 2, true),
+            2: new Objeto(["../Sprites/pixil-frame-0.png", 3, 1, 1], [400, 400], [[0,0], [100, 100]], false, true, false, 0, 3, true),
         };
     }
 

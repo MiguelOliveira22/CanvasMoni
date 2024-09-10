@@ -1,8 +1,11 @@
 class Objeto extends Collision{
-    constructor([imageSRC, hSprites, vSprites, sFrames], [objx, objy], collisionPoints, collidable, interectable, bg, paralax, id){
+    constructor([imageSRC, hSprites, vSprites, sFrames], [objx, objy], collisionPoints, collidable, interectable, bg, paralax, id, item = false){
         super(collisionPoints, collidable, interectable);
         this.sprites = new Sprites(imageSRC, hSprites, vSprites, sFrames);
-        // this.getter = new RandomItem(12345);
+        this.isItem = item;
+        if(!this.isItem){
+            this.getter = new RandomItem(12345);
+        }
 
         this.bg = bg;
         this.paralax = paralax;

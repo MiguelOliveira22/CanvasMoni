@@ -100,8 +100,6 @@ addEventListener("DOMContentLoaded", () => {
     bau.objAddToGroup(items);
 
     function playerRoutine(){
-        ctx.fillText("Pressione Q Para Atirar", 10, 10)
-
         objetos.update(ctx, canvas, entidades, KeyPresses);
 
         projeteis.updateProjetil(ctx, canvas, entidades, KeyPresses);
@@ -111,6 +109,10 @@ addEventListener("DOMContentLoaded", () => {
         items.updateItems(ctx, canvas, entidades, KeyPresses);
 
         entidades.update(ctx, canvas, entidades, KeyPresses);
+
+        ctx.fillStyle = "#1305FF";
+        ctx.font = '12px SMW';
+        ctx.fillText("Pressione Q Para Atirar, Olhe O Console Para Ver O Dano", 50, 50);
         
         objetos.testCollision(entidades, KeyPresses);
     }

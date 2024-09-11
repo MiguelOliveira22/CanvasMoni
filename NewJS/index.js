@@ -101,6 +101,7 @@ addEventListener("DOMContentLoaded", () => {
 
     function playerRoutine(){
         ctx.fillText("Pressione Q Para Atirar", 10, 10)
+
         objetos.update(ctx, canvas, entidades, KeyPresses);
 
         projeteis.updateProjetil(ctx, canvas, entidades, KeyPresses);

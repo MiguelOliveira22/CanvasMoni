@@ -24,6 +24,13 @@ class Group{
         });
     }
 
+    updateProjetil(ctx, canvas, jogador, KeyPresses){
+        this.elementos.forEach((valor) => {
+            valor.update(ctx, canvas, jogador, KeyPresses);
+            valor.objPos.x += 10;
+        });
+    }
+
     testCollision(player, KeyPresses){
         this.elementos.forEach((valor) => {
             valor.collisionTest(player.elementos, KeyPresses);

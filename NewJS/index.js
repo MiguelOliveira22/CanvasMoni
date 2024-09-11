@@ -96,12 +96,13 @@ addEventListener("DOMContentLoaded", () => {
     const bau = new Group();
 
     bau.addElement(new Objeto(["../Sprites/PixelArt/bau-sprite.png", 8, 1, 1000], [500, 500], [[-20, -20], [200, 150]], false, true, false, 0, 0));
+
     bau.objAddToGroup(items);
 
     function playerRoutine(){
         objetos.update(ctx, canvas, entidades, KeyPresses);
 
-        projeteis.update(ctx, canvas, entidades, KeyPresses);
+        projeteis.updateProjetil(ctx, canvas, entidades, KeyPresses);
         
         bau.updateBau(ctx, canvas, entidades, KeyPresses);
 

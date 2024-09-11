@@ -57,8 +57,8 @@ class Collision{
            entidades[0].vertices[0][1] + entidades[0].personagemPos.y <= entidades[1].vertices[1][1] + entidades[1].enemyPos.y &&
            this.cooldown == 0)
            {
-            console.log("tomou dano,", "hp: "+entidades[0].hp)
             entidades[0].hp -= 10
+            console.log("tomou dano,", "hp: "+entidades[0].hp)
             this.cooldown = 100
             }
         else if(this.cooldown != 0){

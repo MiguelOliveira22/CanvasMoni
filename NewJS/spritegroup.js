@@ -13,8 +13,8 @@ class Group{
     testCollision(player, KeyPresses){
         this.elementos.forEach((valor) => {
             valor.collisionTest(player.elementos, KeyPresses);
-            valor.collDamage(player.elementos);
         });
+        this.elementos[0].collDamage(player.elementos);
     }
 
     addElement(element){

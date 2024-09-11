@@ -99,13 +99,13 @@ addEventListener("DOMContentLoaded", () => {
     bau.objAddToGroup(items);
 
     function playerRoutine(){
+        
         objetos.update(ctx, canvas, entidades, KeyPresses);
-
+        
         projeteis.update(ctx, canvas, entidades, KeyPresses);
         
         bau.updateBau(ctx, canvas, entidades, KeyPresses);
-
-        console.log(items.elementos)
+        //console.log(items.elementos)
         items.update(ctx, canvas, entidades, KeyPresses);
 
         entidades.update(ctx, canvas, entidades, KeyPresses);
@@ -116,7 +116,6 @@ addEventListener("DOMContentLoaded", () => {
     function loop(){
         canvasUpdate();
         clear();
-
         // Execução Interna!
         playerRoutine();
 

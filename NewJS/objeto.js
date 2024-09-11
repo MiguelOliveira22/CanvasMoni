@@ -30,19 +30,18 @@ class Objeto extends Collision{
         ctx.beginPath();
         ctx.fillStyle = "#1305FF";
         ctx.font = '24px SMW';
-        ctx.fillText("Meu Nome Rafael Ser", 300, 100);
         this.interactable = true;
     }
 
     createItem(){
-        this.grupo.addElement(new Objeto(["../Sprites/pixil-frame-0.png", 1, 1, 1], [400, 400], [[0,0], [100, 100]], false, false, false, 0, 1, true));
+        this.grupo.addElement(new Objeto(["../Sprites/pixil-frame-0.png", 1, 1, 1], [400, 400], [[0,0], [100, 100]], false, true, false, 0, 1, true));
         this.interactable = false;
     }
 
     draw(ctx, canvas){
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         this.sprites.clockVal();
-        if(this.interacting && this.interactable){
+        if(this.interacting && this.interactable && !this.item){
             ctx.beginPath()
             ctx.fillStyle = "#1305FF";
             ctx.font = '24px SMW';
@@ -57,7 +56,7 @@ class Objeto extends Collision{
             ctx.drawImage(this.sprites.sheet, this.sprites.spriteArray[this.sprites.atual][0], this.sprites.spriteArray[this.sprites.atual][1], this.sprites.wSprites, this.sprites.aSprites, this.objPos.x, this.objPos.y, this.sprites.wSprites, this.sprites.aSprites);
         }
 
-        if(this.interacting && this.interactable){
+        if(this.interacting && this.interactable && this.item){
             ctx.font = '24px SMW';
             ctx.fillText("Pressione E Para Coletar", 100, 100);
         }

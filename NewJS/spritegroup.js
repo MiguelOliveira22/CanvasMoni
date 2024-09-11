@@ -22,7 +22,9 @@ class Group{
     updateItems(ctx, canvas, entidades, KeyPresses){
         this.elementos.forEach((valor) => {
             valor.update(ctx, canvas, entidades, KeyPresses);
-            valor.collisionTest(entidades.elementos, KeyPresses, () => {valor.addInventory(entidades.elementos)});
+            valor.collisionTest(entidades.elementos, KeyPresses, () => {
+                valor.addInventory(entidades.elementos);
+            });
         });
     }
 

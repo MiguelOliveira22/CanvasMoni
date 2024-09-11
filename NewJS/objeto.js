@@ -72,11 +72,10 @@ class Objeto extends Collision{
         }
     }
 
-    update(ctx, canvas,  jogador, KeyPresses, callback = () => {}){
+    update(ctx, canvas, jogador, KeyPresses){
         if(this.drawable){
             this.draw(ctx, canvas);
         }
-        this.collisionTest(jogador, KeyPresses, callback);
 
         this.childrens.forEach((childuse) => {
             childuse.update(ctx, jogador, KeyPresses, false);
@@ -87,9 +86,9 @@ class Objeto extends Collision{
         this.drawColl(ctx, this.objPos.x, this.objPos.y);
     }
 
-    collisionTest(player, KeyPresses = null, callback = () => {}){
+    collisionTest(player, KeyPresses, callback = () => {}){
         this.collTest(player, this.objPos.x, this.objPos.y);
-        if(this.interactable && KeyPresses != null){
+        if(this.interactable){
             if(KeyPresses.e && this.interacting){
                 this.interactable = false;
                 this.interacting = false;

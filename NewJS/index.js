@@ -76,21 +76,25 @@ addEventListener("DOMContentLoaded", () => {
         canvas.setAttribute("height", 720);
     }
 
-    const entidades = [new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 2),
-                       new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5)];
+    const entidades = new Group();
+    entidades.addElement(new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 2));
+    entidades.addElement(new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 3));
     
-    const objetos = [new Objeto(["../Sprites/PixelArt/pixilart-drawing.png", 1, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 10, 0),
-                     new Objeto(["", 1, 1, 60], [0, 625], [[0, 0], [2000, 100]], true, false, false, 10, 0),
-                     new Objeto(["../Sprites/PixelArt/bau-sprite.png", 8, 1, 1000], [500, 500], [[-20, -20], [200, 150]], false, true, false, 0, 0)];
+    const objetos = new Group();
+    objetos.addElement(new Objeto(["../Sprites/PixelArt/pixilart-drawing.png", 1, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 10, 0));
+    objetos.addElement(new Objeto(["", 1, 1, 60], [0, 625], [[0, 0], [2000, 100]], true, false, false, 10, 0));
+    objetos.addElement(new Objeto(["../Sprites/PixelArt/bau-sprite.png", 8, 1, 1000], [500, 500], [[-20, -20], [200, 150]], false, true, false, 0, 0));
+
+    const projeteis = new Group();
+
+    entidades.objAddToGroup(projeteis);
 
     function playerRoutine(){
-        background.update(ctx, canvas, entidades, KeyPresses);
-        bauteste.update(ctx, canvas, entidades, KeyPresses);
+        objetos.update(ctx, canvas, entidades, KeyPresses);
 
-        entidades[0].update(ctx, entidades[0].mov(KeyPresses));
-        entidades[1].update(ctx, entidades[1].mov(KeyPresses));
+        entidades.update(ctx, canvas, entidades, KeyPresses);
         
-        ground.collisionTest(entidades);
+        objetos.testCollision(entidades, KeyPresses);
     }
 
     function loop(){

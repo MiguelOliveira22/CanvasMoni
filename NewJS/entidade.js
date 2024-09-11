@@ -1,13 +1,12 @@
 class Entidade extends Collision{
-    constructor([imageSRC, hSprites, vSprites, sFrames], collisionPoints, velocidade, gravity){
+    constructor([imageSRC, hSprites, vSprites, sFrames], collisionPoints, velocidade, gravity, player = false){
         super(collisionPoints, false, false)
         this.sprites = new Sprites(imageSRC, hSprites, vSprites, sFrames);
         this.inventario = new Inventario(0);
 
-        this.player = true;
+        this.player = player;
         this.velo = velocidade;
         this.gravity = gravity;
-        // this.id = id;
         this.hp = 100;
         this.grupo;
 
@@ -20,6 +19,9 @@ class Entidade extends Collision{
             taxaX: 0,
             taxaY: 0,
         };
+
+        this.nextX = this.entidadePos.x + (this.entidadePos.taxaX * this.velo);
+        this.nextY = this.entidadePos.y + (this.entidadePos.taxaY * this.velo);
     }
 
     draw(ctx){
@@ -78,17 +80,17 @@ class Entidade extends Collision{
 
             this.entidadePos.taxaX = 0;
 
-            if(this.direction){
+            if(this.entidadePos.x < 1000){
                 this.entidadePos.taxaX = 1;
             }
-            if(!this.direction){
+            else if(this.entidadePos > 1000){
                 this.entidadePos.taxaX = -1;
             }
         }
     }
 
     addItemGroup(){
-        this.grupo.addElement(new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 2));
+        this.grupo.addElement(new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5 * this.direction, 2));
     }
 
     update(ctx, a = null, b = null, KeyPresses){

@@ -77,8 +77,11 @@ addEventListener("DOMContentLoaded", () => {
     }
 
     const entidades = new Group();
-    entidades.addElement(new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 2));
+    entidades.addElement(new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 2, true));
     entidades.addElement(new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 3));
+
+    //const inimigos = new Group();
+    //inimigos.addElement(entidades.elementos[1]);
     
     const objetos = new Group();
     objetos.addElement(new Objeto(["../Sprites/PixelArt/pixilart-drawing.png", 1, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 10, 0));
@@ -89,10 +92,17 @@ addEventListener("DOMContentLoaded", () => {
 
     entidades.objAddToGroup(projeteis);
 
+    const items = new Group();
+
+    objetos.objAddToGroup(items);
+
     function playerRoutine(){
         objetos.update(ctx, canvas, entidades, KeyPresses);
+        projeteis.update(ctx, canvas, entidades, KeyPresses);
 
         entidades.update(ctx, canvas, entidades, KeyPresses);
+
+        items.update(ctx, canvas, entidades, KeyPresses);
         
         objetos.testCollision(entidades, KeyPresses);
     }

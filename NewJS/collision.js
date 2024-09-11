@@ -3,6 +3,7 @@ class Collision{
         this.vertices = collisonPoints;
         this.collidable = collidable;
         this.interactable = interactable;
+        this.cooldown = 100;
         this.interacting = false;
     }
 
@@ -32,6 +33,22 @@ class Collision{
                 }
             }
         });
+    }
+
+    collDamage(entidades){
+        //Errado, mas a aula começou
+        if(entidades[0].vertices[1][0] + entidades[0].entidadePos.x >= entidades[1].vertices[0][0] + entidades[1].entidadePos.x &&
+           entidades[0].vertices[0][0] + entidades[0].entidadePos.x <= entidades[1].vertices[1][0] + entidades[1].entidadePos.x &&
+           entidades[0].vertices[1][0] + entidades[0].entidadePos.y >= entidades[1].vertices[0][1] + entidades[1].entidadePos.y &&
+           entidades[0].vertices[0][1] + entidades[0].entidadePos.y <= entidades[1].vertices[1][1] + entidades[1].entidadePos.y &&
+           this.cooldown == 0){
+            console.log("tomou dano, hp: " + entidades[0].hp);
+            entidades[0].hp -= 10;
+            this.cooldown = 100;
+        }
+        else if(this.cooldown > 0){
+            this.cooldown -= 2
+        }
     }
 
     drawColl(ctx, posX, posY){

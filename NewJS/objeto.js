@@ -3,6 +3,7 @@ class Objeto extends Collision{
         super(collisionPoints, collidable, interectable);
         this.sprites = new Sprites(imageSRC, hSprites, vSprites, sFrames);
         this.isItem = item;
+        this.grupo;
         if(!this.isItem){
             this.getter = new RandomItem(12345);
         }
@@ -15,17 +16,12 @@ class Objeto extends Collision{
             x: objx,
             y: objy
         };
-        
-        this.childrens = [];
-        this.sizeChildren = 0;
 
         this.id = id;
     }
 
     createItem(){
-        this.sprites.atual = 7;
-        this.childrens[this.sizeChildren] = this.getter.getItem();
-        this.sizeChildren += 1;
+        
     }
 
     addInventory(player){
@@ -77,9 +73,7 @@ class Objeto extends Collision{
             this.draw(ctx, canvas);
         }
 
-        this.childrens.forEach((childuse) => {
-            childuse.update(ctx, jogador, KeyPresses, false);
-        });
+        this.collisionTest(jogador.elementos, KeyPresses);
     }
 
     drawCollision(ctx){

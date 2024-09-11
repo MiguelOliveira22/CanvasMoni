@@ -10,11 +10,18 @@ class Group{
         });
     }
 
+    updateBau(ctx, canvas, entidades, KeyPresses){
+        this.elementos.forEach((valor) => {
+            valor.update(ctx, canvas, entidades, KeyPresses);
+            valor.collisionTest(entidades.elementos, KeyPresses, valor.createItem());
+        });
+    }
+
     testCollision(player, KeyPresses){
         this.elementos.forEach((valor) => {
             valor.collisionTest(player.elementos, KeyPresses);
         });
-        this.elementos[0].collDamage(player.elementos);
+        this.elementos[1].collDamage(player.elementos);
     }
 
     addElement(element){

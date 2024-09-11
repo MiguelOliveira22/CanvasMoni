@@ -86,7 +86,6 @@ addEventListener("DOMContentLoaded", () => {
     const objetos = new Group();
     objetos.addElement(new Objeto(["../Sprites/PixelArt/pixilart-drawing.png", 1, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 10, 0));
     objetos.addElement(new Objeto(["", 1, 1, 60], [0, 625], [[0, 0], [2000, 100]], true, false, false, 10, 0));
-    objetos.addElement(new Objeto(["../Sprites/PixelArt/bau-sprite.png", 8, 1, 1000], [500, 500], [[-20, -20], [200, 150]], false, true, false, 0, 0));
 
     const projeteis = new Group();
 
@@ -94,15 +93,22 @@ addEventListener("DOMContentLoaded", () => {
 
     const items = new Group();
 
-    objetos.objAddToGroup(items);
+    const bau = new Group();
+
+    bau.addElement(new Objeto(["../Sprites/PixelArt/bau-sprite.png", 8, 1, 1000], [500, 500], [[-20, -20], [200, 150]], false, true, false, 0, 0));
+    bau.objAddToGroup(items);
 
     function playerRoutine(){
         objetos.update(ctx, canvas, entidades, KeyPresses);
+
         projeteis.update(ctx, canvas, entidades, KeyPresses);
+        
+        bau.updateBau(ctx, canvas, entidades, KeyPresses);
+
+        console.log(items.elementos)
+        items.update(ctx, canvas, entidades, KeyPresses);
 
         entidades.update(ctx, canvas, entidades, KeyPresses);
-
-        items.update(ctx, canvas, entidades, KeyPresses);
         
         objetos.testCollision(entidades, KeyPresses);
     }

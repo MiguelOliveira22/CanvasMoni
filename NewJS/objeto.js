@@ -21,7 +21,8 @@ class Objeto extends Collision{
     }
 
     createItem(){
-        
+        console.log(3)
+        this.grupo.addElement(new Objeto(["../Sprites/pixil-frame-0.png", 1, 1, 1], [400, 400], [[0,0], [100, 100]], false, false, false, 0, 1, true));
     }
 
     addInventory(player){

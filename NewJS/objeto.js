@@ -28,7 +28,6 @@ class Objeto extends Collision{
     addInventory(player){
         this.drawable = false;
         player[0].inventario.unlockById(this.id);
-        callback();
     }
 
     talk(ctx){
@@ -85,8 +84,6 @@ class Objeto extends Collision{
         this.collTest(player, this.objPos.x, this.objPos.y);
         if(this.interactable){
             if(KeyPresses.e && this.interacting){
-                this.interactable = false;
-                this.interacting = false;
                 callback();
             }
         }

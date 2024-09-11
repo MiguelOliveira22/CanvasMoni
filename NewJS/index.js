@@ -105,8 +105,7 @@ addEventListener("DOMContentLoaded", () => {
         
         bau.updateBau(ctx, canvas, entidades, KeyPresses);
 
-        console.log(items.elementos)
-        items.update(ctx, canvas, entidades, KeyPresses);
+        items.updateItems(ctx, canvas, entidades, KeyPresses);
 
         entidades.update(ctx, canvas, entidades, KeyPresses);
         

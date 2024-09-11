@@ -4,6 +4,7 @@ class Collision{
         this.collidable = collidable;
         this.interactable = interactable;
         this.interacting = false;
+        this.cooldown = 100
     }
 
     collTest(playe = [], posX, posY){
@@ -50,9 +51,19 @@ class Collision{
     collDamage(entidades){
         //console.log(entidades)
         //Errado, mas a aula começou
-        if(this.vertices[0][0] + entidades[0].personagemPos.x > this.vertices[0][0] + entidades[1].enemyPos.x &&
-           this.vertices[1][0] + entidades[0].personagemPos.x < this.vertices[1][0] + entidades[1].enemyPos.x
-        ){console.log("a")}
+        if(entidades[0].vertices[1][0] + entidades[0].personagemPos.x >= entidades[1].vertices[0][0] + entidades[1].enemyPos.x &&
+           entidades[0].vertices[0][0] + entidades[0].personagemPos.x <= entidades[1].vertices[1][0] + entidades[1].enemyPos.x &&
+           entidades[0].vertices[1][0] + entidades[0].personagemPos.y >= entidades[1].vertices[0][1] + entidades[1].enemyPos.y &&
+           entidades[0].vertices[0][1] + entidades[0].personagemPos.y <= entidades[1].vertices[1][1] + entidades[1].enemyPos.y &&
+           this.cooldown == 0)
+           {
+            console.log("tomou dano,", "hp: "+entidades[0].hp)
+            entidades[0].hp -= 10
+            this.cooldown = 100
+            }
+        else if(this.cooldown != 0){
+                this.cooldown -= 2
+        }
     }
 
     drawColl(ctx, posX, posY){

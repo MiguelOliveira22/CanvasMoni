@@ -100,7 +100,6 @@ addEventListener("DOMContentLoaded", () => {
     bau.objAddToGroup(items);
 
     function playerRoutine(){
-        
         objetos.update(ctx, canvas, entidades, KeyPresses);
 
         projeteis.updateProjetil(ctx, canvas, entidades, KeyPresses);
@@ -117,6 +116,7 @@ addEventListener("DOMContentLoaded", () => {
     function loop(){
         canvasUpdate();
         clear();
+
         // Execução Interna!
         playerRoutine();
 

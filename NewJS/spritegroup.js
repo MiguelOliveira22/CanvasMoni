@@ -13,7 +13,9 @@ class Group{
     updateBau(ctx, canvas, entidades, KeyPresses){
         this.elementos.forEach((valor) => {
             valor.update(ctx, canvas, entidades, KeyPresses);
-            valor.collisionTest(entidades.elementos, KeyPresses, valor.createItem);
+            valor.collisionTest(entidades.elementos, KeyPresses, () => {
+                valor.createItem();
+            });
         });
     }
 
@@ -46,6 +48,7 @@ class Group{
     objAddToGroup(grupo){
         this.elementos.forEach((valor) => {
             valor.grupo = grupo;
+            console.log(valor.grupo)
         });
     }
 }

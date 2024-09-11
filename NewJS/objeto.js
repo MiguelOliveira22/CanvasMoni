@@ -20,11 +20,6 @@ class Objeto extends Collision{
         this.id = id;
     }
 
-    createItem(){
-        //console.log(this.grupo) (bug)fica adicionando toda hora.
-        this.grupo.addElement(new Objeto(["../Sprites/pixil-frame-0.png", 1, 1, 1], [400, 400], [[0,0], [100, 100]], false, false, false, 0, 1, true));
-    }
-
     addInventory(player){
         this.drawable = false;
         player[0].inventario.unlockById(this.id);
@@ -37,6 +32,11 @@ class Objeto extends Collision{
         ctx.font = '24px SMW';
         ctx.fillText("Meu Nome Rafael Ser", 300, 100);
         this.interactable = true;
+    }
+
+    createItem(){
+        this.grupo.addElement(new Objeto(["../Sprites/pixil-frame-0.png", 1, 1, 1], [400, 400], [[0,0], [100, 100]], false, false, false, 0, 1, true));
+        this.interactable = false;
     }
 
     draw(ctx, canvas){

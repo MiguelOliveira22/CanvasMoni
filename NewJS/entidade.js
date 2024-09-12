@@ -66,30 +66,33 @@ class Entidade extends Collision{
             }
             if(KeyPresses.q){
                 if(this.timeout <= 0){
+                    console.log(this.grupo)
                     this.addItemGroup(this.grupo);
                     this.timeout = 100;
                 }
             }
         }
         else{
-            if(this.entidadePos.taxaY < this.gravity){
-                this.entidadePos.taxaY += (this.gravity / 2);
-            }
-            else{
-                this.entidadePos.taxaY = this.gravity;
-            }
+            if(this.entidadePos != undefined){
+                if(this.entidadePos.taxaY < this.gravity){
+                    this.entidadePos.taxaY += (this.gravity / 2);
+                }
+                else{
+                    this.entidadePos.taxaY = this.gravity;
+                }
 
-            if(this.collided && this.entidadePos.taxaY > 0){
-                this.entidadePos.taxaY = 0;
-            }
+                if(this.collided && this.entidadePos.taxaY > 0){
+                    this.entidadePos.taxaY = 0;
+                }
 
-            this.entidadePos.taxaX = 0;
+                this.entidadePos.taxaX = 0;
 
-            if(this.entidadePos.x < 1000){
-                this.entidadePos.taxaX = 1;
-            }
-            else if(this.entidadePos > 1000){
-                this.entidadePos.taxaX = -1;
+                if(this.entidadePos.x < 1000){
+                    this.entidadePos.taxaX = 1;
+                }
+                else if(this.entidadePos > 1000){
+                    this.entidadePos.taxaX = -1;
+                }
             }
         }
     }
@@ -109,25 +112,31 @@ class Entidade extends Collision{
     // }
 
     update(ctx, a = null, b = null, KeyPresses){
-        this.timeout --;
-        this.mov(KeyPresses);
-        this.nextX = this.entidadePos.x + (this.entidadePos.taxaX * this.velo);
-        this.nextY = this.entidadePos.y + (this.entidadePos.taxaY * this.velo);
-        
-        if(this.nextX > this.entidadePos.x){
-            this.direction = true;
-        }
-        else if(this.nextX < this.entidadePos.x){
-            this.direction = false;
-        }
+        if(this.entidadePos != undefined){
+            this.timeout --;
+            this.mov(KeyPresses);
+            this.nextX = this.entidadePos.x + (this.entidadePos.taxaX * this.velo);
+            this.nextY = this.entidadePos.y + (this.entidadePos.taxaY * this.velo);
+            
+            if(this.nextX > this.entidadePos.x){
+                this.direction = true;
+            }
+            else if(this.nextX < this.entidadePos.x){
+                this.direction = false;
+            }
 
-        if(this.drawable && this.hp > 0){
-            this.draw(ctx);
-        }
+            if(this.drawable && this.hp > 0){
+                this.draw(ctx);
+            }
 
-        //if(this.hp <= 0){
-        //    delete this;
-        //}
+            if(this.hp == 0){
+                let keys = Object.keys(this)
+                for(let i = 0; i < keys.length; i++){
+                    delete this[keys[i]]
+                }
+                console.log(this)
+            }
+        }
     }
 
     drawCollision(ctx){

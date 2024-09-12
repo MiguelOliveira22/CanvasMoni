@@ -13,7 +13,7 @@ class Collision{
             let x = player.nextX;
             let y = player.nextY;
 
-            if(this.collidable){
+            if(this.collidable && player.vertices != undefined){
                 if(player.vertices[1][0] + x > (this.vertices[0][0] + posX) && player.vertices[0][0] + x < (this.vertices[1][0] + posX) &&
                    player.vertices[1][1] + y > (this.vertices[0][1] + posY) && player.vertices[1][0] + y < (this.vertices[1][1] + posY)){
                     player.entidadePos.x = this.vertices[0][0] + posX + player.entidadePos.x;
@@ -26,7 +26,7 @@ class Collision{
                 }
             }
 
-            if(this.interactable){
+            if(this.interactable && player.vertices != undefined){
                 if(player.vertices[1][0] + x > (this.vertices[0][0] + posX) && player.vertices[0][0] + x < (this.vertices[1][0] + posX) &&
                    player.vertices[1][1] + y > (this.vertices[0][1] + posY) && player.vertices[1][0] + y < (this.vertices[1][1] + posY)){
                     this.interacting = true;
@@ -45,7 +45,7 @@ class Collision{
         });
         if(player != null){
             entidades.forEach((valor) => {
-                if(valor != player){
+                if(valor != player && valor.vertices != undefined && player.vertices != undefined){
                     if(player.vertices[1][0] + player.entidadePos.x >= valor.vertices[0][0] + valor.entidadePos.x &&
                        player.vertices[0][0] + player.entidadePos.x <= valor.vertices[1][0] + valor.entidadePos.x &&
                        player.vertices[1][1] + player.entidadePos.y >= valor.vertices[0][1] + valor.entidadePos.y &&
@@ -65,7 +65,7 @@ class Collision{
 
     projetilDamage(entidades, objeto){
         entidades.forEach((valor) => {
-            if(valor.id != objeto.spawnerId){
+            if(valor.id != objeto.spawnerId && valor.vertices != undefined){
                 if(valor.vertices[1][0] + valor.entidadePos.x >= objeto.vertices[0][0] + objeto.objPos.x &&
                    valor.vertices[0][0] + valor.entidadePos.x <= objeto.vertices[1][0] + objeto.objPos.x &&
                    valor.vertices[1][1] + valor.entidadePos.y >= objeto.vertices[0][1] + objeto.objPos.y &&

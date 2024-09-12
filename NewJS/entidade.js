@@ -1,5 +1,5 @@
 class Entidade extends Collision{
-    constructor([imageSRC, hSprites, vSprites, sFrames], collisionPoints, velocidade, gravity, player = false){
+    constructor([imageSRC, hSprites, vSprites, sFrames], collisionPoints, velocidade, gravity, player = false, id = 2){
         super(collisionPoints, false, false)
         this.sprites = new Sprites(imageSRC, hSprites, vSprites, sFrames);
         this.inventario = new Inventario(0);
@@ -8,7 +8,9 @@ class Entidade extends Collision{
         this.velo = velocidade;
         this.gravity = gravity;
         this.hp = 100;
+        this.timeout = 0;
         this.grupo;
+        this.id = (this.player) ? 0 : id;
 
         this.direction = true;
         this.collided = false;
@@ -19,7 +21,6 @@ class Entidade extends Collision{
             taxaX: 0,
             taxaY: 0,
         };
-        //this.cooldown = 100
 
         this.nextX = this.entidadePos.x + (this.entidadePos.taxaX * this.velo);
         this.nextY = this.entidadePos.y + (this.entidadePos.taxaY * this.velo);
@@ -64,7 +65,10 @@ class Entidade extends Collision{
                 this.entidadePos.taxaX = -1;
             }
             if(KeyPresses.q){
-                this.addItemGroup(this.grupo);
+                if(this.timeout <= 0){
+                    this.addItemGroup(this.grupo);
+                    this.timeout = 100;
+                }
             }
         }
         else{
@@ -91,7 +95,7 @@ class Entidade extends Collision{
     }
 
     addItemGroup(){
-        this.grupo.addElement(new Objeto(["../Sprites/walkingsheetbro.png", 7, 1, 100], [this.entidadePos.x, this.entidadePos.y], [[10, 0], [125, 130]], false, true, false, 0, 5 * this.direction, true));
+        this.grupo.addElement(new Objeto(["../Sprites/walkingsheetbro.png", 7, 1, 100], [this.entidadePos.x, this.entidadePos.y], [[10, 0], [125, 130]], false, true, false, 0, 5 * this.direction, true, this.id));
     }
 
     // removeItemGrupo(){
@@ -104,13 +108,8 @@ class Entidade extends Collision{
     //     });
     // }
 
-    // diminuirCooldown(){
-    //     for(let i = 0; i < this.grupo.elementos.length; i++){
-    //         this.grupo.elementos[i].cooldown -= 5
-    //     }
-    // }
-
     update(ctx, a = null, b = null, KeyPresses){
+        this.timeout --;
         this.mov(KeyPresses);
         this.nextX = this.entidadePos.x + (this.entidadePos.taxaX * this.velo);
         this.nextY = this.entidadePos.y + (this.entidadePos.taxaY * this.velo);

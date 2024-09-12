@@ -31,6 +31,7 @@ class Group{
     updateProjetil(ctx, canvas, jogador, KeyPresses){
         this.elementos.forEach((valor) => {
             valor.update(ctx, canvas, jogador, KeyPresses);
+            valor.collProjetil(jogador.elementos, valor);
             valor.objPos.x += 10;
         });
     }

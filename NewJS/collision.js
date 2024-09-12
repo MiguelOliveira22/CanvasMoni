@@ -39,16 +39,31 @@ class Collision{
         //Errado, mas a aula começou
         if(entidades[0].vertices[1][0] + entidades[0].entidadePos.x >= entidades[1].vertices[0][0] + entidades[1].entidadePos.x &&
            entidades[0].vertices[0][0] + entidades[0].entidadePos.x <= entidades[1].vertices[1][0] + entidades[1].entidadePos.x &&
-           entidades[0].vertices[1][0] + entidades[0].entidadePos.y >= entidades[1].vertices[0][1] + entidades[1].entidadePos.y &&
+           entidades[0].vertices[1][1] + entidades[0].entidadePos.y >= entidades[1].vertices[0][1] + entidades[1].entidadePos.y &&
            entidades[0].vertices[0][1] + entidades[0].entidadePos.y <= entidades[1].vertices[1][1] + entidades[1].entidadePos.y &&
            this.cooldown == 0){
-            console.log("tomou dano, hp: " + entidades[0].hp);
+            console.log("tomou dano player , hp: " + entidades[0].hp);
             entidades[0].hp -= 10;
             this.cooldown = 100;
         }
         else if(this.cooldown > 0){
             this.cooldown -= 2
         }
+    }
+
+    projetilDamage(entidades, objeto){
+        entidades.forEach((valor) => {
+            if(valor.id != objeto.spawnerId){
+                if(valor.vertices[1][0] + valor.entidadePos.x >= objeto.vertices[0][0] + objeto.objPos.x &&
+                   valor.vertices[0][0] + valor.entidadePos.x <= objeto.vertices[1][0] + objeto.objPos.x &&
+                   valor.vertices[1][1] + valor.entidadePos.y >= objeto.vertices[0][1] + objeto.objPos.y &&
+                   valor.vertices[0][1] + valor.entidadePos.y <= objeto.vertices[1][1] + objeto.objPos.y){
+                    console.log("tomou dano, hp: " + valor.hp);
+                    valor.hp -= 10;
+                    //objeto.delete();
+                }
+            }
+        });
     }
 
     drawColl(ctx, posX, posY){

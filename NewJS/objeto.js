@@ -1,5 +1,5 @@
 class Objeto extends Collision{
-    constructor([imageSRC, hSprites, vSprites, sFrames], [objx, objy], collisionPoints, collidable, interectable, bg, paralax, id, item = false){
+    constructor([imageSRC, hSprites, vSprites, sFrames], [objx, objy], collisionPoints, collidable, interectable, bg, paralax, id, item = false, spawnerId = 0){
         super(collisionPoints, collidable, interectable);
         this.sprites = new Sprites(imageSRC, hSprites, vSprites, sFrames);
         this.isItem = item;
@@ -18,6 +18,7 @@ class Objeto extends Collision{
         };
 
         this.id = id;
+        this.spawnerId = spawnerId;
     }
 
     addInventory(player){
@@ -86,5 +87,9 @@ class Objeto extends Collision{
                 callback();
             }
         }
+    }
+
+    collProjetil(player, objeto){
+        this.projetilDamage(player, objeto);
     }
 }

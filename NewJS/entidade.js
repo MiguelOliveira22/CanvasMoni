@@ -121,8 +121,12 @@ class Entidade extends Collision{
             this.direction = false;
         }
 
-        if(this.drawable){
+        if(this.drawable && this.hp > 0){
             this.draw(ctx);
+        }
+
+        if(this.hp <= 0){
+            delete this;
         }
     }
 

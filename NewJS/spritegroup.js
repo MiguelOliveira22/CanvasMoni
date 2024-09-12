@@ -6,33 +6,41 @@ class Group{
 
     update(ctx, canvas, jogador, KeyPresses){
         this.elementos.forEach((valor) => {
-            valor.update(ctx, canvas, jogador, KeyPresses);
+            if(this.notNone(valor)){
+                valor.update(ctx, canvas, jogador, KeyPresses)
+            };
         });
     }
 
     updateBau(ctx, canvas, entidades, KeyPresses){
         this.elementos.forEach((valor) => {
-            valor.update(ctx, canvas, entidades, KeyPresses);
-            valor.collisionTest(entidades.elementos, KeyPresses, () => {
-                valor.createItem();
-            });
+            if(this.notNone(valor)){
+                valor.update(ctx, canvas, entidades, KeyPresses);
+                valor.collisionTest(entidades.elementos, KeyPresses, () => {
+                    valor.createItem();
+                });
+            }
         });
     }
 
     updateItems(ctx, canvas, entidades, KeyPresses){
         this.elementos.forEach((valor) => {
-            valor.update(ctx, canvas, entidades, KeyPresses);
-            valor.collisionTest(entidades.elementos, KeyPresses, () => {
-                valor.addInventory(entidades.elementos);
-            });
+            if(this.notNone(valor)){
+                valor.update(ctx, canvas, entidades, KeyPresses);
+                valor.collisionTest(entidades.elementos, KeyPresses, () => {
+                    valor.addInventory(entidades.elementos);
+                });
+            }
         });
     }
 
     updateProjetil(ctx, canvas, jogador, KeyPresses){
         this.elementos.forEach((valor) => {
-            valor.update(ctx, canvas, jogador, KeyPresses);
-            valor.collProjetil(jogador.elementos, valor);
-            valor.objPos.x += 10;
+            if(this.notNone(valor)){
+                valor.update(ctx, canvas, jogador, KeyPresses);
+                valor.collProjetil(jogador.elementos, valor);
+                valor.objPos.x += 10;
+            }
         });
     }
 
@@ -53,5 +61,12 @@ class Group{
             valor.grupo = grupo;
             console.log(valor.grupo)
         });
+    }
+
+    notNone(valor){
+        if(valor != undefined){
+            return true;
+        }
+        return false;
     }
 }

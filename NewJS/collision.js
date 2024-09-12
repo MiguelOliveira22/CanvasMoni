@@ -70,9 +70,10 @@ class Collision{
                    valor.vertices[0][0] + valor.entidadePos.x <= objeto.vertices[1][0] + objeto.objPos.x &&
                    valor.vertices[1][1] + valor.entidadePos.y >= objeto.vertices[0][1] + objeto.objPos.y &&
                    valor.vertices[0][1] + valor.entidadePos.y <= objeto.vertices[1][1] + objeto.objPos.y){
-                    console.log("tomou dano, hp: " + valor.hp);
                     valor.hp -= 10;
+                    console.log("tomou dano, hp: " + valor.hp);
                     objeto = undefined;
+                    console.log(objeto)
                 }
             }
         });

@@ -125,9 +125,9 @@ class Entidade extends Collision{
             this.draw(ctx);
         }
 
-        if(this.hp <= 0){
-            delete this;
-        }
+        //if(this.hp <= 0){
+        //    delete this;
+        //}
     }
 
     drawCollision(ctx){

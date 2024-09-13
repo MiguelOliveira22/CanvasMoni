@@ -67,7 +67,7 @@ class Entidade extends Collision{
             if(KeyPresses.q){
                 if(this.timeout <= 0){
                     console.log(this.grupo)
-                    this.addItemGroup(this.grupo);
+                    this.addItemGroup();
                     this.timeout = 100;
                 }
             }
@@ -97,7 +97,7 @@ class Entidade extends Collision{
         }
     }
 
-    addItemGroup(){
+    addItemGroup(){   
         this.grupo.addElement(new Objeto(["../Sprites/walkingsheetbro.png", 7, 1, 100], [this.entidadePos.x, this.entidadePos.y], [[10, 0], [125, 130]], false, true, false, 0, 5 * this.direction, true, this.id));
     }
 

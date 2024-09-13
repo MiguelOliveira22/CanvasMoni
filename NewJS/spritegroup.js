@@ -39,7 +39,12 @@ class Group{
             if(this.notNone(valor)){
                 valor.update(ctx, canvas, jogador, KeyPresses);
                 valor.collProjetil(jogador.elementos, valor);
-                valor.objPos.x += 10;
+                if(valor.id != 5){
+                    valor.objPos.x -= 10;
+                }
+                else{
+                    valor.objPos.x += 10;
+                }
             }
         });
     }

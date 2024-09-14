@@ -41,7 +41,7 @@ class Group{
                 valor.update(ctx, canvas, jogador, KeyPresses);
                 let hit = valor.collProjetil(jogador.elementos, valor);
                 if(hit == true){
-                    this.elementos[index] = undefined
+                    this.elementos.splice(index, 1)
                 }
                 else{
                     if(valor.id != 5){

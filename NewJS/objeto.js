@@ -89,6 +89,6 @@ class Objeto extends Collision{
     }
 
     collProjetil(player, objeto){
-        this.projetilDamage(player, objeto);
+        return this.projetilDamage(player, objeto);
     }
 }

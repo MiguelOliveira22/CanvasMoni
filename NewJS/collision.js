@@ -64,6 +64,7 @@ class Collision{
     }
 
     projetilDamage(entidades, objeto){
+        let hit = false
         entidades.forEach((valor) => {
             if(valor.id != objeto.spawnerId && valor.vertices != undefined){
                 if(valor.vertices[1][0] + valor.entidadePos.x >= objeto.vertices[0][0] + objeto.objPos.x &&
@@ -72,11 +73,11 @@ class Collision{
                    valor.vertices[0][1] + valor.entidadePos.y <= objeto.vertices[1][1] + objeto.objPos.y){
                     valor.hp -= 10;
                     console.log("tomou dano, hp: " + valor.hp);
-                    objeto = undefined;
-                    console.log(objeto)
+                    hit = true
                 }
             }
         });
+        return hit
     }
 
     drawColl(ctx, posX, posY){

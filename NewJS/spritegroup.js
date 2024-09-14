@@ -35,15 +35,21 @@ class Group{
     }
 
     updateProjetil(ctx, canvas, jogador, KeyPresses){
-        this.elementos.forEach((valor) => {
+
+        this.elementos.forEach((valor, index) => {
             if(this.notNone(valor)){
                 valor.update(ctx, canvas, jogador, KeyPresses);
-                valor.collProjetil(jogador.elementos, valor);
-                if(valor.id != 5){
-                    valor.objPos.x -= 10;
+                let hit = valor.collProjetil(jogador.elementos, valor);
+                if(hit == true){
+                    this.elementos[index] = undefined
                 }
                 else{
-                    valor.objPos.x += 10;
+                    if(valor.id != 5){
+                        valor.objPos.x -= 10;
+                    }
+                    else{
+                        valor.objPos.x += 10;
+                    }
                 }
             }
         });

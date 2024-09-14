@@ -113,7 +113,7 @@ class Entidade extends Collision{
 
     update(ctx, a = null, b = null, KeyPresses){
         if(this.entidadePos != undefined){
-            this.timeout --;
+            this.timeout -= 2;
             this.mov(KeyPresses);
             this.nextX = this.entidadePos.x + (this.entidadePos.taxaX * this.velo);
             this.nextY = this.entidadePos.y + (this.entidadePos.taxaY * this.velo);

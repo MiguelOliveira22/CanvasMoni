@@ -9,6 +9,13 @@ class Collision{
 
     collTest(playe = [], posX, posY){
         this.interacting = false;
+        let playing;
+        playe.forEach((valor) => {
+            if(valor.player){
+                playing = valor;
+            }
+        });
+
         playe.forEach((player) => {
             let x = player.nextX;
             let y = player.nextY;
@@ -26,7 +33,7 @@ class Collision{
                 }
             }
 
-            if(this.interactable && player.vertices != undefined){
+            if(this.interactable && player.vertices != undefined && player == playing){
                 if(player.vertices[1][0] + x > (this.vertices[0][0] + posX) && player.vertices[0][0] + x < (this.vertices[1][0] + posX) &&
                    player.vertices[1][1] + y > (this.vertices[0][1] + posY) && player.vertices[1][0] + y < (this.vertices[1][1] + posY)){
                     this.interacting = true;

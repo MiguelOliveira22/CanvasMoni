@@ -94,10 +94,10 @@ class Entidade extends Collision{
 
                 this.entidadePos.taxaX = 0;
 
-                if(this.entidadePos.x < 1000){
+                if(this.entidadePos.x > 0){
                     this.entidadePos.taxaX = 1;
                 }
-                else if(this.entidadePos > 1000){
+                else if(this.entidadePos < 1000){
                     this.entidadePos.taxaX = -1;
                 }
             }

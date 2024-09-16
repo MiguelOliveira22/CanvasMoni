@@ -108,16 +108,6 @@ class Entidade extends Collision{
         this.grupo.addElement(new Objeto(["../Sprites/walkingsheetbro.png", 7, 1, 100], [this.entidadePos.x, this.entidadePos.y], [[10, 0], [125, 130]], false, true, false, 0, 5 * this.direction, true, this.id));
     }
 
-    // removeItemGrupo(){
-    //     let posicao = 0
-    //     this.grupo.elementos.forEach(entidade => {
-    //         posicao = this.grupo.elementos.indexOf(entidade)
-    //         if(entidade.cooldown == 0){
-    //             this.grupo.elementos.splice(posicao, 1)
-    //         }
-    //     });
-    // }
-
     update(ctx, a = null, b = null, KeyPresses){
         if(this.entidadePos != undefined){
             this.timeout -= 2;
@@ -131,6 +121,13 @@ class Entidade extends Collision{
             else if(this.nextX < this.entidadePos.x){
                 this.direction = false;
             }
+
+            /*if(this.nextX != this.entidadePos.x){
+                this.sprites.moving();
+            }
+            else{
+                this.sprites.standard();
+            }*/
 
             if(this.drawable && this.hp > 0){
                 this.draw(ctx);

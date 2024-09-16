@@ -6,6 +6,7 @@ class Objeto extends Collision{
         this.grupo;
         if(!this.isItem){
             this.getter = new RandomItem(12345);
+            this.getter.randomInt();
         }
 
         this.bg = bg;
@@ -43,7 +44,7 @@ class Objeto extends Collision{
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         this.sprites.clockVal();
         if(this.interacting && this.interactable && !this.item){
-            ctx.beginPath()
+            ctx.beginPath();
             ctx.fillStyle = "#1305FF";
             ctx.font = '24px SMW';
             ctx.fillText("Pressione E Para Interagir", 100, 100);

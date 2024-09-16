@@ -76,11 +76,11 @@ addEventListener("DOMContentLoaded", () => {
         canvas.setAttribute("height", 720);
     }
 
-    const now = new Date();
+    /*const now = new Date();
     const time = now.getTime() / 1000;
 
     let mapper = new MapGen(time);
-    mapper.genMap();
+    mapper.genMap();*/
 
     const entidades = new Group();
     entidades.addElement(new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 2, true));
@@ -118,6 +118,7 @@ addEventListener("DOMContentLoaded", () => {
         ctx.fillText("Pressione Q Para Atirar, Olhe O Console Para Ver O Dano", 50, 50);
         
         objetos.testCollision(entidades, KeyPresses);
+        entidades.testCollision(entidades, KeyPresses);
     }
 
     function loop(){

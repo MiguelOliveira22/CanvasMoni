@@ -55,17 +55,14 @@ class Group{
     }
 
     testCollision(player, KeyPresses){
-        this.playeror = null;
         this.elementos.forEach((valor) => {
-            if(valor.player){
-                this.playeror = valor;
+            if(valor.player != undefined){
+                if(!valor.player){
+                    valor.collDamage(player.elementos);
+                }
             }
-        });
-
-        this.elementos.forEach((valor) => {
-            valor.collisionTest(player.elementos, KeyPresses);
-            if(valor != this.playeror && this.playeror != null){
-                valor.collDamage([this.playeror, valor]);
+            else{
+                valor.collisionTest(player.elementos, KeyPresses);
             }
         });
     }

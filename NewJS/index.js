@@ -76,12 +76,15 @@ addEventListener("DOMContentLoaded", () => {
         canvas.setAttribute("height", 720);
     }
 
+    const now = new Date();
+    const time = now.getTime() / 1000;
+
+    let mapper = new MapGen(time);
+    mapper.genMap();
+
     const entidades = new Group();
     entidades.addElement(new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 2, true));
     entidades.addElement(new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 3));
-
-    //const inimigos = new Group();
-    //inimigos.addElement(entidades.elementos[1]);
     
     const objetos = new Group();
     objetos.addElement(new Objeto(["../Sprites/PixelArt/pixilart-drawing.png", 1, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 10, 0));

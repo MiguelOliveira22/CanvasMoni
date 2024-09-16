@@ -25,9 +25,7 @@ class Inventario{
     }
 
     unlockById(id){
-        console.log(this.items[id], this.usable[id]);
         this.usable[id] = true;
-        console.log(this.items[id], this.usable[id]);
     }
 
     drawBoxItem(ctx){
@@ -46,11 +44,10 @@ class Inventario{
         if(keyPresses[1] == true){
             if(this.currentItem != 0){
                 this.currentItem -= 1
-
                 console.log(this.currentItem)
             }
-
         }
+        
         if(keyPresses[2] == true){
             if(this.currentItem != this.quantItems - 1 && this.usable[this.currentItem + 1] == true){
                 this.currentItem += 1

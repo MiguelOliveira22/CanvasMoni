@@ -149,6 +149,7 @@ class Room{
     constructor(id, [x, y], spawn = false, exit = false){
         this.spawn = spawn;
         this.exit = exit;
+        this.visited = false;
         this.pos = {
             x: x,
             y: y
@@ -181,11 +182,3 @@ class Room{
         this.exit = true;
     }
 }
-
-/*
-const now = new Date();
-const time = now.getTime() / 1000;
-
-let mapper = new MapGen(time);
-mapper.genMap();
-*/

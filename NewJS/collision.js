@@ -70,7 +70,6 @@ class Collision{
                    valor.vertices[1][1] + valor.entidadePos.y >= objeto.vertices[0][1] + objeto.objPos.y &&
                    valor.vertices[0][1] + valor.entidadePos.y <= objeto.vertices[1][1] + objeto.objPos.y){
                     valor.hp -= 10;
-                    console.log("tomou dano, hp: " + valor.hp);
                     hit = true
                 }
             }

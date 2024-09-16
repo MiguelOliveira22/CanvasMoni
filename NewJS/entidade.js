@@ -74,7 +74,6 @@ class Entidade extends Collision{
             }
             if(KeyPresses.q){
                 if(this.timeout <= 0){
-                    console.log(this.grupo)
                     this.addItemGroup();
                     this.timeout = 100;
                 }
@@ -142,7 +141,6 @@ class Entidade extends Collision{
                 for(let i = 0; i < keys.length; i++){
                     delete this[keys[i]]
                 }
-                console.log(this)
             }
         }
     }

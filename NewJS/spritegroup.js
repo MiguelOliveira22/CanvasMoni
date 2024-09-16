@@ -35,7 +35,6 @@ class Group{
     }
 
     updateProjetil(ctx, canvas, jogador, KeyPresses){
-
         this.elementos.forEach((valor, index) => {
             if(this.notNone(valor)){
                 valor.update(ctx, canvas, jogador, KeyPresses);
@@ -56,10 +55,19 @@ class Group{
     }
 
     testCollision(player, KeyPresses){
+        this.playeror = null;
+        this.elementos.forEach((valor) => {
+            if(valor.player){
+                this.playeror = valor;
+            }
+        });
+
         this.elementos.forEach((valor) => {
             valor.collisionTest(player.elementos, KeyPresses);
+            if(valor != this.playeror && this.playeror != null){
+                valor.collDamage([this.playeror, valor]);
+            }
         });
-        this.elementos[1].collDamage(player.elementos);
     }
 
     addElement(element){
@@ -70,7 +78,6 @@ class Group{
     objAddToGroup(grupo){
         this.elementos.forEach((valor) => {
             valor.grupo = grupo;
-            console.log(valor.grupo)
         });
     }
 

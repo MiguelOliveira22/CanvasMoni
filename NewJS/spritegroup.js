@@ -56,12 +56,12 @@ class Group{
 
     testCollision(player, KeyPresses){
         this.elementos.forEach((valor) => {
-            if(valor.player != undefined){
+            if(valor.player != undefined){ // Arrumar isso aqui
                 if(!valor.player){
                     valor.collDamage(player.elementos);
                 }
             }
-            else{
+            else if(valor.bg != undefined){ // Arrumar isso aqui
                 valor.collisionTest(player.elementos, KeyPresses);
             }
         });

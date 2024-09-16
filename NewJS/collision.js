@@ -36,7 +36,6 @@ class Collision{
     }
 
     collDamage(entidades){
-        //Errado, mas a aula começou
         let player = null;
         entidades.forEach((valor) => {
             if(valor.player){
@@ -51,7 +50,6 @@ class Collision{
                        player.vertices[1][1] + player.entidadePos.y >= valor.vertices[0][1] + valor.entidadePos.y &&
                        player.vertices[0][1] + player.entidadePos.y <= valor.vertices[1][1] + valor.entidadePos.y &&
                        this.cooldown == 0){
-                        console.log("tomou dano player , hp: " + player.hp);
                         player.hp -= 10;
                         this.cooldown = 100;
                     }

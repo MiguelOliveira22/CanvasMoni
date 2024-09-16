@@ -33,6 +33,7 @@ class RandomItem extends RandomUse{
 
     getItem(){
         let selected = this.randomIntRange(this.possibilidades.length);
+        console.log(selected)
         return this.possibilidades[selected];
     }
 }

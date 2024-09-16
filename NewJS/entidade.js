@@ -8,6 +8,7 @@ class Entidade extends Collision{
         this.velo = velocidade;
         this.gravity = gravity;
         this.hp = 100;
+        this.bar = new Health();
         this.timeout = 0;
         this.grupo;
         this.id = (this.player) ? 0 : id;
@@ -29,6 +30,13 @@ class Entidade extends Collision{
     draw(ctx){
         this.sprites.clockVal();
         ctx.setTransform(1, 0, 0, 1, 0, 0);
+        if(this.player){
+            this.bar.drawLifePlayer(ctx, this.hp);
+        }
+        else{
+            this.bar.drawLifeEnemy(ctx, this.hp, this.entidadePos.x, this.entidadePos.y)
+        }
+
         if(!this.direction){
             ctx.scale(-1, 1);
             ctx.drawImage(this.sprites.sheet, this.sprites.spriteArray[this.sprites.atual][0], this.sprites.spriteArray[this.sprites.atual][1], this.sprites.wSprites, this.sprites.aSprites, -this.entidadePos.x, this.entidadePos.y, -this.sprites.wSprites, this.sprites.aSprites);

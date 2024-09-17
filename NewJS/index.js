@@ -110,11 +110,11 @@ addEventListener("DOMContentLoaded", () => {
         let hitPos = projeteis.updateProjetil(ctx, canvas, entidades, KeyPresses);
 
         if(hitPos[0]){
-            particles.addElement(new particle(["../Sprites/dirt.png", 7, 1, 1000], 100, hitPos[1], "hit"))
+            particles.addElement(new particle(["../Sprites/dirt.png", 7, 1, 500], 100, hitPos[1], entidades.elementos[0].direction, "hit"))
             hitPos[0] = false
         }
         particles.updateParticles(ctx, canvas)
-
+        
         bau.updateBau(ctx, canvas, entidades, KeyPresses);
 
         items.updateItems(ctx, canvas, entidades, KeyPresses);

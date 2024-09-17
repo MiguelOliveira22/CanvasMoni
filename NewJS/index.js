@@ -110,8 +110,7 @@ addEventListener("DOMContentLoaded", () => {
         let hitPos = projeteis.updateProjetil(ctx, canvas, entidades, KeyPresses);
 
         if(hitPos[0]){
-            console.log(hitPos)
-            particles.addElement(new particle(["../Sprites/walkingsheetbro.png", 7, 1, 100], 100, hitPos[1], "hit"))
+            particles.addElement(new particle(["../Sprites/dirt.png", 7, 1, 1000], 100, hitPos[1], "hit"))
             hitPos[0] = false
         }
         particles.updateParticles(ctx, canvas)

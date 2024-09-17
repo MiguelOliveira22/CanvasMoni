@@ -87,10 +87,13 @@ class Group{
         return false;
     }
 
-    updateParticles(ctx, canvas, pos){
-        console.log(this.elementos)
+    updateParticles(ctx){
         this.elementos.forEach((oneParticle, index) => {
-            
+            console.log(this.elementos)
+            let durationTime = oneParticle.particleHit(ctx, oneParticle)
+            if(durationTime <= 0){
+                this.elementos.splice(index, 1)
+            }
         })
     }
 }

@@ -1,6 +1,5 @@
 class particle{
     constructor([particle, hSprites, vSprites, sFrames], durationTime, Pos, type){
-        this.particles = []
         this.particle = new Sprites(particle, hSprites, vSprites, sFrames)
         this.durationTime = durationTime
         this.hangDurationTime
@@ -11,27 +10,15 @@ class particle{
         }
     }
 
-    particleHit(x, y, ctx, particles){
-        particles.forEach((particle, index) => {
-            if(particle.do && particle.durationTime > 0){
-                ctx.drawImage(this.sprites.sheet, this.sprites.spriteArray[this.sprites.atual][0], this.sprites.spriteArray[this.sprites.atual][1], this.sprites.wSprites, this.sprites.aSprites, x, y, this.sprites.wSprites, this.sprites.aSprites);
+    particleHit(ctx, oneParticle){
+        console.log(oneParticle)
+        this.particle.clockVal()
+            if(oneParticle.durationTime > 0){
+                ctx.setTransform(1, 0, 0, 1, 0, 0)
+                console.log(this.particle.sheet)
+                ctx.drawImage(this.particle.sheet, this.particle.spriteArray[this.particle.atual][0], this.particle.spriteArray[this.particle.atual][1], this.particle.wSprites, this.particle.aSprites, this.particlePos.x, this.particlePos.y, this.particle.wSprites, this.particle.aSprites);
+                this.durationTime -= 10;
             }
-
-            else if(particle.durationTime > 0){
-                this.durationTime --;
-            }
-        });
-
-    }
-
-    verifyHitParticle(particles){
-        particles.forEach((oneParticle, index) => {
-            
-        })
-    }
-
-    doParticles(particles, ctx){
-        this.verifyHitParticle(particles)
-        
+            return this.durationTime
     }
 }

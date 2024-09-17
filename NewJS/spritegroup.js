@@ -35,10 +35,11 @@ class Group{
     }
 
     updateProjetil(ctx, canvas, jogador, KeyPresses){
+        let hit = false
         this.elementos.forEach((valor, index) => {
             if(this.notNone(valor)){
                 valor.update(ctx, canvas, jogador, KeyPresses);
-                let hit = valor.collProjetil(jogador.elementos, valor);
+                hit = valor.collProjetil(jogador.elementos, valor);
                 if(hit == true){
                     this.elementos.splice(index, 1)
                 }
@@ -52,6 +53,7 @@ class Group{
                 }
             }
         });
+        return hit
     }
 
     testCollision(player, KeyPresses){
@@ -83,5 +85,9 @@ class Group{
             return true;
         }
         return false;
+    }
+
+    updateParticles(ctx, canvas, particles){
+
     }
 }

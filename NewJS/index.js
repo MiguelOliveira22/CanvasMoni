@@ -90,9 +90,11 @@ addEventListener("DOMContentLoaded", () => {
     objetos.addElement(new Objeto(["../Sprites/PixelArt/pixilart-drawing.png", 1, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 10, 0));
     objetos.addElement(new Objeto(["", 1, 1, 60], [0, 625], [[0, 0], [2000, 100]], true, false, false, 10, 0));
 
-    const projeteis = new Group();
+    const projeteis = new Group(["../Sprites/walkingsheetbro.png", 7, 1, 100], 100);
 
     entidades.objAddToGroup(projeteis);
+
+    const particles = new Group();
 
     const items = new Group();
 
@@ -105,8 +107,14 @@ addEventListener("DOMContentLoaded", () => {
     function playerRoutine(){
         objetos.update(ctx, canvas, entidades, KeyPresses);
 
-        projeteis.updateProjetil(ctx, canvas, entidades, KeyPresses);
-        
+        let doParticle = projeteis.updateProjetil(ctx, canvas, entidades, KeyPresses);
+        if(doParticle){
+            particles.addElement(new particle(["../Sprites/walkingsheetbro.png", 7, 1, 100], 100, "hit"))
+            doParticle = false
+        }
+
+        particles.updateParticles
+
         bau.updateBau(ctx, canvas, entidades, KeyPresses);
 
         items.updateItems(ctx, canvas, entidades, KeyPresses);
@@ -122,6 +130,7 @@ addEventListener("DOMContentLoaded", () => {
     }
 
     function loop(){
+        console.log(particles)
         canvasUpdate();
         clear();
 

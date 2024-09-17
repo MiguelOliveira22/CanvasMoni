@@ -1,10 +1,14 @@
 class particle{
-    constructor([particle, hSprites, vSprites, sFrames], durationTime, type){
+    constructor([particle, hSprites, vSprites, sFrames], durationTime, Pos, type){
         this.particles = []
         this.particle = new Sprites(particle, hSprites, vSprites, sFrames)
         this.durationTime = durationTime
         this.hangDurationTime
         this.type = type
+        this.particlePos ={
+            x: Pos[0],
+            y: Pos[1]
+        }
     }
 
     particleHit(x, y, ctx, particles){
@@ -26,7 +30,7 @@ class particle{
         })
     }
 
-    doParticles(x, y, particles, ctx){
+    doParticles(particles, ctx){
         this.verifyHitParticle(particles)
         
     }

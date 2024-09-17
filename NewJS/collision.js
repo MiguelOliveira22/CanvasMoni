@@ -70,6 +70,7 @@ class Collision{
 
     projetilDamage(entidades, objeto){
         let hit = false
+        let Pos = []
         entidades.forEach((valor) => {
             if(valor.id != objeto.spawnerId && valor.vertices != undefined){
                 if(valor.vertices[1][0] + valor.entidadePos.x >= objeto.vertices[0][0] + objeto.objPos.x &&
@@ -78,10 +79,11 @@ class Collision{
                    valor.vertices[0][1] + valor.entidadePos.y <= objeto.vertices[1][1] + objeto.objPos.y){
                     valor.hp -= 10;
                     hit = true
+                    Pos = [objeto.objPos.x, objeto.objPos.y]
                 }
             }
         });
-        return hit
+        return [hit, Pos]
     }
 
     drawColl(ctx, posX, posY){

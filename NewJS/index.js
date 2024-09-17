@@ -107,13 +107,14 @@ addEventListener("DOMContentLoaded", () => {
     function playerRoutine(){
         objetos.update(ctx, canvas, entidades, KeyPresses);
 
-        let doParticle = projeteis.updateProjetil(ctx, canvas, entidades, KeyPresses);
-        if(doParticle){
-            particles.addElement(new particle(["../Sprites/walkingsheetbro.png", 7, 1, 100], 100, "hit"))
-            doParticle = false
-        }
+        let hitPos = projeteis.updateProjetil(ctx, canvas, entidades, KeyPresses);
 
-        particles.updateParticles
+        if(hitPos[0]){
+            console.log(hitPos)
+            particles.addElement(new particle(["../Sprites/walkingsheetbro.png", 7, 1, 100], 100, hitPos[1], "hit"))
+            hitPos[0] = false
+        }
+        particles.updateParticles(ctx, canvas)
 
         bau.updateBau(ctx, canvas, entidades, KeyPresses);
 
@@ -130,7 +131,6 @@ addEventListener("DOMContentLoaded", () => {
     }
 
     function loop(){
-        console.log(particles)
         canvasUpdate();
         clear();
 

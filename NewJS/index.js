@@ -108,10 +108,15 @@ addEventListener("DOMContentLoaded", () => {
         objetos.update(ctx, canvas, entidades, KeyPresses);
 
         let hitPos = projeteis.updateProjetil(ctx, canvas, entidades, KeyPresses);
-
+        
         if(hitPos[0]){
             particles.addElement(new particle(["../Sprites/dirt.png", 7, 1, 500], 100, hitPos[1], entidades.elementos[0].direction, "hit"))
             hitPos[0] = false
+        }
+
+        console.log(entidades.elementos[0])
+        if(entidades.elementos[0].collided && (KeyPresses.a || KeyPresses.d)){
+            particles.addElement(new particle(["../Sprites/dirt.png", 7, 1, 500], 100, [entidades.elementos[0].entidadePos.x, entidades.elementos[0].entidadePos.y + 100], entidades.elementos[0].direction, "walk"))
         }
         particles.updateParticles(ctx, canvas)
         

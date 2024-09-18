@@ -88,12 +88,23 @@ class Group{
     }
 
     updateParticles(ctx){
+        console.log(this.elementos)
         this.elementos.forEach((oneParticle, index) => {
-            console.log(this.elementos)
-            let durationTime = oneParticle.particleHit(ctx, oneParticle)
-            if(durationTime <= 0){
-                this.elementos.splice(index, 1)
+            if(oneParticle.type == "hit"){
+                let durationTime = oneParticle.particleHit(ctx, oneParticle);
+                if(durationTime <= 0){
+                    this.elementos.splice(index, 1);
+                }
+            }
+            else if(oneParticle.type == "walk"){
+                let durationTime = oneParticle.particleWalk(ctx, oneParticle);
+                console.log(durationTime)
+                if(durationTime <= 0){
+                    
+                    this.elementos.splice(index, 1);
+                }
             }
         })
+        console.log(this.elementos)
     }
 }

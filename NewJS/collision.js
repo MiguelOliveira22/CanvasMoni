@@ -80,10 +80,11 @@ class Collision{
                     valor.hp -= 10;
                     hit = true
                     Pos = [objeto.objPos.x, objeto.objPos.y]
+                    direction = objeto.id
                 }
             }
         });
-        return [hit, Pos]
+        return [hit, Pos, direction]
     }
 
     drawColl(ctx, posX, posY){

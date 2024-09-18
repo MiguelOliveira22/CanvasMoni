@@ -87,8 +87,7 @@ class Group{
         return false;
     }
 
-    updateParticles(ctx){
-        console.log(this.elementos)
+    updateParticles(ctx, projeteis){
         this.elementos.forEach((oneParticle, index) => {
             if(oneParticle.type == "hit"){
                 let durationTime = oneParticle.particleHit(ctx, oneParticle);
@@ -98,13 +97,11 @@ class Group{
             }
             else if(oneParticle.type == "walk"){
                 let durationTime = oneParticle.particleWalk(ctx, oneParticle);
-                console.log(durationTime)
                 if(durationTime <= 0){
                     
                     this.elementos.splice(index, 1);
                 }
             }
         })
-        console.log(this.elementos)
     }
 }

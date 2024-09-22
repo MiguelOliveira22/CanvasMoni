@@ -87,6 +87,16 @@ class Group{
         return false;
     }
 
+    addParticle(KeyPresses, hitPosAndDirection, entidades){
+        if(hitPosAndDirection[0]){
+            this.addElement(new particle(["../Sprites/dirt.png", 6, 1, 500], 100, hitPosAndDirection[1], hitPosAndDirection[2], "hit"))
+        }
+        
+        if(entidades.elementos[0].collided && (KeyPresses.a || KeyPresses.d)){
+            this.addElement(new particle(["../Sprites/dirt.png", 6, 1, 500], 100, [entidades.elementos[0].entidadePos.x, entidades.elementos[0].entidadePos.y + 100], entidades.elementos[0].direction, "walk"))
+        }
+    }
+
     updateParticles(ctx, projeteis){
         this.elementos.forEach((oneParticle, index) => {
             if(oneParticle.type == "hit"){
@@ -98,7 +108,6 @@ class Group{
             else if(oneParticle.type == "walk"){
                 let durationTime = oneParticle.particleWalk(ctx, oneParticle);
                 if(durationTime <= 0){
-                    
                     this.elementos.splice(index, 1);
                 }
             }

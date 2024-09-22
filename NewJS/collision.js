@@ -71,6 +71,7 @@ class Collision{
     projetilDamage(entidades, objeto){
         let hit = false
         let Pos = []
+        let direction = true
         entidades.forEach((valor) => {
             if(valor.id != objeto.spawnerId && valor.vertices != undefined){
                 if(valor.vertices[1][0] + valor.entidadePos.x >= objeto.vertices[0][0] + objeto.objPos.x &&
@@ -80,7 +81,9 @@ class Collision{
                     valor.hp -= 10;
                     hit = true
                     Pos = [objeto.objPos.x, objeto.objPos.y]
-                    direction = objeto.id
+                    if(objeto.id == 0){
+                        direction = false
+                    }
                 }
             }
         });

@@ -76,11 +76,24 @@ addEventListener("DOMContentLoaded", () => {
         canvas.setAttribute("height", 720);
     }
 
-    /*const now = new Date();
+    const now = new Date();
     const time = now.getTime() / 1000;
 
     let mapper = new MapGen(time);
-    mapper.genMap();*/
+    let map = mapper.genMap();
+
+    let enter, exit;
+
+    for(let i = 0; i < map.length; i ++){
+        if(map[i].spawn){
+            enter = map[i];
+        }
+
+        if(map[i].exit){
+            exit = map[i];
+        }
+    }
+    console.log(exit, enter)
 
     const entidades = new Group();
     entidades.addElement(new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 2, true));
@@ -127,12 +140,20 @@ addEventListener("DOMContentLoaded", () => {
         entidades.testCollision(entidades, KeyPresses);
     }
 
+    let whichScreen = 0;
+
     function loop(){
         canvasUpdate();
         clear();
 
         // Execução Interna!
-        playerRoutine();
+        if(whichScreen == 0){
+            playerRoutine();
+        }
+
+        if(whichScreen == 1){
+            //
+        }
 
         requestAnimationFrame(loop);
     }

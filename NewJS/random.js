@@ -139,9 +139,7 @@ class MapGen extends RandomUse{
         this.path[this.ends[this.endsWhich].id].setSpawn();
         this.path[this.ends[!this.endsWhich].id].setExit();
 
-        for(let i = 0; i < this.physicalCells; i ++){
-            console.log(this.path[i]);
-        }
+        return this.path;
     }
 }
 

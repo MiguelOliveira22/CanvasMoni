@@ -72,6 +72,7 @@ class Collision{
         let hit = false
         let Pos = []
         let direction = true
+        let posMorto
         entidades.forEach((valor) => {
             if(valor.id != objeto.spawnerId && valor.vertices != undefined){
                 if(valor.vertices[1][0] + valor.entidadePos.x >= objeto.vertices[0][0] + objeto.objPos.x &&
@@ -84,10 +85,11 @@ class Collision{
                     if(objeto.id == 0){
                         direction = false
                     }
+                    posMorto = [valor.entidadePos.x, valor.entidadePos.y]
                 }
             }
         });
-        return [hit, Pos, direction]
+        return [hit, Pos, direction, posMorto]
     }
 
     drawColl(ctx, posX, posY){

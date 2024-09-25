@@ -120,9 +120,9 @@ addEventListener("DOMContentLoaded", () => {
     function playerRoutine(){
         objetos.update(ctx, canvas, entidades, KeyPresses);
 
-        let hitPosAndDirection = projeteis.updateProjetil(ctx, canvas, entidades, KeyPresses);
+        let hitPosDirectionAndPosMorto = projeteis.updateProjetil(ctx, canvas, entidades, KeyPresses);
 
-        particles.addParticle(KeyPresses, hitPosAndDirection, entidades)
+        particles.addParticle(KeyPresses, hitPosDirectionAndPosMorto, entidades)
 
         particles.updateParticles(ctx)
         

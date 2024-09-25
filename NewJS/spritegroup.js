@@ -87,17 +87,23 @@ class Group{
         return false;
     }
 
-    addParticle(KeyPresses, hitPosAndDirection, entidades){
-        if(hitPosAndDirection[0]){
-            this.addElement(new particle(["../Sprites/dirt.png", 6, 1, 500], 100, hitPosAndDirection[1], hitPosAndDirection[2], "hit"))
+    addParticle(KeyPresses, hitPosDirectionAndPosMorto, entidades){
+        if(hitPosDirectionAndPosMorto[0]){
+            this.addElement(new particle(["../Sprites/dirt.png", 6, 1, 500], 100, hitPosDirectionAndPosMorto[1], hitPosDirectionAndPosMorto[2], "hit"))
         }
         
         if(entidades.elementos[0].collided && (KeyPresses.a || KeyPresses.d)){
             this.addElement(new particle(["../Sprites/dirt.png", 6, 1, 500], 100, [entidades.elementos[0].entidadePos.x, entidades.elementos[0].entidadePos.y + 100], entidades.elementos[0].direction, "walk"))
         }
+        
+        entidades.elementos.forEach(entidade => {
+            if(entidade.hp == 0){
+                this.addElement(new particle(["../Sprites/dirt.png", 6, 1, 500], 100, [hitPosDirectionAndPosMorto[3], entidades.elementos[0].entidadePos.y + 100], entidades.elementos[0].direction, "walk"))
+            }
+        });
     }
 
-    updateParticles(ctx, projeteis){
+    updateParticles(ctx){
         this.elementos.forEach((oneParticle, index) => {
             if(oneParticle.type == "hit"){
                 let durationTime = oneParticle.particleHit(ctx, oneParticle);

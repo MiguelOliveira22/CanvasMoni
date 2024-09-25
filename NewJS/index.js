@@ -18,55 +18,57 @@ addEventListener("DOMContentLoaded", () => {
     }
 
     function tecla(ev){
-        if(ev.key === "w"){
+        let tecla = ev.key.toLowerCase();
+        if(tecla === "w"){
             KeyPresses.w = true;
         }
-        if(ev.key === "s"){
+        if(tecla === "s"){
             KeyPresses.s = true;
         }
-        if(ev.key === "d"){
+        if(tecla === "d"){
             KeyPresses.d = true;
         }
-        if(ev.key === "a"){
+        if(tecla === "a"){
             KeyPresses.a = true;
         }
-        if(ev.key === "e"){
+        if(tecla === "e"){
             KeyPresses.e = true;
         }
-        if(ev.key === "q"){
+        if(tecla === "q"){
             KeyPresses.q = true;
         }
-        if(ev.key === "1"){
+        if(tecla === "1"){
             KeyPresses[1] = true;
         }
-        if(ev.key === "2"){
+        if(tecla === "2"){
             KeyPresses[2] = true;
         }
     }
     
     function teclaMenos(ev){
-        if(ev.key === "w"){
+        let tecla = ev.key.toLowerCase();
+        if(tecla === "w"){
             KeyPresses.w = false;
         }
-        if(ev.key === "s"){
+        if(tecla === "s"){
             KeyPresses.s = false;
         }
-        if(ev.key === "d"){
+        if(tecla === "d"){
             KeyPresses.d = false;
         }
-        if(ev.key === "a"){
+        if(tecla === "a"){
             KeyPresses.a = false;
         }
-        if(ev.key === "e"){
+        if(tecla === "e"){
             KeyPresses.e = false;
         }
-        if(ev.key === "q"){
+        if(tecla === "q"){
             KeyPresses.q = false;
         }
-        if(ev.key === "1"){
+        if(tecla === "1"){
             KeyPresses[1] = false;
         }
-        if(ev.key === "2"){
+        if(tecla === "2"){
             KeyPresses[2] = false;
         }
     }

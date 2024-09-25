@@ -95,10 +95,11 @@ class Group{
         if(entidades.elementos[0].collided && (KeyPresses.a || KeyPresses.d)){
             this.addElement(new particle(["../Sprites/dirt.png", 6, 1, 500], 100, [entidades.elementos[0].entidadePos.x, entidades.elementos[0].entidadePos.y + 100], entidades.elementos[0].direction, "walk"))
         }
-        
+
         entidades.elementos.forEach(entidade => {
             if(entidade.hp == 0){
-                this.addElement(new particle(["../Sprites/dirt.png", 6, 1, 500], 100, [hitPosDirectionAndPosMorto[3], entidades.elementos[0].entidadePos.y + 100], entidades.elementos[0].direction, "walk"))
+                console.log(hitPosDirectionAndPosMorto[3][0] + (entidade.vertices[1][0]/2))
+                this.addElement(new particle(["../Sprites/dirt.png", 6, 1, 500], 100, [hitPosDirectionAndPosMorto[3][0] + (entidade.vertices[1][0]/2), hitPosDirectionAndPosMorto[3][1] + (entidade.vertices[1][1]/2)], entidades.elementos[0].direction, "death"))
             }
         });
     }
@@ -111,8 +112,17 @@ class Group{
                     this.elementos.splice(index, 1);
                 }
             }
+
             else if(oneParticle.type == "walk"){
                 let durationTime = oneParticle.particleWalk(ctx, oneParticle);
+                if(durationTime <= 0){
+                    this.elementos.splice(index, 1);
+                }
+            }
+
+            else if(oneParticle.type == "death"){
+                let durationTime = oneParticle.particleDeath(ctx, oneParticle);
+                console.log(oneParticle.particlePos)
                 if(durationTime <= 0){
                     this.elementos.splice(index, 1);
                 }

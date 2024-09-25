@@ -124,9 +124,9 @@ addEventListener("DOMContentLoaded", () => {
 
         let hitPosDirectionAndPosMorto = projeteis.updateProjetil(ctx, canvas, entidades, KeyPresses);
 
-        particles.addParticle(KeyPresses, hitPosDirectionAndPosMorto, entidades)
+        particles.addParticle(KeyPresses, hitPosDirectionAndPosMorto, entidades);
 
-        particles.updateParticles(ctx)
+        particles.updateParticles(ctx);
         
         bau.updateBau(ctx, canvas, entidades, KeyPresses);
 

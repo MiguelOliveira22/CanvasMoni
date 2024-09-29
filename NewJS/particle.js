@@ -24,7 +24,7 @@ class particle{
                     ctx.scale(-1, 1)
                     ctx.drawImage(this.particle.sheet, this.particle.spriteArray[this.particle.atual][0], this.particle.spriteArray[this.particle.atual][1], this.particle.wSprites, this.particle.aSprites, this.particlePos.x, this.particlePos.y, this.particle.wSprites, this.particle.aSprites);    
                 }
-                this.durationTime -= 5;
+                this.durationTime -= 12;
             }
             return this.durationTime
     }
@@ -51,7 +51,7 @@ class particle{
         if(oneParticle.durationTime > 0){
             ctx.setTransform(1, 0, 0, 1, 0, 0)
             ctx.drawImage(this.particle.sheet, this.particle.spriteArray[this.particle.atual][0], this.particle.spriteArray[this.particle.atual][1], this.particle.wSprites, this.particle.aSprites, this.particlePos.x, this.particlePos.y, this.particle.wSprites, this.particle.aSprites);    
-            this.durationTime -= 1;
+            this.durationTime -= 12;
         }
         return this.durationTime
     }

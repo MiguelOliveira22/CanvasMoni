@@ -89,7 +89,7 @@ class Group{
 
     addParticle(KeyPresses, hitPosDirectionAndPosMorto, entidades){
         if(hitPosDirectionAndPosMorto[0]){
-            this.addElement(new particle(["../Sprites/dirt.png", 6, 1, 500], 100, hitPosDirectionAndPosMorto[1], hitPosDirectionAndPosMorto[2], "hit"))
+            this.addElement(new particle(["../Sprites/Boom.png", 3, 1, 500], 100, hitPosDirectionAndPosMorto[1], hitPosDirectionAndPosMorto[2], "hit"))
         }
         
         if(entidades.elementos[0].collided && (KeyPresses.a || KeyPresses.d)){
@@ -98,8 +98,8 @@ class Group{
 
         entidades.elementos.forEach(entidade => {
             if(entidade.hp == 0){
-                console.log(hitPosDirectionAndPosMorto[3][0] + (entidade.vertices[1][0]/2))
-                this.addElement(new particle(["../Sprites/dirt.png", 6, 1, 500], 100, [hitPosDirectionAndPosMorto[3][0] + (entidade.vertices[1][0]/2), hitPosDirectionAndPosMorto[3][1] + (entidade.vertices[1][1]/2)], entidades.elementos[0].direction, "death"))
+                //this.addElement(new particle(["../Sprites/Boom.png", 3, 1, 500], 100, [hitPosDirectionAndPosMorto[3][0] + (entidade.vertices[1][0]/2), hitPosDirectionAndPosMorto[3][1] + (entidade.vertices[1][1]/2)], entidades.elementos[0].direction, "death"))
+                this.addElement(new particle(["../Sprites/Boom.png", 3, 1, 500], 100, [entidade.entidadePos.x, entidade.entidadePos.y], entidades.elementos[0].direction, "death"))
             }
         });
     }

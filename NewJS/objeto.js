@@ -20,6 +20,7 @@ class Objeto extends Collision{
 
         this.id = id;
         this.spawnerId = spawnerId;
+        this.damage = 10;
     }
 
     addInventory(player){

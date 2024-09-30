@@ -32,7 +32,12 @@ class Inventario{
                 ctx.beginPath()
                 let y = 600 - (i * 100)
                 ctx.fillStyle = "white"
-                ctx.fillRect(1150, y, 60, 60)
+                if(this.currentItem != i){
+                    ctx.fillRect(1150, y, 60, 60)
+                }
+                else{
+                    ctx.fillRect(1150 - 5, y - 10, 70, 70)
+                }
             }
         }
     }

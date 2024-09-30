@@ -5,11 +5,18 @@ class Group{
     }
 
     update(ctx, canvas, jogador, KeyPresses){
+        let jogadore = undefined;
         this.elementos.forEach((valor) => {
-            if(this.notNone(valor)){
-                valor.update(ctx, canvas, jogador, KeyPresses)
-            };
+            if(valor.player){
+                jogadore = valor;
+            }
+            else if(this.notNone(valor)){
+                valor.update(ctx, canvas, jogador, KeyPresses);
+            }
         });
+        if(jogadore != undefined){
+            jogadore.update(ctx, canvas, jogador, KeyPresses);
+        }
     }
 
     updateBau(ctx, canvas, entidades, KeyPresses){

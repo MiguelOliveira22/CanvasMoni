@@ -14,10 +14,7 @@ class Inventario{
             3: false
         };
         
-        this.quantItems = 0;
-        for(let i in this.items){
-            this.quantItems += 1;
-        }
+        this.quantItems = Object.keys(this.items).length;
 
         this.currentItem = iteminicial;
 
@@ -54,12 +51,16 @@ class Inventario{
                 console.log(this.currentItem)
             }
         }
-        
     }
 
     setItem(enter){
         if(this.currentItem <= this.quantItems && this.currentItem >= 0){
             this.currentItem = enter;
         }
+    }
+
+    updateAll(ctx, keyPresses){
+        this.changeItem(keyPresses);
+        this.drawBoxItem(ctx);
     }
 }

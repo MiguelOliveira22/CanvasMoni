@@ -1,5 +1,5 @@
 class Entidade extends Collision{
-    constructor([imageSRC, hSprites, vSprites, sFrames], collisionPoints, velocidade, gravity, player = false, id = 2){
+    constructor([imageSRC, hSprites, vSprites, sFrames], collisionPoints, velocidade, gravity, player = false, id = 1){
         super(collisionPoints, false, false)
         this.sprites = new Sprites(imageSRC, hSprites, vSprites, sFrames);
         this.inventario = new Inventario(0);
@@ -116,6 +116,8 @@ class Entidade extends Collision{
             this.mov(KeyPresses);
             this.nextX = this.entidadePos.x + (this.entidadePos.taxaX * this.velo);
             this.nextY = this.entidadePos.y + (this.entidadePos.taxaY * this.velo);
+
+            this.inventario.updateAll(ctx, KeyPresses);
             
             if(this.nextX > this.entidadePos.x){
                 this.direction = true;

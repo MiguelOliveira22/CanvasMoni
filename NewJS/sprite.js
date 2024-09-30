@@ -19,6 +19,8 @@ class Sprites{
                 this.spriteArray.push([(i * (this.wSprites)), j * (this.aSprites)]);
             }
         }
+
+        this.animationEnded = false;
     }
 
     clockVal(){
@@ -30,6 +32,7 @@ class Sprites{
 
         if(this.atual >= this.spriteArray.length){
             this.atual = 0;
+            this.animationEnded = true;
         }
     }
 }

@@ -17,36 +17,37 @@ addEventListener("DOMContentLoaded", () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
+    var teclaexe = "";
     function tecla(ev){
-        let tecla = ev.key.toLowerCase();
-        if(tecla === "w"){
+        teclaexe = ev.key.toLowerCase();
+        if(teclaexe === "w"){
             KeyPresses.w = true;
         }
-        if(tecla === "s"){
+        if(teclaexe === "s"){
             KeyPresses.s = true;
         }
-        if(tecla === "d"){
+        if(teclaexe === "d"){
             KeyPresses.d = true;
         }
-        if(tecla === "a"){
+        if(teclaexe === "a"){
             KeyPresses.a = true;
         }
-        if(tecla === "e"){
+        if(teclaexe === "e"){
             KeyPresses.e = true;
         }
-        if(tecla === "q"){
+        if(teclaexe === "q"){
             KeyPresses.q = true;
         }
-        if(tecla === "1"){
+        if(teclaexe === "1"){
             KeyPresses[1] = true;
         }
-        if(tecla === "2"){
+        if(teclaexe === "2"){
             KeyPresses[2] = true;
         }
     }
     
     function teclaMenos(ev){
-        let tecla = ev.key.toLowerCase();
+        var tecla = ev.key.toLowerCase();
         if(tecla === "w"){
             KeyPresses.w = false;
         }
@@ -142,7 +143,25 @@ addEventListener("DOMContentLoaded", () => {
         entidades.testCollision(entidades, KeyPresses);
     }
 
-    let whichScreen = 0;
+    let cutscenebg = new Objeto(["./Sprites/PixelArt/cutscene1.png", 54, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 0, -1);
+    function cutscene(){
+        ctx.fillStyle = "#ffe4e1";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        cutscenebg.update(ctx, canvas, entidades, KeyPresses);
+
+        ctx.fillStyle = "black";
+        ctx.font = '12px SMW';
+        ctx.fillText("Pressione [SPACE] para continuar", 15, 15);
+
+        if(cutscenebg.sprites.animationEnded || teclaexe == " "){
+            whichScreen = 0;
+        }
+    }
+
+    function main(){}
+
+    let whichScreen = 2;
 
     function loop(){
         canvasUpdate();
@@ -154,7 +173,11 @@ addEventListener("DOMContentLoaded", () => {
         }
 
         if(whichScreen == 1){
-            //
+            menu();
+        }
+
+        if(whichScreen == 2){
+            cutscene();
         }
 
         requestAnimationFrame(loop);

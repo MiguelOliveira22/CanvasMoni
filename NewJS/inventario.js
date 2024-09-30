@@ -18,7 +18,7 @@ class Inventario{
 
         this.itens = new ListaImgItens();
         this.sprites = [];
-        for(let i = 0; i <= this.quantItems; i ++){
+        for(let i = 0; i < this.quantItems; i ++){
             this.sprites[i] = new Sprites(this.itens.img[i + 1], 1, 1, 110);
         }
 
@@ -48,8 +48,6 @@ class Inventario{
                     ctx.fillRect(1150 - 5, y - 5, 70, 70)
                     ctx.fillStyle = "white";
                     ctx.fillRect(1150 + 7, y - 7, 65, 65);
-                    console.log(1)
-                    console.log(this.sprites);
                     ctx.drawImage(this.sprites[i].sheet, 1150 + 7, y - 7, 65, 65);
                 }
             }

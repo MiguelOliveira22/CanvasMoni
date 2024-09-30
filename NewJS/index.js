@@ -96,7 +96,10 @@ addEventListener("DOMContentLoaded", () => {
             exit = map[i];
         }
     }
-    console.log(exit, enter)
+    console.log(exit, enter);
+
+    const level = new Group();
+    level.addElement();
 
     const entidades = new Group();
     entidades.addElement(new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 2, true));
@@ -159,7 +162,7 @@ addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function main(){}
+    function main(){} // TODO
 
     let whichScreen = 2;
 
@@ -167,7 +170,6 @@ addEventListener("DOMContentLoaded", () => {
         canvasUpdate();
         clear();
 
-        // Execução Interna!
         if(whichScreen == 0){
             playerRoutine();
         }

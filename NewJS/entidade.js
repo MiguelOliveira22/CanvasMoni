@@ -117,7 +117,9 @@ class Entidade extends Collision{
             this.nextX = this.entidadePos.x + (this.entidadePos.taxaX * this.velo);
             this.nextY = this.entidadePos.y + (this.entidadePos.taxaY * this.velo);
 
-            this.inventario.updateAll(ctx, KeyPresses);
+            if(this.player){
+                this.inventario.updateAll(ctx, KeyPresses);
+            }
             
             if(this.nextX > this.entidadePos.x){
                 this.direction = true;

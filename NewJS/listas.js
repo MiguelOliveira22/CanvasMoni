@@ -1,4 +1,6 @@
-pecasLevel = {}
+pecasLevel = [
+    {}
+]
 
 projetilProperty = [
     {

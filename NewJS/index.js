@@ -102,8 +102,8 @@ addEventListener("DOMContentLoaded", () => {
     level.addElement();
 
     const entidades = new Group();
-    entidades.addElement(new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 2, true));
-    entidades.addElement(new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 3));
+    entidades.addElement(new Entidade(["../Sprites/pixil-frame-0(1).png", 1, 1, 100], [[10, 0], [125, 130]], 5, 2, true));
+    entidades.addElement(new Entidade(["../Sprites/pixil-frame-0(1).png", 1, 1, 100], [[10, 0], [125, 130]], 5, 3));
     
     const objetos = new Group();
     objetos.addElement(new Objeto(["../Sprites/PixelArt/pixilart-drawing.png", 1, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 10, 0));

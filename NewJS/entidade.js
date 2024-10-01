@@ -107,7 +107,7 @@ class Entidade extends Collision{
     }
 
     addItemGroup(){   
-        this.grupo.addElement(new Objeto(["../Sprites/walkingsheetbro.png", 7, 1, 100], [this.entidadePos.x, this.entidadePos.y], [[10, 0], [125, 130]], false, true, false, 0, 5 * this.direction, true, this.id));
+        this.grupo.addElement(new Objeto(["../Sprites/Projetil.png", 1, 1, 100], [this.entidadePos.x, this.entidadePos.y], [[10, 0], [125, 130]], false, true, false, 0, 5 * this.direction, true, this.id));
     }
 
     update(ctx, a = null, b = null, KeyPresses){

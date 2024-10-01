@@ -21,11 +21,11 @@ class Group{
             }
         }
         if(flags == "objeto"){
-            this.elementos.forEach((valor) => {
+            this.elementos.forEach((valor, i) => {
                 if(this.notNone(valor)){
-                    valor.update(ctx, canvas, entidades, KeyPresses);
-                    valor.collisionTest(entidades.elementos, KeyPresses, () => {
-                        valor.createItem();
+                    valor[0].update(ctx, canvas, jogador, KeyPresses);
+                    valor[0].collisionTest(jogador.elementos, KeyPresses, () => {
+                        valor[0].createItem();
                     });
                 }
             });
@@ -44,6 +44,7 @@ class Group{
             let informations = []
             this.elementos.forEach((valor, index) => {
                 if(this.notNone(valor)){
+                    console.log(valor)
                     valor.update(ctx, canvas, jogador, KeyPresses);
                     informations = valor.collProjetil(jogador.elementos, valor);
                     if(informations[0] == true){
@@ -105,7 +106,6 @@ class Group{
         if(hitPosDirectionAndPosMorto[0]){
             this.addElement(new particle(["../Sprites/Boom.png", 3, 1, 500], 100, hitPosDirectionAndPosMorto[1], hitPosDirectionAndPosMorto[2], "hit"))
         }
-        
         if(entidades.elementos[0].collided && (KeyPresses.a || KeyPresses.d)){
             this.addElement(new particle(["../Sprites/dirt.png", 6, 1, 500], 100, [entidades.elementos[0].entidadePos.x, entidades.elementos[0].entidadePos.y + 100], entidades.elementos[0].direction, "walk"))
         }
@@ -188,7 +188,7 @@ class GroupLevel{
             console.log(this.exit, this.enter);
         }
 
-        this.atual = this.enter.id;
+        this.atual = this.enter;
         this.generateElements();
     }
 
@@ -198,15 +198,32 @@ class GroupLevel{
             if(this.flags[i] == "entidade"){
                 this.entidades = this.grupos[i];
             }
+            if(this.flags[i] == "objeto"){
+                this.objetos = this.grupos[i];
+            }
+            if(this.flags[i] == "projetil"){
+                this.projeteis = this.grupos[i];
+            }
         }
 
-        this.grupos.forEach((valor) => {
-
+        let valuesLevel = new ListaLevel();
+        this.atual.sides.forEach((valor, i) => {
+            if(valor){
+                this.objetos.addElement(valuesLevel.pecasTrue[i]);
+            }
+            else{
+                this.objetos.addElement(valuesLevel.pecasFalse[i]);
+            }
         });
+
+        this.entidades.addElement(new Entidade(["/Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 2, true));
     }
 
     routineUpdate(ctx, canvas, KeyPresses){
         this.grupos.forEach((valor, i) => {
+            if(this.grupos[i] == this.entidades){
+                valor.objAddToGroup(this.projeteis);
+            }
             valor.update(ctx, canvas, this.entidades, KeyPresses, this.flags[i]);
         });
     }
@@ -218,7 +235,8 @@ class GroupLevel{
     }
 }
 
-this.elementos = [[new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 2, true), "entidade"],
+/*this.elementos = [[new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 2, true), "entidade"],
 [new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 3), "entidade"],
 [new Objeto(["../Sprites/PixelArt/pixilart-drawing.png", 1, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 10, 0), "objeto"],
 [new Objeto(["../Sprites/PixelArt/bau-sprite.png", 8, 1, 1000], [500, 500], [[-20, -20], [200, 150]], false, true, false, 0, 0), "container"]];
+*/

@@ -3,14 +3,14 @@ class ListaLevel{
         this.pecasTrue = {
             0: [new Objeto(["", 1, 1, 60], [0, 0], [[0, 0], [2000, 50]], true, false, false, 10, 0), new Objeto(["", 1, 1, 60], [0, 625], [[0, 0], [2000, 100]], false, false, false, 10, 0), new Objeto(["", 1, 1, 60], [0, 625], [[0, 0], [2000, 100]], false, false, false, 10, 0)],
             1: [new Objeto(["", 1, 1, 60], [0, 625], [[0, 0], [2000, 100]], true, false, false, 10, 0), new Objeto(["", 1, 1, 60], [0, 625], [[0, 0], [2000, 100]], false, false, false, 10, 0), new Objeto(["", 1, 1, 60], [0, 625], [[0, 0], [2000, 100]], false, false, false, 10, 0)],
-            2: [new Objeto(["", 1, 1, 60], [0, 0], [[-10, 0], [0, 700]], true, false, false, 10, 0), new Objeto(["", 1, 1, 60], [0, 625], [[0, 0], [2000, 100]], false, false, false, 10, 0)],
+            2: [new Objeto(["", 1, 1, 60], [-10, 0], [[0, 0], [10, 700]], true, false, false, 10, 0), new Objeto(["", 1, 1, 60], [0, 625], [[0, 0], [2000, 100]], false, false, false, 10, 0)],
             3: [new Objeto(["", 1, 1, 60], [1200, 0], [[-10, 0], [0, 100]], true, false, false, 10, 0), new Objeto(["", 1, 1, 60], [1200, 500], [[0, 0], [2000, 100]], false, false, false, 10, 0)]
         };
 
         this.pecasFalse = {
             0: [new Objeto(["", 1, 1, 60], [0, 0], [[0, 0], [2000, 50]], true, false, false, 10, 0)],
             1: [new Objeto(["", 1, 1, 60], [0, 625], [[0, 0], [2000, 100]], true, false, false, 10, 0)],
-            2: [new Objeto(["", 1, 1, 60], [0, 0], [[-10, 0], [0, 700]], true, false, false, 10, 0)],
+            2: [new Objeto(["", 1, 1, 60], [-10, 0], [[0, 0], [10, 700]], true, false, false, 10, 0)],
             3: [new Objeto(["", 1, 1, 60], [1200, 0], [[-10, 0], [0, 100]], true, false, false, 10, 0)]
         };
     }

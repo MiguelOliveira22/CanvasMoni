@@ -4,7 +4,7 @@ class Group{
         this.quantos = 0;
     }
 
-    update(ctx, canvas, jogador, KeyPresses, flags){
+    update(ctx, canvas, jogador, KeyPresses, flags, particula){
         console.log(flags)
         if(flags == "entidade"){ // Configurar
             let jogadore = undefined;
@@ -60,7 +60,7 @@ class Group{
                     }
                 }
             });
-            this.addParticle(KeyPresses, jogador, informations);
+            particula.addParticle(KeyPresses, jogador, informations);
         }
         if(flags == "particula"){
             this.elementos.forEach((oneParticle, index) => {
@@ -174,7 +174,8 @@ class GroupLevel{
 
             let time = new Date().getTime() / 1000;
 
-            this.map = new MapGen(time).genMap();
+            this.gen = new MapGen(time);
+            this.map = this.gen.genMap();
         
             for(let i = 0; i < this.map.length; i ++){
                 if(this.map[i].spawn){
@@ -204,6 +205,12 @@ class GroupLevel{
             if(this.flags[i] == "projetil"){
                 this.projeteis = this.grupos[i];
             }
+            if(this.flags[i] == "container"){
+                this.baus = this.grupos[i];
+            }
+            if(this.flags[i] == "particula"){
+                this.particulas = this.grupos[i];
+            }
         }
 
         let valuesLevel = new ListaLevel();
@@ -224,7 +231,7 @@ class GroupLevel{
             if(this.grupos[i] == this.entidades){
                 valor.objAddToGroup(this.projeteis);
             }
-            valor.update(ctx, canvas, this.entidades, KeyPresses, this.flags[i]);
+            valor.update(ctx, canvas, this.entidades, KeyPresses, this.flags[i], this.particulas);
         });
     }
 

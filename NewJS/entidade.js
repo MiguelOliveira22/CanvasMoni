@@ -106,8 +106,8 @@ class Entidade extends Collision{
         }
     }
 
-    addItemGroup(){
-        this.grupo.addElement(new Objeto(["../Sprites/walkingsheetbro.png", 7, 1, 100], [this.entidadePos.x, this.entidadePos.y], [[10, 0], [125, 130]], false, true, false, 0, 5 * this.direction, true, this.id));
+    addItemGroup(){   
+        this.grupo.addElement(new Objeto(["../Sprites/Projetil.png", 1, 1, 100], [this.entidadePos.x, this.entidadePos.y], [[10, 0], [125, 130]], false, true, false, 0, 5 * this.direction, true, this.id));
     }
 
     update(ctx, a = null, b = null, KeyPresses){
@@ -128,12 +128,12 @@ class Entidade extends Collision{
                 this.direction = false;
             }
 
-            /*if(this.nextX != this.entidadePos.x){
-                this.sprites.moving();
+            if(this.nextX != this.entidadePos.x){
+                this.sprites.moving(this);
             }
             else{
-                this.sprites.standard();
-            }*/
+                this.sprites.standard(this);
+            }
 
             if(this.drawable && this.hp > 0){
                 this.draw(ctx);

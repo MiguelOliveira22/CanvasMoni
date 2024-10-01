@@ -128,12 +128,12 @@ class Entidade extends Collision{
                 this.direction = false;
             }
 
-            /*if(this.nextX != this.entidadePos.x){
-                this.sprites.moving();
+            if(this.nextX != this.entidadePos.x){
+                this.sprites.moving(this);
             }
             else{
-                this.sprites.standard();
-            }*/
+                this.sprites.standard(this);
+            }
 
             if(this.drawable && this.hp > 0){
                 this.draw(ctx);

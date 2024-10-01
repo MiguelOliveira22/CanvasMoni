@@ -105,7 +105,6 @@ class Group{
 
         entidades.elementos.forEach(entidade => {
             if(entidade.hp == 0){
-                //this.addElement(new particle(["../Sprites/Boom.png", 3, 1, 500], 100, [hitPosDirectionAndPosMorto[3][0] + (entidade.vertices[1][0]/2), hitPosDirectionAndPosMorto[3][1] + (entidade.vertices[1][1]/2)], entidades.elementos[0].direction, "death"))
                 this.addElement(new particle(["../Sprites/Boom.png", 3, 1, 500], 100, [entidade.entidadePos.x, entidade.entidadePos.y], entidades.elementos[0].direction, "death"))
             }
         });

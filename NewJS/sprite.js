@@ -21,6 +21,7 @@ class Sprites{
         }
 
         this.animationEnded = false;
+        this.path = path
     }
 
     clockVal(){
@@ -33,6 +34,52 @@ class Sprites{
         if(this.atual >= this.spriteArray.length){
             this.atual = 0;
             this.animationEnded = true;
+        }
+    }
+
+    moving(entidade){
+        let animacoes = new ListaAnimacoes
+        if(entidade.player){
+            let newPath = animacoes.animations.player[1][0]
+            if(this.path != newPath){
+                let newH = animacoes.animations.player[1][1]
+                let newV = animacoes.animations.player[1][2]
+                let newSFrames = animacoes.animations.player[1][3]
+                this.reconstruct(newPath, newH, newV, newSFrames)
+            }
+        }
+
+        else{
+            let newPath = animacoes.animations.player[1][0]
+            if(this.path != newPath){
+                let newH = animacoes.animations.player[1][1]
+                let newV = animacoes.animations.player[1][2]
+                let newSFrames = animacoes.animations.player[1][3]
+                this.reconstruct(newPath, newH, newV, newSFrames)
+            }
+        }
+    }
+
+    standard(entidade){
+        let animacoes = new ListaAnimacoes
+        if(entidade.player){
+            let newPath = animacoes.animations.player[0][0]
+            if(this.path != newPath){
+                let newH = animacoes.animations.player[0][1]
+                let newV = animacoes.animations.player[0][2]
+                let newSFrames = animacoes.animations.player[0][3]
+                this.reconstruct(newPath, newH, newV, newSFrames)
+            }
+        }
+        
+        else{
+            let newPath = animacoes.animations.player[0][0]
+            if(this.path != newPath){
+                let newH = animacoes.animations.player[0][1]
+                let newV = animacoes.animations.player[0][2]
+                let newSFrames = animacoes.animations.player[0][3]
+                this.reconstruct(newPath, newH, newV, newSFrames)
+            }
         }
     }
 }

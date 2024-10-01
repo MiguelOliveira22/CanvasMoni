@@ -99,7 +99,7 @@ class Group{
             this.addElement(new particle(["../Sprites/Boom.png", 3, 1, 500], 100, hitPosDirectionAndPosMorto[1], hitPosDirectionAndPosMorto[2], "hit"))
         }
         
-        if(entidades.elementos[0].collided && (KeyPresses.a || KeyPresses.d)){
+        if(entidades.elementos[0].collided && ((KeyPresses.a && !KeyPresses.d) || (!KeyPresses.a && KeyPresses.d))){
             this.addElement(new particle(["../Sprites/dirt.png", 6, 1, 500], 100, [entidades.elementos[0].entidadePos.x, entidades.elementos[0].entidadePos.y + 100], entidades.elementos[0].direction, "walk"))
         }
 

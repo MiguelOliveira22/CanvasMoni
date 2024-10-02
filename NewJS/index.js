@@ -90,7 +90,7 @@ addEventListener("DOMContentLoaded", () => {
         ctx.fillStyle = "#ffe4e1";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        cutscenebg.update(ctx, canvas, entidades, KeyPresses);
+        cutscenebg.update(ctx, canvas, [], KeyPresses);
 
         ctx.fillStyle = "black";
         ctx.font = '12px SMW';
@@ -169,7 +169,7 @@ addEventListener("DOMContentLoaded", () => {
         }
     } // TODO
 
-    let whichScreen = 0;
+    let whichScreen = 2;
 
     function loop(){
         canvasUpdate();

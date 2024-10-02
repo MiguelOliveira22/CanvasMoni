@@ -22,15 +22,15 @@ class Collision{
 
             if(this.collidable && player.vertices != undefined){
                 if(player.vertices[1][0] + x > (this.vertices[0][0] + posX) && player.vertices[0][0] + x < (this.vertices[1][0] + posX) &&
-                   player.vertices[1][1] + y > (this.vertices[0][1] + posY) && player.vertices[1][0] + y < (this.vertices[1][1] + posY)){
+                   player.vertices[1][1] + y > (this.vertices[0][1] + posY) && player.vertices[1][0] + y < (this.vertices[1][1] + posY) && x >= 0){
                     player.entidadePos.x = this.vertices[0][0] + posX + player.entidadePos.x;
                     player.entidadePos.y = this.vertices[0][1] + posX + player.entidadePos.y;
                     player.collided = true;
                 }
-                else{
+                else if(x >= 0){
                     player.entidadePos.x = x;
-                    player.entidadePos.y = y;
                 }
+                player.entidadePos.y = y;
             }
 
             if(this.interactable && player.vertices != undefined && player == playing){

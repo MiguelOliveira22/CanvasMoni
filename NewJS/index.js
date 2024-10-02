@@ -90,7 +90,7 @@ addEventListener("DOMContentLoaded", () => {
         ctx.fillStyle = "#ffe4e1";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        cutscenebg.update(ctx, canvas, entidades, KeyPresses);
+        cutscenebg.update(ctx, canvas, [], KeyPresses);
 
         ctx.fillStyle = "black";
         ctx.font = '12px SMW';
@@ -101,9 +101,75 @@ addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function main(){} // TODO
+    function main(){
+        let borda = 150;
+        let currentState = "menu";
+        let selected = 0;
 
-    let whichScreen = 0;
+        let backgroundImage = new Image();
+        backgroundImage.src = './Sprites/controles.png'; // local onde se coloca o caminho para achar a imagem
+        //não sei se deu certo pois não consigo testar o código 😭
+        //fui fazendo no p5 e depois só traduzi o código pra ca
+
+        // função principal, vai desenhar o menu
+        // tentativa para que desenha a imagem do fundo (espero que esteja certo)
+        if(currentState == "controles"){
+            ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+        }
+
+        // faz um título para o menu
+        if(currentState == "menu"){
+            ctx.fillStyle = 'rgb(46, 139, 87)';
+            ctx.font = '30px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Menu', canvas.width / 2, 100);
+
+            // opções do menu 
+            ctx.fillStyle = 'rgb(46, 139, 87)';
+            ctx.fillRect(canvas.width / 2 - 100, 150, 200, 50); // jogar
+            ctx.fillRect(canvas.width / 2 - 100, 250, 200, 50); // controles
+
+            // texto que vai ficar dentro das opções do menu Jogar e Controles
+            ctx.fillStyle = 'rgb(0, 0, 0)';
+            ctx.font = '26px Arial';
+            ctx.fillText('Jogar', canvas.width / 2, 180);
+            ctx.fillText('Controles', canvas.width / 2, 280);
+
+            // borda que vai ficar ao redor da região selecionada
+            ctx.strokeStyle = 'rgb(0, 0, 0)';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(canvas.width / 2 - 100, borda, 200, 50);
+        }
+
+        if(KeyPresses.w == true){
+            selected = 0;
+            borda = 150;
+        }
+        if(KeyPresses.s == true){
+            selected = 1;
+            borda = 250;
+        }
+
+        // Verifica se clicou no botão "Controles"
+        if(currentState === "menu"){
+            if(KeyPresses.e == true){
+                if(selected == 0){
+                    whichScreen = 0
+                }
+                if(selected == 1){
+                    currentState = 'controles'; // Muda o estado para a tela de controles
+                }
+            }
+        }
+        if(currentState === 'controles') {
+            // verica se o click que o usuario der está dentro do imagem 
+            if (KeyPresses.q == true){
+                currentState = 'menu'; // se não estiver ele fecha a imagem controles e volta para o menu
+            }
+        }
+    } // TODO
+
+    let whichScreen = 2;
 
     function loop(){
         canvasUpdate();
@@ -114,7 +180,7 @@ addEventListener("DOMContentLoaded", () => {
         }
 
         if(whichScreen == 1){
-            menu();
+            main();
         }
 
         if(whichScreen == 2){

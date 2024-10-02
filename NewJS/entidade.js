@@ -1,5 +1,5 @@
 class Entidade extends Collision{
-    constructor([imageSRC, hSprites, vSprites, sFrames], collisionPoints, velocidade, gravity, player = false, id = 1){
+    constructor([imageSRC, hSprites, vSprites, sFrames], collisionPoints, velocidade, gravity, player = false, id = 1, px = 0, py = 0){
         super(collisionPoints, false, false)
         this.sprites = new Sprites(imageSRC, hSprites, vSprites, sFrames);
         this.inventario = new Inventario(0);
@@ -17,8 +17,8 @@ class Entidade extends Collision{
         this.collided = false;
         this.drawable = true;
         this.entidadePos = {
-            x: 0,
-            y: 0,
+            x: px,
+            y: py,
             taxaX: 0,
             taxaY: 0,
         };

@@ -5,8 +5,7 @@ class Group{
     }
 
     update(ctx, canvas, jogador, KeyPresses, flags, particula){
-        console.log(flags)
-        if(flags == "entidade"){ // Configurar
+        if(flags == "entidade"){
             let jogadore = undefined;
             this.elementos.forEach((valor) => {
                 if(valor.player){
@@ -23,9 +22,9 @@ class Group{
         if(flags == "objeto"){
             this.elementos.forEach((valor, i) => {
                 if(this.notNone(valor)){
-                    valor[0].update(ctx, canvas, jogador, KeyPresses);
-                    valor[0].collisionTest(jogador.elementos, KeyPresses, () => {
-                        valor[0].createItem();
+                    valor.update(ctx, canvas, jogador, KeyPresses);
+                    valor.collisionTest(jogador.elementos, KeyPresses, () => {
+                        valor.createItem();
                     });
                 }
             });
@@ -145,7 +144,7 @@ class Group{
 class GroupLevel{
     constructor(){
         this.grupos = [];
-        this.flags = ["entidade", "objeto", "projetil", "container", "particula"];
+        this.flags = ["objeto", "projetil", "entidade", "container", "particula"];
 
         this.map = undefined;
         this.enter = undefined;
@@ -178,12 +177,14 @@ class GroupLevel{
             this.map = this.gen.genMap();
         
             for(let i = 0; i < this.map.length; i ++){
-                if(this.map[i].spawn){
-                    this.enter = this.map[i];
-                }
-        
-                if(this.map[i].exit){
-                    this.exit = this.map[i];
+                if(this.map[i] != undefined){
+                    if(this.map[i].spawn){
+                        this.enter = this.map[i];
+                    }
+            
+                    if(this.map[i].exit){
+                        this.exit = this.map[i];
+                    }
                 }
             }
             console.log(this.exit, this.enter);
@@ -216,14 +217,20 @@ class GroupLevel{
         let valuesLevel = new ListaLevel();
         this.atual.sides.forEach((valor, i) => {
             if(valor){
-                this.objetos.addElement(valuesLevel.pecasTrue[i]);
+                valuesLevel.pecasTrue[i].forEach((para) => {
+                    this.objetos.addElement(para);
+                });
             }
             else{
-                this.objetos.addElement(valuesLevel.pecasFalse[i]);
+                this.objetos.addElement(valuesLevel.pecasFalse[i][0]);
             }
         });
 
+        this.objetos.addElement(new Objeto(["../Sprites/PixelArt/pixilart-drawing.png", 1, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 0, 0));
+
         this.entidades.addElement(new Entidade(["/Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 2, true));
+        this.entidades.addElement(new Entidade(["/Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 3));
+        this.entidades.addElement(new Entidade(["/Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 3))
     }
 
     routineUpdate(ctx, canvas, KeyPresses){
@@ -241,9 +248,3 @@ class GroupLevel{
         });
     }
 }
-
-/*this.elementos = [[new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 2, true), "entidade"],
-[new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 100], [[10, 0], [125, 130]], 5, 3), "entidade"],
-[new Objeto(["../Sprites/PixelArt/pixilart-drawing.png", 1, 1, 60], [0, 0], [[0, 0], [0, 0]], false, false, true, 10, 0), "objeto"],
-[new Objeto(["../Sprites/PixelArt/bau-sprite.png", 8, 1, 1000], [500, 500], [[-20, -20], [200, 150]], false, true, false, 0, 0), "container"]];
-*/

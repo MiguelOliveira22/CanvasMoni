@@ -22,7 +22,7 @@ class Collision{
 
             if(this.collidable && player.vertices != undefined){
                 if(player.vertices[1][0] + x > (this.vertices[0][0] + posX) && player.vertices[0][0] + x < (this.vertices[1][0] + posX) &&
-                   player.vertices[1][1] + y > (this.vertices[0][1] + posY) && player.vertices[1][0] + y < (this.vertices[1][1] + posY) && x >= 0){
+                   player.vertices[1][1] + y > (this.vertices[0][1] + posY) && player.vertices[1][0] + y < (this.vertices[1][1] + posY) && player.entidadePos.x >= 0){
                     player.entidadePos.x = this.vertices[0][0] + posX + player.entidadePos.x;
                     player.entidadePos.y = this.vertices[0][1] + posX + player.entidadePos.y;
                     player.collided = true;

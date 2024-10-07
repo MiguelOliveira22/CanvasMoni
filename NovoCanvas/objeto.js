@@ -1,5 +1,5 @@
 class Objeto extends Sprites{
-    constructor([objx, objy] = [0, 0], [width, height, scale] = [0, 0, 1], player = false){
+    constructor([objx, objy] = [0, 0], [width, height, scale, direction] = [0, 0, 1, true], [collidable, interactable] = [true, false]){
         super("./walkingsheetbro.png", [0, 0], 7, 1, 60);
 
         this.objPos = {
@@ -12,6 +12,12 @@ class Objeto extends Sprites{
             h: height,
             scale: scale
         }
+
+        this.drawable = true;
+        this.direction = direction;
+
+        this.collidable = collidable;
+        this.interactable = interactable;
 
         this.functionInteract = new Function();
     }

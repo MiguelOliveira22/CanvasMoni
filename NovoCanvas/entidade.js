@@ -1,5 +1,5 @@
 class Entidade extends Sprites{
-    constructor([objx, objy] = [0, 0], [width, height, scale] = [0, 0, 1], player = false){
+    constructor([objx, objy] = [0, 0], [width, height, scale, direction] = [0, 0, 1, true], player = false){
         super("./walkingsheetbro.png", [0, 0], 7, 1, 60);
 
         this.keys = {
@@ -27,7 +27,7 @@ class Entidade extends Sprites{
             y: false
         };
         this.drawable = true;
-        this.direction = true;
+        this.direction = direction;
 
         this.hp = 100;
         this.timeout = 0;

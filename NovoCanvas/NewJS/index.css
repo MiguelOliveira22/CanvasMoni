@@ -1,0 +1,17 @@
+body{
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+@font-face{
+    font-family: SMW;
+    font-weight: normal;
+    font-style: normal;
+    src: url("./Sprites/SMW.Monospace.otf") format("opentype");
+}
+
+#mainContextThing{
+    font-family: 'SMW', sans-serif;
+}

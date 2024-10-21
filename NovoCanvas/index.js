@@ -7,7 +7,12 @@ addEventListener("DOMContentLoaded", () => {
     canvas.width = 1200;
     canvas.height = 720;
 
-    let whichScreen = 2;
+    function playerRoutine(){
+        objeto.update(ctx, [newObj]);
+        newObj.update(ctx, [objeto]);
+    }
+
+    let whichScreen = 0;
     function loop(){
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -22,10 +27,6 @@ addEventListener("DOMContentLoaded", () => {
         if(whichScreen == 2){
             cutscene();
         }
-
-        objeto.update(ctx, [newObj]);
-
-        newObj.update(ctx, [objeto]);
 
         requestAnimationFrame(loop);
     }

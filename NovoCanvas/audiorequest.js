@@ -4,7 +4,6 @@ class AudioRequest{
     }
 
     send(trackname, trackid){
-        console.log(this.au);
         if(!this.au[trackid].paused){
             this.au[trackid].pause();
         }

@@ -55,7 +55,7 @@ class Entidade extends Sprites{
         }
         else{
             ctx.scale(-1, 1);
-            ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, this.objPos.x + this.posImage.x, this.objPos.y + this.posImage.y, -(this.wSprites * this.size.scale), this.aSprites * this.size.scale);
+            ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, -(this.objPos.x + this.posImage.x), this.objPos.y + this.posImage.y, -(this.wSprites * this.size.scale), this.aSprites * this.size.scale);
         }
         this.clockVal();
 

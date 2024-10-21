@@ -7,8 +7,21 @@ addEventListener("DOMContentLoaded", () => {
     canvas.width = 1200;
     canvas.height = 720;
 
+    let whichScreen = 2;
     function loop(){
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        if(whichScreen == 0){
+            playerRoutine();
+        }
+
+        if(whichScreen == 1){
+            main();
+        }
+
+        if(whichScreen == 2){
+            cutscene();
+        }
 
         objeto.update(ctx, [newObj]);
 

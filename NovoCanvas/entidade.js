@@ -1,12 +1,13 @@
 class Entidade extends Sprites{
-    constructor([objx, objy] = [0, 0], [width, height, scale, direction] = [0, 0, 1, true], player = false){
-        super("./walkingsheetbro.png", [0, 0], 7, 1, 60);
+    constructor([path, nwSprite, nhSprite, fps] = ["../Sprites/walkingsheetbro.png", 7, 1, 60], [objx, objy] = [0, 0], [width, height, scale, direction] = [0, 0, 1, true], player = false){
+        super(path, [0, 0], nwSprite, nhSprite, fps);
 
         this.keys = {
             w: false,
             a: false,
             s: false,
-            d: false
+            d: false,
+            e: false
         };
 
         this.objPos = {
@@ -45,6 +46,9 @@ class Entidade extends Sprites{
     }
 
     update(ctx = CanvasRenderingContext2D, obj = []){
+        this.objPos.x = 100;
+
+
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.fillStyle = "blue";
         ctx.fillRect(this.objPos.x, this.objPos.y, this.size.w, this.size.h)
@@ -114,9 +118,6 @@ class Entidade extends Sprites{
                 }
             }
         });
-
-        this.objPos.x += nextX;
-        this.objPos.y += nextY;
 
         if(this.inventario != null){
             this.inventario.updateAll(ctx, this.keys);

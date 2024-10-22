@@ -9,7 +9,7 @@ body{
     font-family: SMW;
     font-weight: normal;
     font-style: normal;
-    src: url("./Sprites/SMW.Monospace.otf") format("opentype");
+    src: url("../Sprites/SMW.Monospace.otf") format("opentype");
 }
 
 #mainContextThing{

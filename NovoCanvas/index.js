@@ -20,7 +20,7 @@ addEventListener("DOMContentLoaded", () => {
 
     function setComponents(/*ComponentID from a random gerenator*/){
         objeto = new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 60], [0, 0], [10, 100, 0.8], true);
-        newObj = new Objeto(["../Sprites/walkingsheetbro.png", 7, 1, 60], [0, 700], [30, 30, 1], [true, false]);
+        newObj = new Objeto(["../Sprites/walkingsheetbro.png", 7, 1, 60], [0, 700], [700, 200, 1], [true, false]);
     }
 
     function clearComponents(){

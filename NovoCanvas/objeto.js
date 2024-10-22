@@ -23,8 +23,8 @@ class Objeto extends Sprites{
     }
 
     update(ctx = CanvasRenderingContext2D){
-        ctx.fillStyle = "blue";
-        ctx.fillRect(this.objPos.x, this.objPos.y, this.size.w, this.size.h)
+        /* ctx.fillStyle = "blue";
+        ctx.fillRect(this.objPos.x, this.objPos.y, this.size.w, this.size.h) */
         
         ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, this.objPos.x + this.posImage.x, this.objPos.y + this.posImage.y, this.wSprites * this.size.scale, this.aSprites * this.size.scale)
         this.clockVal();

@@ -116,8 +116,10 @@ class Entidade extends Sprites{
             }
         });
 
-        this.objPos.x += 1;
-        this.objPos.y += 2;
+        if(!this.collided.y || !this.collided.x){
+            this.objPos.x += nextX;
+            this.objPos.y += nextY;
+        }
 
         if(this.inventario != null){
             this.inventario.updateAll(ctx, this.keys);

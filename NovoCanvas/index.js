@@ -10,7 +10,8 @@ addEventListener("DOMContentLoaded", () => {
         d: false,
         e: false,
         q: false,
-        " ": false
+        " ": false,
+        p: false
     };
 
     canvas.width = 1200;
@@ -125,6 +126,10 @@ addEventListener("DOMContentLoaded", () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         if(whichScreen == 0){
+            if(keys.p){
+                clearComponents();
+                setComponents();
+            }
             playerRoutine();
         }
 

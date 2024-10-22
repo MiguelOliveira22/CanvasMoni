@@ -72,14 +72,16 @@ class Entidade extends Sprites{
         }
 
         this.objPos.taxaX = 0;
-        this.objPos.taxaY = 0;
 
-        if(this.player){
-            this.objPos.taxaY = 1;
+        if(this.objPos.taxaY < 2){
+            this.objPos.taxaY += 1;
+        }
+        else{
+            this.objPos.taxaY = 2;
         }
 
         if(this.keys.w && this.collided.y){
-            this.objPos.taxaY += -100;
+            this.objPos.taxaY -= 17;
         }
         if(this.keys.a){
             this.objPos.taxaX += -1;
@@ -90,6 +92,15 @@ class Entidade extends Sprites{
 
         var nextX = this.velocity * this.objPos.taxaX;
         var nextY = this.gravity * this.objPos.taxaY;
+
+        if(this.objPos.x + nextX > this.objPos.x){
+            this.direction = true;
+        }
+        else if(this.objPos.x + nextX < this.objPos.x){
+            this.direction = false;
+        }
+
+        console.log(this.direction, this.objPos.x, nextX)
 
         this.collided.x = false;
         this.collided.y = false;
@@ -129,7 +140,6 @@ class Entidade extends Sprites{
 
         if(this.inventario != null){
             this.inventario.updateAll(ctx, this.keys);
-            console.log(this.collided, this.objPos.x, this.objPos.y)
         }
     }
 }

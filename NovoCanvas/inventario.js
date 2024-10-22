@@ -1,12 +1,5 @@
 class Inventario{
     constructor(iteminicial = 0){
-        this.items = {
-            0: "Mão",
-            1: "Palito De Dente",
-            2: "Carro",
-            3: "James"
-        };
-
         this.usable = {
             0: false,
             1: false,
@@ -14,9 +7,8 @@ class Inventario{
             3: false
         };
         
-        this.quantItems = Object.keys(this.items).length;
+        this.quantItems = Object.keys(this.usable).length;
 
-        this.itens = null; //new ListaImgItens();
         this.sprites = [];
         for(let i = 0; i < this.quantItems; i ++){
             this.sprites[i] = new Sprites("../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 110);

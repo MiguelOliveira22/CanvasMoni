@@ -7,7 +7,8 @@ class Entidade extends Sprites{
             a: false,
             s: false,
             d: false,
-            e: false
+            e: false,
+            q: false
         };
 
         this.objPos = {
@@ -99,8 +100,6 @@ class Entidade extends Sprites{
         else if(this.objPos.x + nextX < this.objPos.x){
             this.direction = false;
         }
-
-        console.log(this.direction, this.objPos.x, nextX)
 
         this.collided.x = false;
         this.collided.y = false;

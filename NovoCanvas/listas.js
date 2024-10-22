@@ -26,3 +26,11 @@ class ListaImgItens{
         }
     }
 }
+
+class ListaParticulas{
+    constructor(){
+        this.img = {
+            1: "../Sprites/Projetil.png",
+        }
+    }
+}

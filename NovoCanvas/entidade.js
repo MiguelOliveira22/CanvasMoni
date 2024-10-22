@@ -96,28 +96,34 @@ class Entidade extends Sprites{
         obj.forEach((objeto) => {
             if(objeto.collidable){
                 if(this.objPos.x + nextX < objeto.objPos.x + objeto.size.w &&
-                   this.objPos.x + nextX + this.size.w > objeto.objPos.x){
+                   this.objPos.x + nextX + this.size.w > objeto.objPos.x &&
+                   this.objPos.y < objeto.objPos.y + objeto.size.h &&
+                   this.objPos.y + this.size.h > objeto.objPos.y){
                     this.collided.x = true;
                 }
                  
                 if(this.objPos.y + nextY < objeto.objPos.y + objeto.size.h &&
-                   this.objPos.y + nextY + this.size.h > objeto.objPos.y){
+                   this.objPos.y + nextY + this.size.h > objeto.objPos.y &&
+                   this.objPos.x < objeto.objPos.x + objeto.size.w &&
+                   this.objPos.x + this.size.w > objeto.objPos.x){
                     this.collided.y = true;
                 }
             }
 
             if(objeto.interactable){
-                if(this.objPos.x + nextX < objeto.objPos.x + objeto.size.w &&
-                   this.objPos.x + nextX + this.size.w > objeto.objPos.x &&
-                   this.objPos.y + nextY < objeto.objPos.y + objeto.size.h &&
-                   this.objPos.y + nextY + this.size.h > objeto.objPos.y){
+                if(this.objPos.x < objeto.objPos.x + objeto.size.w &&
+                   this.objPos.x + this.size.w > objeto.objPos.x &&
+                   this.objPos.y < objeto.objPos.y + objeto.size.h &&
+                   this.objPos.y + this.size.h > objeto.objPos.y){
                     this.interacting = true;
                 }
             }
         });
 
-        if(!this.collided.y || !this.collided.x){
+        if(!this.collided.x){
             this.objPos.x += nextX;
+        }
+        if(!this.collided.y){
             this.objPos.y += nextY;
         }
 

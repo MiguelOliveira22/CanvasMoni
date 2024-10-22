@@ -46,9 +46,6 @@ class Entidade extends Sprites{
     }
 
     update(ctx = CanvasRenderingContext2D, obj = []){
-        this.objPos.x = 100;
-
-
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.fillStyle = "blue";
         ctx.fillRect(this.objPos.x, this.objPos.y, this.size.w, this.size.h)
@@ -118,6 +115,9 @@ class Entidade extends Sprites{
                 }
             }
         });
+
+        this.objPos.x += 1;
+        this.objPos.y += 2;
 
         if(this.inventario != null){
             this.inventario.updateAll(ctx, this.keys);

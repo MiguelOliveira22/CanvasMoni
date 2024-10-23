@@ -15,6 +15,7 @@ addEventListener("DOMContentLoaded", () => {
         " ": false,
         p: false
     };
+    var audio = new AudioRequest()
 
     canvas.width = 1200;
     canvas.height = 720;
@@ -94,6 +95,7 @@ addEventListener("DOMContentLoaded", () => {
 
     let bg = new Objeto(["../Sprites/PixelArt/pixilart-drawing.png", 1, 1, 60], [100, 0], [canvas.width, canvas.height, 1, true], [false, false]);
     function main(){
+        audio.send("../Audio/Cave-Story-Theme-Song-Remastered.wav", 0, false, 0)
         if(currentState == 1){
             ctx.drawImage(backgroundImage, 70, 70, canvas.width - 70, canvas.height - 70);
             ctx.fillStyle = 'rgb(0, 0, 0)';
@@ -143,6 +145,7 @@ addEventListener("DOMContentLoaded", () => {
             if(keys.e == true){
                 if(selected == 0){
                     whichScreen = 0;
+                    audio.send() // reseta o audio
                 }
                 if(selected == 1){
                     currentState = 1;

@@ -52,9 +52,16 @@ class Entidade extends Sprites{
     }
 
     update(ctx = CanvasRenderingContext2D, obj = []){
+        this.spawn = [];
+
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.fillStyle = "blue";
         ctx.fillRect(this.objPos.x, this.objPos.y, this.size.w, this.size.h)
+
+        if(this.hp <= 0){
+            this.dead = true;
+            this.spawn.push(new Particle(["../Sprites/Boom.png", 3, 1, 100], [this.objPos.x, this.objPos.y], 100, this.direction, 1));
+        }
 
         if(this.direction){
             ctx.scale(1, 1);
@@ -75,6 +82,10 @@ class Entidade extends Sprites{
         if(this.enemy){
             ctx.fillStyle = "red";
             ctx.fillRect(this.objPos.x, this.objPos.y - 40, 1.5 * this.hp, 20);
+            if(this.timeout > 100){
+                this.timeout = 0;
+                this.spawn.push(new Objeto(["../Sprites/Projetil.png", 1, 1, 60] , [this.objPos.x, this.objPos.y], [20, 20, 1, !this.direction], [false, true, this], [100, 5, true]));
+            }
         }
 
         this.objPos.taxaX = 0;
@@ -98,14 +109,12 @@ class Entidade extends Sprites{
 
             if(this.timeout > 100 && this.keys.q){
                 this.timeout = 0;
-                this.spawn.push(new Objeto([/*"../Sprites/Projetil.png"*/ "../Sprites/Boom.png", 1, 1, 60] , [this.objPos.x, this.objPos.y], [20, 20, 1, this.direction], [false, true, this], [100, 10, true]));
+                this.spawn.push(new Objeto(["../Sprites/Projetil.png", 1, 1, 60] , [this.objPos.x, this.objPos.y], [20, 20, 1, this.direction], [false, true, this], [100, 5, true]));
             }
         }
 
         var nextX = this.velocity * this.objPos.taxaX;
         var nextY = this.gravity * this.objPos.taxaY;
-
-        this.spawn = [];
 
         if(this.objPos.x + nextX > this.objPos.x){
             this.direction = true;
@@ -150,7 +159,7 @@ class Entidade extends Sprites{
                    this.objPos.y < objeto.objPos.y + objeto.size.h &&
                    this.objPos.y + this.size.h > objeto.objPos.y){
                     this.interacting = true;
-                    objeto.interacaoFuncao();
+                    objeto.interacaoFuncao(this);
                 }
             }
         });
@@ -170,7 +179,6 @@ class Entidade extends Sprites{
     }
 
     moving(){
-        let animacoes = [["../Sprites/pixil-frame-0(1).png", [0, 0], 1, 1, 100], ["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 100]]
         if(this.player){
             let newPath = this.animacoes[1];
             if(this.path != newPath[0]){

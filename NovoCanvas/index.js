@@ -40,7 +40,6 @@ addEventListener("DOMContentLoaded", () => {
         objeto.forEach((element, id) => {
             element.update(ctx, newObj);
             element.spawn.forEach((adder) => {
-                console.log(adder)
                 if(adder instanceof Particle){
                     particulas.push(adder);
                 }
@@ -58,6 +57,18 @@ addEventListener("DOMContentLoaded", () => {
         newObj.forEach((element, id) => {
             element.update(ctx, objeto);
 
+            element.spawn.forEach((adder) => {
+                if(adder instanceof Particle){
+                    particulas.push(adder);
+                }
+
+                if(adder instanceof Objeto){
+                    newObj.push(adder);
+                }
+            });
+
+            element.clearSpawn();
+
             if(element.dead){
                 newObj.splice(id, 1);
             }
@@ -65,6 +76,8 @@ addEventListener("DOMContentLoaded", () => {
 
         particulas.forEach((element, id) => {
             element.update(ctx)
+
+            console.log(element)
             if(element.dead){
                 particulas.splice(id, 1);
             }

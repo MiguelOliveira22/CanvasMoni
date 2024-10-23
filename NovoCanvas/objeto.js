@@ -16,6 +16,7 @@ class Objeto extends Sprites{
         this.drawable = true;
         this.direction = direction;
         this.spawned = spawned;
+        this.spawn = [];
 
         this.collidable = collidable;
         this.interactable = interactable;
@@ -25,6 +26,8 @@ class Objeto extends Sprites{
         this.move = move;
         this.moveable = moveable;
 
+        this.damage = 10;
+
         this.dead = false;
     }
 
@@ -33,11 +36,11 @@ class Objeto extends Sprites{
         ctx.fillRect(this.objPos.x, this.objPos.y, this.size.w, this.size.h);*/
 
         if(this.moveable){
-            console.log(this.move * this.direction ? 1 : -1)
-            this.objPos.x += (this.move * this.direction ? 1 : -1);
+            this.objPos.x += (this.move * (this.direction ? 1 : -1));
             this.timeout ++;
             if(this.timeout > this.maxTimeout){
                 this.dead = true;
+                this.spawn.push(new Particle(["../Sprites/Boom.png", 3, 1, 100], [this.objPos.x, this.objPos.y], 100, this.direction, 1));
             }
         }
         
@@ -45,7 +48,14 @@ class Objeto extends Sprites{
         this.clockVal();
     }
 
-    interacaoFuncao(){
-        console.log(1)
+    clearSpawn(){
+        this.spawn = [];
+    }
+
+    interacaoFuncao(objeto){
+        this.spawn.push(new Particle(["../Sprites/Boom.png", 3, 1, 100], [this.objPos.x, this.objPos.y], 100, this.direction, 1));
+        this.dead = true;
+
+        objeto.hp -= this.damage;
     }
 }

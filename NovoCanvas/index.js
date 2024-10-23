@@ -16,6 +16,7 @@ addEventListener("DOMContentLoaded", () => {
         p: false
     };
     var audio = new AudioRequest();
+    var parar = false
 
     canvas.width = 1200;
     canvas.height = 720;
@@ -164,14 +165,16 @@ addEventListener("DOMContentLoaded", () => {
 
     let whichScreen = 2;
     function loop(){
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if(!parar){
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        if(whichScreen == 0){
-            if(keys.p){
-                clearComponents();
-                setComponents();
+            if(whichScreen == 0){
+                if(keys.p){
+                    clearComponents();
+                    setComponents();
+                }
+                playerRoutine();
             }
-            playerRoutine();
         }
 
         if(whichScreen == 1){
@@ -187,6 +190,6 @@ addEventListener("DOMContentLoaded", () => {
 
     loop();
 
-    addEventListener("keydown", (ev) => { keys[ev.key.toLowerCase()] = true; if(objeto != undefined) objeto.forEach((element) => element.keys[ev.key.toLowerCase()] = true); })
+    addEventListener("keydown", (ev) => {keys[ev.key.toLowerCase()] = true; if(objeto != undefined) objeto.forEach((element) => element.keys[ev.key.toLowerCase()] = true); if(keys.escape == true && whichScreen == 0){parar = !parar}})
     addEventListener("keyup", (ev) => { keys[ev.key.toLowerCase()] = false; if(objeto != undefined) objeto.forEach((element) => element.keys[ev.key.toLowerCase()] = false); })
 });

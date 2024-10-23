@@ -38,11 +38,12 @@ addEventListener("DOMContentLoaded", () => {
             element.update(ctx, newObj);
             element.spawn.forEach((adder) => {
                 console.log(adder)
-                if(typeof(adder) == typeof(Particle)){
+                if(adder.constructor == Particle.constructor){
                     particulas.push(adder);
                 }
 
-                if(typeof(adder) == typeof(Objeto)){
+                console.log(Objeto.constructor.toString())
+                if(adder.constructor.toString() == Objeto.constructor.toString()){
                     newObj.push(adder);
                 }
             });

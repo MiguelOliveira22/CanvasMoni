@@ -34,3 +34,12 @@ class ListaParticulas{
         }
     }
 }
+
+class ListaAnimacoes{
+    constructor(){
+        this.animations = {
+            player:  [["../Sprites/pixil-frame-0(1).png", 1, 1, 100], ["../Sprites/walkingsheetbro.png", 7, 1, 100]],
+            inimigo: [["../Sprites/pixil-frame-0(1).png", 1, 1, 100], ["../Sprites/walkingsheetbro.png", 7, 1, 100]]
+        }
+    }
+}

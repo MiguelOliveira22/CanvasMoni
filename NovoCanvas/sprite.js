@@ -1,9 +1,9 @@
 class Sprites{
-    constructor(path, [x, y], h, v, sFrames){
-        this.reconstruct(path, [x, y], h, v, sFrames);
+    constructor([path, [x, y], h, v, sFrames]){
+        this.reconstruct([path, [x, y], h, v, sFrames]);
     }
 
-    reconstruct(path, [x, y], h, v, sFrames){
+    reconstruct([path, [x, y], h, v, sFrames]){
         this.posImage = {
             x: x,
             y: y

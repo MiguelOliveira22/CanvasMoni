@@ -1,58 +1,78 @@
-class Particle{
-    constructor([particle, hSprites, vSprites, sFrames], durationTime, Pos, direction, type){
-        this.particle = new Sprites(particle, hSprites, vSprites, sFrames);
+class Particle extends Sprites{
+    constructor([particle, hSprites, vSprites, sFrames], [x, y] = [0, 0], durationTime = 0, direction = false, type = 0){
+        super([particle, [0, 0], hSprites, vSprites, sFrames]);
         this.durationTime = durationTime;
-        this.hangDurationTime;
         this.type = type;
-        this.particlePos ={
-            x: Pos[0],
-            y: Pos[1]
+        this.objPos = {
+            x: x,
+            y: y
         };
         this.direction = direction;
-        console.log(Pos)
+        this.dead = false;
     }
 
-    particleHit(ctx, oneParticle){
-        this.particle.clockVal()
-            if(oneParticle.durationTime > 0){
-                ctx.setTransform(1, 0, 0, 1, 0, 0)
-                if(!this.direction){
-                    ctx.scale(-1, 1)
-                    ctx.drawImage(this.particle.sheet, this.particle.spriteArray[this.particle.atual][0], this.particle.spriteArray[this.particle.atual][1], this.particle.wSprites, this.particle.aSprites, -this.particlePos.x, this.particlePos.y, -this.particle.wSprites, this.particle.aSprites);
-                }
-                else if(this.direction){
-                    ctx.scale(-1, 1)
-                    ctx.drawImage(this.particle.sheet, this.particle.spriteArray[this.particle.atual][0], this.particle.spriteArray[this.particle.atual][1], this.particle.wSprites, this.particle.aSprites, this.particlePos.x, this.particlePos.y, this.particle.wSprites, this.particle.aSprites);    
-                }
-                this.durationTime -= 12;
+    particleHit(ctx){
+        if(this.durationTime > 0){
+            this.clockVal();
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+            if(this.direction){
+                ctx.scale(1, 1);
+                ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, this.objPos.x, this.objPos.y, -this.wSprites, this.aSprites);    
             }
-            return this.durationTime
+            else{
+                ctx.scale(-1, 1);
+                ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, -this.objPos.x, this.objPos.y, -this.wSprites, this.aSprites);
+            }
+            this.durationTime -= 12;
+        }
+        else{
+            this.dead = true;
+        }
     }
 
-    particleWalk(ctx, oneParticle){
-        this.particle.clockVal()
-        if(oneParticle.durationTime > 0){
-            ctx.setTransform(1, 0, 0, 1, 0, 0)
-            if(!this.direction){
-                ctx.scale(-1, 1)
-                ctx.drawImage(this.particle.sheet, this.particle.spriteArray[this.particle.atual][0], this.particle.spriteArray[this.particle.atual][1], this.particle.wSprites, this.particle.aSprites, -this.particlePos.x - 70, this.particlePos.y, -this.particle.wSprites, this.particle.aSprites);
+    particleWalk(ctx){
+        if(this.durationTime > 0){
+            this.clockVal();
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+            if(this.direction){
+                ctx.scale(1, 1);
+                ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, this.objPos.x + 40, this.objPos.y + 80, -this.wSprites, this.aSprites);    
             }
-            else if(this.direction){
-                ctx.scale(1, 1)
-                ctx.drawImage(this.particle.sheet, this.particle.spriteArray[this.particle.atual][0], this.particle.spriteArray[this.particle.atual][1], this.particle.wSprites, this.particle.aSprites, this.particlePos.x + 35, this.particlePos.y, this.particle.wSprites, this.particle.aSprites);    
+            else{
+                ctx.scale(-1, 1);
+                ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, -this.objPos.x - 70, this.objPos.y + 80, -this.wSprites, this.aSprites);
             }
             this.durationTime -= 50;
         }
-        return this.durationTime
+        else{
+            this.dead = true;
+        }
     }
 
-    particleDeath(ctx, oneParticle){
-        this.particle.clockVal()
-        if(oneParticle.durationTime > 0){
-            ctx.setTransform(1, 0, 0, 1, 0, 0)
-            ctx.drawImage(this.particle.sheet, this.particle.spriteArray[this.particle.atual][0], this.particle.spriteArray[this.particle.atual][1], this.particle.wSprites, this.particle.aSprites, this.particlePos.x, this.particlePos.y, this.particle.wSprites, this.particle.aSprites);    
+    particleDeath(ctx){
+        if(this.durationTime > 0){
+            this.clockVal();
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+            ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, this.objPos.x, this.objPos.y, this.wSprites, this.aSprites);    
             this.durationTime -= 12;
         }
-        return this.durationTime
+        else{
+            this.dead = true;
+        }
+    }
+
+    update(ctx = CanvasRenderingContext2D){
+        if(this.type == 0){
+            this.particleWalk(ctx);
+        }
+        if(this.type == 1){
+            this.particleHit(ctx);
+        }
+        if(this.type == 2){
+            this.particleDeath(ctx);
+        }
     }
 }

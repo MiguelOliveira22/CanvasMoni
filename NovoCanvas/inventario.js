@@ -11,7 +11,7 @@ class Inventario{
 
         this.sprites = [];
         for(let i = 0; i < this.quantItems; i ++){
-            this.sprites[i] = new Sprites("../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 110);
+            this.sprites[i] = new Sprites(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 110]);
         }
 
         this.currentItem = iteminicial;

@@ -1,8 +1,10 @@
 addEventListener("DOMContentLoaded", () => {
     var canvas = document.getElementById("mainCanvas");
     var ctx = canvas.getContext("2d");
-    var objeto;
-    var newObj;
+    var objeto = [];
+    var newObj = [];
+    var particulas = [];
+    var player = new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 60], [0, 0], [10, 100, 0.8], true);
     var keys = {
         w: false,
         a: false,
@@ -20,18 +22,50 @@ addEventListener("DOMContentLoaded", () => {
     setComponents();
 
     function setComponents(/*ComponentID from a random gerenator*/){
-        objeto = new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 60], [0, 0], [10, 100, 0.8], true);
-        newObj = new Objeto(["../Sprites/walkingsheetbro.png", 7, 1, 60], [0, 700], [700, 200, 1], [true, false]);
+        objeto.push(player);
+        objeto.push(new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 60], [0, 0], [10, 100, 0.8]));
+        newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", 7, 1, 60], [0, 700], [700, 200, 1], [true, false]));
     }
 
     function clearComponents(){
-        objeto = null;
-        newObj = null;
+        objeto = [];
+        newObj = [];
+        particulas = [];
     }
 
     function playerRoutine(){
-        objeto.update(ctx, [newObj]);
-        newObj.update(ctx, [objeto]);
+        objeto.forEach((element, id) => {
+            element.update(ctx, newObj);
+            element.spawn.forEach((adder) => {
+                console.log(adder)
+                if(typeof(adder) == typeof(Particle)){
+                    particulas.push(adder);
+                }
+
+                if(typeof(adder) == typeof(Objeto)){
+                    newObj.push(adder);
+                }
+            });
+
+            if(element.dead){
+                objeto.splice(id, 1);
+            }
+        });
+
+        newObj.forEach((element, id) => {
+            element.update(ctx, objeto);
+
+            if(element.dead){
+                newObj.splice(id, 1);
+            }
+        });
+
+        particulas.forEach((element, id) => {
+            element.update(ctx)
+            if(element.dead){
+                particulas.splice(id, 1);
+            }
+        });
     }
 
     let cutscenebg = new Objeto(["../Sprites/PixelArt/cutscene1.png", 54, 1, 60], [150, 40], [canvas.width, canvas.height, 0.9, true], [false, false]);
@@ -146,6 +180,6 @@ addEventListener("DOMContentLoaded", () => {
 
     loop();
 
-    addEventListener("keydown", (ev) => { keys[ev.key.toLowerCase()] = true; if(objeto != undefined) objeto.keys[ev.key.toLowerCase()] = true; })
-    addEventListener("keyup", (ev) => { keys[ev.key.toLowerCase()] = false; if(objeto != undefined) objeto.keys[ev.key.toLowerCase()] = false; })
+    addEventListener("keydown", (ev) => { keys[ev.key.toLowerCase()] = true; if(objeto != undefined) objeto.forEach((element) => element.keys[ev.key.toLowerCase()] = true); })
+    addEventListener("keyup", (ev) => { keys[ev.key.toLowerCase()] = false; if(objeto != undefined) objeto.forEach((element) => element.keys[ev.key.toLowerCase()] = false); })
 });

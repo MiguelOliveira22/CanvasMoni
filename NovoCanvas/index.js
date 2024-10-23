@@ -4,7 +4,7 @@ addEventListener("DOMContentLoaded", () => {
     var objeto = [];
     var newObj = [];
     var particulas = [];
-    var player = new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 60], [0, 0], [10, 100, 0.8], true);
+    var player = new Entidade(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [0, 0], [10, 100, 0.8], true);
     var keys = {
         w: false,
         a: false,
@@ -25,8 +25,8 @@ addEventListener("DOMContentLoaded", () => {
 
     function setComponents(/*ComponentID from a random gerenator*/){
         objeto.push(player);
-        objeto.push(new Entidade(["../Sprites/walkingsheetbro.png", 7, 1, 60], [0, 0], [10, 100, 0.8]));
-        newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", 7, 1, 60], [0, 700], [700, 200, 1], [true, false]));
+        objeto.push(new Entidade(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [0, 0], [10, 100, 0.8]));
+        newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [0, 700], [700, 200, 1], [true, false]));
     }
 
     function clearComponents(){
@@ -87,7 +87,7 @@ addEventListener("DOMContentLoaded", () => {
         // ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
-    let cutscenebg = new Objeto(["../Sprites/gifcutscene1.gif", 1, 1, 1], [150, 40], [canvas.width, canvas.height, 0.9, true], [false, false]);
+    let cutscenebg = new Objeto(["../Sprites/gifcutscene1.gif", [0, 0], 1, 1, 1], [150, 40], [canvas.width, canvas.height, 0.9, true], [false, false]);
     function cutscene(){
         ctx.fillStyle = "bisque";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -110,7 +110,7 @@ addEventListener("DOMContentLoaded", () => {
     let backgroundImage = new Image();
     backgroundImage.src = '../Sprites/controles.png';
 
-    let bg = new Objeto(["../Sprites/PixelArt/pixilart-drawing.png", 1, 1, 60], [100, 0], [canvas.width, canvas.height, 1, true], [false, false]);
+    let bg = new Objeto(["../Sprites/PixelArt/pixilart-drawing.png", [0, 0], 1, 1, 60], [100, 0], [canvas.width, canvas.height, 1, true], [false, false]);
     function main(){
         audio.send("../Audio/Cave-Story-Theme-Song-Remastered.wav", 0, false, 1);
         if(currentState == 1){

@@ -1,11 +1,12 @@
 class Particle extends Sprites{
-    constructor([particle, hSprites, vSprites, sFrames], [x, y] = [0, 0], durationTime = 0, direction = false, type = 0){
-        super([particle, [0, 0], hSprites, vSprites, sFrames]);
+    constructor([particle, [x, y], hSprites, vSprites, sFrames], [posX, posY, scale] = [0, 0, 1], durationTime = 0, direction = false, type = 0){
+        super([particle, [x, y], hSprites, vSprites, sFrames]);
         this.durationTime = durationTime;
+        this.scale = scale;
         this.type = type;
         this.objPos = {
-            x: x,
-            y: y
+            x: posX,
+            y: posY
         };
         this.direction = direction;
         this.dead = false;
@@ -38,11 +39,11 @@ class Particle extends Sprites{
 
             if(this.direction){
                 ctx.scale(1, 1);
-                ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, this.objPos.x + 40, this.objPos.y + 80, -this.wSprites, this.aSprites);    
+                ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, this.objPos.x + 40, this.objPos.y + 80, -this.wSprites * this.scale, this.aSprites);    
             }
             else{
                 ctx.scale(-1, 1);
-                ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, -this.objPos.x - 70, this.objPos.y + 80, -this.wSprites, this.aSprites);
+                ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, -this.objPos.x - 70, this.objPos.y + 80, -this.wSprites * this.scale, this.aSprites);
             }
             this.durationTime -= 50;
         }

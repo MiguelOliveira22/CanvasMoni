@@ -14,7 +14,7 @@ class Objeto extends Sprites{
         }
 
         this.drawable = true;
-        this.direction = true;
+        this.direction = direction;
         this.spawned = spawned;
 
         this.collidable = collidable;
@@ -29,11 +29,12 @@ class Objeto extends Sprites{
     }
 
     update(ctx = CanvasRenderingContext2D){
-        ctx.fillStyle = "blue";
-        ctx.fillRect(this.objPos.x, this.objPos.y, this.size.w, this.size.h);
+        /* ctx.fillStyle = "blue";
+        ctx.fillRect(this.objPos.x, this.objPos.y, this.size.w, this.size.h);*/
 
         if(this.moveable){
-            this.objPos.x += this.move * ((this.direction) ? -1 : 1);
+            console.log(this.move * this.direction ? 1 : -1)
+            this.objPos.x += (this.move * this.direction ? 1 : -1);
             this.timeout ++;
             if(this.timeout > this.maxTimeout){
                 this.dead = true;
@@ -45,6 +46,6 @@ class Objeto extends Sprites{
     }
 
     interacaoFuncao(){
-
+        console.log(1)
     }
 }

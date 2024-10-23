@@ -15,7 +15,7 @@ addEventListener("DOMContentLoaded", () => {
         " ": false,
         p: false
     };
-    var audio = new AudioRequest()
+    var audio = new AudioRequest();
 
     canvas.width = 1200;
     canvas.height = 720;
@@ -35,16 +35,17 @@ addEventListener("DOMContentLoaded", () => {
     }
 
     function playerRoutine(){
+        audio.send("../Audio/Cave-Story-Theme-Song-Remastered.wav", 0, false, 1);
+
         objeto.forEach((element, id) => {
             element.update(ctx, newObj);
             element.spawn.forEach((adder) => {
                 console.log(adder)
-                if(adder.constructor == Particle.constructor){
+                if(adder instanceof Particle){
                     particulas.push(adder);
                 }
 
-                console.log(Objeto.constructor.toString())
-                if(adder.constructor.toString() == Objeto.constructor.toString()){
+                if(adder instanceof Objeto){
                     newObj.push(adder);
                 }
             });
@@ -68,9 +69,11 @@ addEventListener("DOMContentLoaded", () => {
                 particulas.splice(id, 1);
             }
         });
+
+        // ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
-    let cutscenebg = new Objeto(["../Sprites/PixelArt/cutscene1.png", 54, 1, 60], [150, 40], [canvas.width, canvas.height, 0.9, true], [false, false]);
+    let cutscenebg = new Objeto(["../Sprites/gifcutscene1.gif", 1, 1, 1], [150, 40], [canvas.width, canvas.height, 0.9, true], [false, false]);
     function cutscene(){
         ctx.fillStyle = "bisque";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -95,7 +98,7 @@ addEventListener("DOMContentLoaded", () => {
 
     let bg = new Objeto(["../Sprites/PixelArt/pixilart-drawing.png", 1, 1, 60], [100, 0], [canvas.width, canvas.height, 1, true], [false, false]);
     function main(){
-        audio.send("../Audio/Cave-Story-Theme-Song-Remastered.wav", 0, false, 0)
+        audio.send("../Audio/Cave-Story-Theme-Song-Remastered.wav", 0, false, 1);
         if(currentState == 1){
             ctx.drawImage(backgroundImage, 70, 70, canvas.width - 70, canvas.height - 70);
             ctx.fillStyle = 'rgb(0, 0, 0)';
@@ -145,7 +148,7 @@ addEventListener("DOMContentLoaded", () => {
             if(keys.e == true){
                 if(selected == 0){
                     whichScreen = 0;
-                    audio.send() // reseta o audio
+                    audio.send("", 0, true, 0);
                 }
                 if(selected == 1){
                     currentState = 1;

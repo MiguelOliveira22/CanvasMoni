@@ -95,6 +95,11 @@ class Entidade extends Sprites{
             if(this.keys.d){
                 this.objPos.taxaX += 1;
             }
+
+            if(this.timeout > 100 && this.keys.q){
+                this.timeout = 0;
+                this.spawn.push(new Objeto([/*"../Sprites/Projetil.png"*/ "../Sprites/Boom.png", 1, 1, 60] , [this.objPos.x, this.objPos.y], [20, 20, 1, this.direction], [false, true, this], [100, 10, true]));
+            }
         }
 
         var nextX = this.velocity * this.objPos.taxaX;
@@ -118,11 +123,6 @@ class Entidade extends Sprites{
         }
         else{
             this.standard();
-        }
-
-        if(this.timeout > 0 && this.keys.q){
-            let projetil = new Objeto([/*"../Sprites/Projetil.png"*/ "../Sprites/Boom.png", 1, 1, 60] , [this.objPos.x, this.objPos.y], [20, 20, 1, this.direction], [false, true, this], [100, 10, true]);
-            this.spawn.push(projetil);
         }
 
         this.collided.x = false;

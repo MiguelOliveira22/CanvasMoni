@@ -118,7 +118,7 @@ class Entidade extends Sprites{
             this.direction = false;
             this.moving();
             if(this.collided.y){
-                this.spawn.push(new Particle(["../Sprites/dirt.png", 6, 1, 60], [this.objPos.x, this.objPos.y], 100, this.direction, 0));
+                this.spawn.push(new Particle(["../Sprites/dirt.png", 6, 1, 60], [this.objPos.x + 57, this.objPos.y], 100, !this.direction, 0));
             }
         }
         else{

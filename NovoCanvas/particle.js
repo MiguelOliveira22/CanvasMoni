@@ -40,6 +40,7 @@ class Particle extends Sprites{
         if(this.durationTime > 0){
             this.clockVal();
             ctx.setTransform(1, 0, 0, 1, 0, 0);
+            console.log()
             ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, this.objPos.x, this.objPos.y, this.wSprites, this.aSprites);    
             this.durationTime -= 12;
         }

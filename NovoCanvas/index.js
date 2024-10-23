@@ -162,6 +162,7 @@ addEventListener("DOMContentLoaded", () => {
             if(keys.e == true){
                 if(selected == 0){
                     whichScreen = 0;
+                    borda = 350
                     audio.send("", 0, true, 0);
                 }
                 if(selected == 1){
@@ -172,6 +173,56 @@ addEventListener("DOMContentLoaded", () => {
         if(currentState === 1) {
             if(keys.q == true){
                 currentState = 0;
+            }
+        }
+    }
+
+    function menuPause(){
+        if(keys.w == true){
+            selected = 0;
+            borda = 350;
+        }
+
+        if(keys.s == true){
+            selected = 1;
+            borda = 450;
+        }
+
+        ctx.beginPath()
+        ctx.fillStyle = "brown"
+        ctx.fillRect(canvas.width / 4, canvas.height / 4, canvas.width / 2, canvas.height / 2)
+
+        ctx.fillStyle = 'rgb(46, 139, 87)';
+        ctx.font = '30px SMW';
+        ctx.textAlign = 'center';
+        ctx.fillText('Paused', canvas.width / 2, 300);
+
+        ctx.fillStyle = 'rgb(46, 139, 87)';
+        ctx.fillRect(canvas.width / 2 - 125, 350, 250, 50);
+        ctx.fillRect(canvas.width / 2 - 125, 450, 250, 50);
+
+        ctx.fillStyle = 'rgb(255, 255, 255)';
+        ctx.font = '26px SMW';
+        ctx.fillText('Continuar', canvas.width / 2, 385);
+        ctx.fillText('Menu', canvas.width / 2, 485);
+
+        ctx.strokeStyle = 'rgb(255, 255, 255)';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(canvas.width / 2 - 125, borda, 250, 50);
+
+        if(keys.e == true){
+            if(selected == 0){
+                parar = false
+            }
+            if(selected == 1){
+                setTimeout(() => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                selected = 0
+                borda = 150
+                whichScreen = 1;
+                parar = false
+                }, 100)
+                
             }
         }
     }
@@ -188,6 +239,9 @@ addEventListener("DOMContentLoaded", () => {
                 }
                 playerRoutine();
             }
+        }
+        else{
+            menuPause()
         }
 
         if(whichScreen == 1){

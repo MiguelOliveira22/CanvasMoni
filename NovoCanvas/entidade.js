@@ -1,6 +1,6 @@
 class Entidade extends Sprites{
-    constructor([path, nwSprite, nhSprite, fps] = ["../Sprites/walkingsheetbro.png", 7, 1, 60], [objx, objy] = [0, 0], [width, height, scale, direction] = [0, 0, 1, true], player = false){
-        super([path, [0, 0], nwSprite, nhSprite, fps]);
+    constructor([path, [x, y], nwSprite, nhSprite, fps] = ["../Sprites/walkingsheetbro.png", 7, 1, 60], [objx, objy] = [0, 0], [width, height, scale, direction] = [0, 0, 1, true], player = false){
+        super([path, [x, y], nwSprite, nhSprite, fps]);
 
         this.keys = {
             w: false,
@@ -60,7 +60,7 @@ class Entidade extends Sprites{
 
         if(this.hp <= 0){
             this.dead = true;
-            this.spawn.push(new Particle(["../Sprites/Boom.png", 3, 1, 100], [this.objPos.x, this.objPos.y], 100, this.direction, 1));
+            this.spawn.push(new Particle(["../Sprites/Boom.png", [-10, -10], 3, 1, 100], [this.objPos.x, this.objPos.y, 10], 100, this.direction, 1));
         }
 
         if(this.direction){
@@ -84,7 +84,7 @@ class Entidade extends Sprites{
             ctx.fillRect(this.objPos.x, this.objPos.y - 40, 1.5 * this.hp, 20);
             if(this.timeout > 100){
                 this.timeout = 0;
-                this.spawn.push(new Objeto(["../Sprites/Projetil.png", 1, 1, 60] , [this.objPos.x, this.objPos.y], [20, 20, 1, !this.direction], [false, true, this], [100, 5, true]));
+                this.spawn.push(new Objeto(["../Sprites/Projetil.png", [-35, -30], 1, 1, 60] , [this.objPos.x, this.objPos.y + (this.size.h / 2)], [32, 32, 0.7, !this.direction], [false, true, this], [100, 5, true]));
             }
         }
 
@@ -109,7 +109,7 @@ class Entidade extends Sprites{
 
             if(this.timeout > 100 && this.keys.q){
                 this.timeout = 0;
-                this.spawn.push(new Objeto(["../Sprites/Projetil.png", 1, 1, 60] , [this.objPos.x, this.objPos.y], [20, 20, 1, this.direction], [false, true, this], [100, 5, true]));
+                this.spawn.push(new Objeto(["../Sprites/Projetil.png", [-30, -30], 1, 1, 60] , [this.objPos.x, this.objPos.y + (this.size.h / 2)], [35, 35, 0.7, !this.direction], [false, true, this], [100, 5, true]));
             }
         }
 
@@ -120,14 +120,14 @@ class Entidade extends Sprites{
             this.direction = true;
             this.moving();
             if(this.collided.y){
-                this.spawn.push(new Particle(["../Sprites/dirt.png", 6, 1, 60], [this.objPos.x, this.objPos.y], 100, this.direction, 0));
+                this.spawn.push(new Particle(["../Sprites/dirt.png", [-10, -10], 6, 1, 60], [this.objPos.x, this.objPos.y, 1], 100, this.direction, 0));
             }
         }
         else if(this.objPos.x + nextX < this.objPos.x){
             this.direction = false;
             this.moving();
             if(this.collided.y){
-                this.spawn.push(new Particle(["../Sprites/dirt.png", 6, 1, 60], [this.objPos.x + 57, this.objPos.y], 100, !this.direction, 0));
+                this.spawn.push(new Particle(["../Sprites/dirt.png", [-10, -10], 6, 1, 60], [this.objPos.x + 57, this.objPos.y, 1], 100, !this.direction, 0));
             }
         }
         else{

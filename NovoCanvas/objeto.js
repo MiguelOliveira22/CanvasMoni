@@ -40,7 +40,7 @@ class Objeto extends Sprites{
             this.timeout ++;
             if(this.timeout > this.maxTimeout){
                 this.dead = true;
-                this.spawn.push(new Particle(["../Sprites/Boom.png", [-10, -10], 3, 1, 100], [this.objPos.x, this.objPos.y], 100, this.direction, 1));
+                this.spawn.push(new Particle(["../Sprites/Boom.png", [-10, -10], 3, 1, 100], [this.objPos.x, this.objPos.y, 10], 100, this.direction, 1));
             }
         }
         
@@ -56,7 +56,7 @@ class Objeto extends Sprites{
     }
 
     interacaoFuncao(objeto){
-        this.spawn.push(new Particle(["../Sprites/Boom.png", [-10, -10], 3, 1, 100], [this.objPos.x, this.objPos.y], 100, this.direction, 1));
+        this.spawn.push(new Particle(["../Sprites/Boom.png", [-10, -10], 3, 1, 100], [this.objPos.x, this.objPos.y, 10], 100, this.direction, 1));
         this.dead = true;
 
         objeto.hp -= this.damage;

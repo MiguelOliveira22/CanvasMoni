@@ -60,7 +60,7 @@ class Entidade extends Sprites{
 
         if(this.hp <= 0){
             this.dead = true;
-            this.spawn.push(new Particle(["../Sprites/Boom.png", [-10, -10], 3, 1, 100], [this.objPos.x, this.objPos.y], 100, this.direction, 1));
+            this.spawn.push(new Particle(["../Sprites/Boom.png", [-10, -10], 3, 1, 100], [this.objPos.x, this.objPos.y, 10], 100, this.direction, 1));
         }
 
         if(this.direction){
@@ -120,14 +120,14 @@ class Entidade extends Sprites{
             this.direction = true;
             this.moving();
             if(this.collided.y){
-                this.spawn.push(new Particle(["../Sprites/dirt.png", [-10, -10], 6, 1, 60], [this.objPos.x, this.objPos.y], 100, this.direction, 0));
+                this.spawn.push(new Particle(["../Sprites/dirt.png", [-10, -10], 6, 1, 60], [this.objPos.x, this.objPos.y, 1], 100, this.direction, 0));
             }
         }
         else if(this.objPos.x + nextX < this.objPos.x){
             this.direction = false;
             this.moving();
             if(this.collided.y){
-                this.spawn.push(new Particle(["../Sprites/dirt.png", [-10, -10], 6, 1, 60], [this.objPos.x + 57, this.objPos.y], 100, !this.direction, 0));
+                this.spawn.push(new Particle(["../Sprites/dirt.png", [-10, -10], 6, 1, 60], [this.objPos.x + 57, this.objPos.y, 1], 100, !this.direction, 0));
             }
         }
         else{

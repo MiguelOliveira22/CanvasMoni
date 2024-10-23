@@ -16,15 +16,7 @@ class Particle extends Sprites{
         if(this.durationTime > 0){
             this.clockVal();
             ctx.setTransform(1, 0, 0, 1, 0, 0);
-
-            if(this.direction){
-                ctx.scale(1, 1);
-                ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, this.objPos.x, this.objPos.y, -this.wSprites, this.aSprites);    
-            }
-            else{
-                ctx.scale(-1, 1);
-                ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, -this.objPos.x, this.objPos.y, -this.wSprites, this.aSprites);
-            }
+            ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, this.objPos.x, this.objPos.y, -this.wSprites, this.aSprites);    
             this.durationTime -= 12;
         }
         else{
@@ -36,15 +28,7 @@ class Particle extends Sprites{
         if(this.durationTime > 0){
             this.clockVal();
             ctx.setTransform(1, 0, 0, 1, 0, 0);
-
-            if(this.direction){
-                ctx.scale(1, 1);
-                ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, this.objPos.x + 40, this.objPos.y + 80, -this.wSprites * this.scale, this.aSprites);    
-            }
-            else{
-                ctx.scale(-1, 1);
-                ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, -this.objPos.x - 70, this.objPos.y + 80, -this.wSprites * this.scale, this.aSprites);
-            }
+            ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, this.objPos.x + 40, this.objPos.y + 80, -this.wSprites * this.scale, this.aSprites * this.scale);    
             this.durationTime -= 50;
         }
         else{
@@ -56,7 +40,6 @@ class Particle extends Sprites{
         if(this.durationTime > 0){
             this.clockVal();
             ctx.setTransform(1, 0, 0, 1, 0, 0);
-
             ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, this.objPos.x, this.objPos.y, this.wSprites, this.aSprites);    
             this.durationTime -= 12;
         }

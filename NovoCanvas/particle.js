@@ -40,7 +40,6 @@ class Particle extends Sprites{
         if(this.durationTime > 0){
             this.clockVal();
             ctx.setTransform(1, 0, 0, 1, 0, 0);
-            console.log()
             ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, this.objPos.x, this.objPos.y, this.wSprites * this.scale, this.aSprites * this.scale);    
             this.durationTime -= 12;
         }
@@ -50,7 +49,6 @@ class Particle extends Sprites{
     }
 
     update(ctx = CanvasRenderingContext2D){
-        console.log(this.posImage.x, this.posImage.y);
         if(this.type == 0){
             this.particleWalk(ctx);
         }

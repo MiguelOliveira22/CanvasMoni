@@ -1,5 +1,5 @@
 class Objeto extends Sprites{
-    constructor([path, [x, y], nwSprite, nhSprite, fps] = ["../Sprites/walkingsheetbro.png", 7, 1, 60], [objx, objy] = [0, 0], [width, height, scale, direction] = [0, 0, 1, true], [collidable, interactable, spawned] = [true, false, undefined], [maxTimeout, move, moveable] = [0, 0, false], type = null){
+    constructor([path, [x, y], nwSprite, nhSprite, fps] = ["../Sprites/walkingsheetbro.png", 7, 1, 60], [objx, objy] = [0, 0], [width, height, scale, direction] = [0, 0, 1, true], [collidable, interactable, spawned] = [true, false, undefined], [maxTimeout, move, moveable] = [0, 0, false], type = null, draw = true){
         super([path, [x, y], nwSprite, nhSprite, fps]);
 
         this.objPos = {
@@ -13,7 +13,7 @@ class Objeto extends Sprites{
             scale: scale
         }
 
-        this.drawable = true;
+        this.drawable = draw;
         this.direction = direction;
         this.spawned = spawned;
         this.spawn = [];
@@ -34,8 +34,25 @@ class Objeto extends Sprites{
     }
 
     update(ctx = CanvasRenderingContext2D){
-        ctx.fillStyle = "blue";
-        ctx.fillRect(this.objPos.x, this.objPos.y, this.size.w, this.size.h);
+        console.log(this.drawable)
+        if(this.drawable){
+            ctx.fillStyle = "blue";
+            ctx.fillRect(this.objPos.x, this.objPos.y, this.size.w, this.size.h);
+        }
+        
+        if(this.type == 1 && this.interactable){
+            ctx.fillStyle = "red";
+            ctx.fillRect(this.objPos.x, this.objPos.y, this.size.w, this.size.h);
+        }
+        else if(this.type == 1){
+            ctx.fillStyle = "yellow";
+            ctx.fillRect(this.objPos.x, this.objPos.y, this.size.w, this.size.h);
+        }
+
+        if(this.type == 3){
+            ctx.fillStyle = "green";
+            ctx.fillRect(this.objPos.x, this.objPos.y, this.size.w, this.size.h);
+        }
 
         if(this.moveable){
             this.objPos.x += (this.move * (this.direction ? 1 : -1));
@@ -46,7 +63,10 @@ class Objeto extends Sprites{
             }
         }
         
-        ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, this.objPos.x + this.posImage.x, this.objPos.y + this.posImage.y, this.wSprites * this.size.scale, this.aSprites * this.size.scale)
+        try{
+            ctx.drawImage(this.sheet, this.spriteArray[this.atual][0], this.spriteArray[this.atual][1], this.wSprites, this.aSprites, this.objPos.x + this.posImage.x, this.objPos.y + this.posImage.y, this.wSprites * this.size.scale, this.aSprites * this.size.scale)
+        }
+        catch{}
         this.clockVal();
     }
 

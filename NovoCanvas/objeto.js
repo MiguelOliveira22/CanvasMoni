@@ -1,5 +1,5 @@
 class Objeto extends Sprites{
-    constructor([path, [x, y], nwSprite, nhSprite, fps] = ["../Sprites/walkingsheetbro.png", 7, 1, 60], [objx, objy] = [0, 0], [width, height, scale, direction] = [0, 0, 1, true], [collidable, interactable, spawned] = [true, false, undefined], [maxTimeout, move, moveable] = [0, 0, false]){
+    constructor([path, [x, y], nwSprite, nhSprite, fps] = ["../Sprites/walkingsheetbro.png", 7, 1, 60], [objx, objy] = [0, 0], [width, height, scale, direction] = [0, 0, 1, true], [collidable, interactable, spawned] = [true, false, undefined], [maxTimeout, move, moveable] = [0, 0, false], type = null){
         super([path, [x, y], nwSprite, nhSprite, fps]);
 
         this.objPos = {
@@ -17,6 +17,8 @@ class Objeto extends Sprites{
         this.direction = direction;
         this.spawned = spawned;
         this.spawn = [];
+        
+        this.type = type;
 
         this.collidable = collidable;
         this.interactable = interactable;
@@ -32,8 +34,8 @@ class Objeto extends Sprites{
     }
 
     update(ctx = CanvasRenderingContext2D){
-        ctx.fillStyle = "blue";
-        ctx.fillRect(this.objPos.x, this.objPos.y, this.size.w, this.size.h);
+        /* ctx.fillStyle = "blue";
+        ctx.fillRect(this.objPos.x, this.objPos.y, this.size.w, this.size.h); */
 
         if(this.moveable){
             this.objPos.x += (this.move * (this.direction ? 1 : -1));
@@ -56,9 +58,18 @@ class Objeto extends Sprites{
     }
 
     interacaoFuncao(objeto){
-        this.spawn.push(new Particle(["../Sprites/Boom.png", [-10, -10], 3, 1, 100], [this.objPos.x, this.objPos.y, 100], 100, this.direction, 1));
-        this.dead = true;
+        if(this.type == 0){
+            this.spawn.push(new Particle(["../Sprites/Boom.png", [-10, -10], 3, 1, 100], [this.objPos.x, this.objPos.y, 100], 100, this.direction, 1));
+            this.dead = true;
 
-        objeto.hp -= this.damage;
+            objeto.hp -= this.damage;
+        }
+
+        if(this.type == 1){
+            if(objeto.keys["e"] && objeto.player){
+                this.spawn.push(new Objeto(["../Sprites/Boom.png", [-10, -10], 3, 1, 100], [this.objPos.x, this.objPos.y + 50], [10, 10, 1, true], [false, true, undefined], []));
+                this.interactable = false;
+            }
+        }
     }
 }

@@ -4,7 +4,7 @@ addEventListener("DOMContentLoaded", () => {
     var objeto = [];
     var newObj = [];
     var particulas = [];
-    var player = new Entidade(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [0, 0], [10, 100, 0.8], true);
+    var player = new Entidade(["../Sprites/walkingsheetbro.png", [-15, -2], 7, 1, 60], [30, 600], [75, 100, 0.8], true);
     var keys = {
         w: false,
         a: false,
@@ -16,17 +16,69 @@ addEventListener("DOMContentLoaded", () => {
         p: false
     };
     var audio = new AudioRequest();
-    var parar = false
+    var parar = false;
+
+    var bgImage = new Image();
 
     canvas.width = 1200;
     canvas.height = 720;
 
-    setComponents();
+    var fase = 0;
+    function setComponents(){
+        if(fase == 0){
+            bgImage.src = "../Sprites/PixelArt/pixilart-drawing.png";
+            newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [0, 700], [1200, 200, 0], [true, false]));
+            newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [-10, 0], [10, 720, 0], [true, false]));
+            newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [1210, 0], [-10, 720, 0], [true, false]));
 
-    function setComponents(/*ComponentID from a random gerenator*/){
-        objeto.push(player);
-        objeto.push(new Entidade(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [0, 0], [10, 100, 0.8]));
-        newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [0, 700], [700, 200, 1], [true, false]));
+            newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [600, 200], [450, 50, 0], [true, false]));
+            newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [200, 500], [300, 50, 0], [true, false]));
+            newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [100, 320], [250, 50, 0], [true, false]));
+
+            newObj.push(new Objeto(["../Sprites/PixelArt/bau-sprite.png", [0, 0], 8, 1, 60], [680, 600], [50, 50, 0], [false, true], [0, 0, false], 1));
+            newObj.push(new Objeto(["../Sprites/PixelArt/bau-sprite.png", [0, 0], 8, 1, 60], [880, 100], [50, 50, 0], [false, true], [0, 0, false], 1));
+
+            objeto.push(player);
+            objeto.push(new Entidade(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [1000, 600], [10, 100, 0.8]));
+            objeto.push(new Entidade(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [720, 80], [10, 100, 0.8]));
+            objeto.push(new Entidade(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [250, 200], [10, 100, 0.8]));
+        }
+        if(fase == 1){
+            bgImage.src = "../Sprites/PixelArt/pixilart-drawing.png";
+            newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [0, 700], [1200, 200, 0], [true, false]));
+            newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [-10, 0], [10, 720, 0], [true, false]));
+            newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [1210, 0], [-10, 720, 0], [true, false]));
+
+            newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [600, 200], [450, 50, 0], [true, false]));
+            newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [200, 500], [300, 50, 0], [true, false]));
+            newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [100, 320], [250, 50, 0], [true, false]));
+
+            newObj.push(new Objeto(["../Sprites/PixelArt/bau-sprite.png", [0, 0], 8, 1, 60], [680, 600], [50, 50, 0], [false, true], [0, 0, false], 1));
+            newObj.push(new Objeto(["../Sprites/PixelArt/bau-sprite.png", [0, 0], 8, 1, 60], [880, 100], [50, 50, 0], [false, true], [0, 0, false], 1));
+
+            objeto.push(player);
+            objeto.push(new Entidade(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [1000, 600], [10, 100, 0.8]));
+            objeto.push(new Entidade(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [720, 80], [10, 100, 0.8]));
+            objeto.push(new Entidade(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [250, 200], [10, 100, 0.8]));
+        }
+        if(fase == 2){
+            bgImage.src = "../Sprites/PixelArt/pixilart-drawing.png";
+            newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [0, 700], [1200, 200, 0], [true, false]));
+            newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [-10, 0], [10, 720, 0], [true, false]));
+            newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [1210, 0], [-10, 720, 0], [true, false]));
+
+            newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [600, 200], [450, 50, 0], [true, false]));
+            newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [200, 500], [300, 50, 0], [true, false]));
+            newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [100, 320], [250, 50, 0], [true, false]));
+
+            newObj.push(new Objeto(["../Sprites/PixelArt/bau-sprite.png", [0, 0], 8, 1, 60], [680, 600], [50, 50, 0], [false, true], [0, 0, false], 1));
+            newObj.push(new Objeto(["../Sprites/PixelArt/bau-sprite.png", [0, 0], 8, 1, 60], [880, 100], [50, 50, 0], [false, true], [0, 0, false], 1));
+
+            objeto.push(player);
+            objeto.push(new Entidade(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [1000, 600], [10, 100, 0.8]));
+            objeto.push(new Entidade(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [720, 80], [10, 100, 0.8]));
+            objeto.push(new Entidade(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [250, 200], [10, 100, 0.8]));
+        }
     }
 
     function clearComponents(){
@@ -37,6 +89,8 @@ addEventListener("DOMContentLoaded", () => {
 
     function playerRoutine(){
         audio.send("../Audio/Cave-Story-Theme-Song-Remastered.wav", 0, false, 1);
+
+        ctx.drawImage(bgImage, 0, 0, canvas.width, canvas.height);
 
         objeto.forEach((element, id) => {
             element.update(ctx, newObj);
@@ -78,7 +132,6 @@ addEventListener("DOMContentLoaded", () => {
         particulas.forEach((element, id) => {
             element.update(ctx)
 
-            console.log(element)
             if(element.dead){
                 particulas.splice(id, 1);
             }
@@ -228,11 +281,17 @@ addEventListener("DOMContentLoaded", () => {
     }
 
     let whichScreen = 2;
+    let loaded = false;
     function loop(){
         if(!parar){
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             if(whichScreen == 0){
+                if(!loaded){
+                    clearComponents();
+                    setComponents();
+                    loaded = true;
+                }
                 if(keys.p){
                     clearComponents();
                     setComponents();

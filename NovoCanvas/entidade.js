@@ -31,7 +31,7 @@ class Entidade extends Sprites{
         this.drawable = true;
         this.direction = direction;
 
-        this.hp = 100;
+        this.hp = 50;
         this.dead = false;
         this.timeout = 0;
 
@@ -46,6 +46,8 @@ class Entidade extends Sprites{
         if(this.player || this.enemy){
             this.inventario = new Inventario();
         }
+
+        this.ended = false;
 
         this.timeout = 0;
         this.animacoes = [["../Sprites/pixil-frame-0(1).png", [this.posImage.x, this.posImage.y], 1, 1, 100], ["../Sprites/walkingsheetbro.png", [this.posImage.x, this.posImage.y], 7, 1, 100]];
@@ -163,7 +165,7 @@ class Entidade extends Sprites{
                    this.objPos.y < objeto.objPos.y + objeto.size.h &&
                    this.objPos.y + this.size.h > objeto.objPos.y){
                     this.interacting = true;
-                    objeto.interacaoFuncao(this);
+                    objeto.interacaoFuncao(ctx, this);
                 }
             }
         });
@@ -206,5 +208,9 @@ class Entidade extends Sprites{
                 this.reconstruct(newPath);
             }
         }
+    }
+
+    loadNext(){
+        this.ended = true;
     }
 }

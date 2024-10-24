@@ -35,8 +35,8 @@ addEventListener("DOMContentLoaded", () => {
             newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [200, 500], [300, 50, 0], [true, false]));
             newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [100, 320], [250, 50, 0], [true, false]));
 
-            newObj.push(new Objeto(["../Sprites/PixelArt/bau-sprite.png", [0, 0], 8, 1, 60], [680, 600], [50, 50, 0], [false, true], [0, 0, false], 1));
-            newObj.push(new Objeto(["../Sprites/PixelArt/bau-sprite.png", [0, 0], 8, 1, 60], [880, 100], [50, 50, 0], [false, true], [0, 0, false], 1));
+            newObj.push(new Objeto(["../Sprites/PixelArt/bau-sprite.png", [0, 0], 8, 1, 60], [680, 600], [50, 50, 0], [false, true], [0, 1, false], 1));
+            newObj.push(new Objeto(["../Sprites/PixelArt/bau-sprite.png", [0, 0], 8, 1, 60], [880, 100], [50, 50, 0], [false, true], [0, 4, false], 1));
 
             objeto.push(player);
             objeto.push(new Entidade(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [1000, 600], [10, 100, 0.8]));
@@ -53,13 +53,13 @@ addEventListener("DOMContentLoaded", () => {
             newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [200, 500], [300, 50, 0], [true, false]));
             newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [100, 320], [250, 50, 0], [true, false]));
 
-            newObj.push(new Objeto(["../Sprites/PixelArt/bau-sprite.png", [0, 0], 8, 1, 60], [680, 600], [50, 50, 0], [false, true], [0, 0, false], 1));
-            newObj.push(new Objeto(["../Sprites/PixelArt/bau-sprite.png", [0, 0], 8, 1, 60], [880, 100], [50, 50, 0], [false, true], [0, 0, false], 1));
+            newObj.push(new Objeto(["../Sprites/PixelArt/bau-sprite.png", [0, 0], 8, 1, 60], [680, 600], [50, 50, 0], [false, true], [0, 2, false], 1));
+            newObj.push(new Objeto(["../Sprites/PixelArt/bau-sprite.png", [0, 0], 8, 1, 60], [880, 100], [50, 50, 0], [false, true], [0, 3, false], 1));
+            newObj.push(new Objeto(["../Sprites/PixelArt/bau-sprite.png", [0, 0], 8, 1, 60], [880, 100], [50, 50, 0], [false, true], [0, 4, false], 1));
 
             objeto.push(player);
             objeto.push(new Entidade(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [1000, 600], [10, 100, 0.8]));
             objeto.push(new Entidade(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [720, 80], [10, 100, 0.8]));
-            objeto.push(new Entidade(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [250, 200], [10, 100, 0.8]));
         }
         if(fase == 2){
             bgImage.src = "../Sprites/PixelArt/pixilart-drawing.png";
@@ -71,13 +71,14 @@ addEventListener("DOMContentLoaded", () => {
             newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [200, 500], [300, 50, 0], [true, false]));
             newObj.push(new Objeto(["../Sprites/walkingsheetbro.png", [0, 0], 7, 1, 60], [100, 320], [250, 50, 0], [true, false]));
 
-            newObj.push(new Objeto(["../Sprites/PixelArt/bau-sprite.png", [0, 0], 8, 1, 60], [680, 600], [50, 50, 0], [false, true], [0, 0, false], 1));
             newObj.push(new Objeto(["../Sprites/PixelArt/bau-sprite.png", [0, 0], 8, 1, 60], [880, 100], [50, 50, 0], [false, true], [0, 0, false], 1));
 
             objeto.push(player);
             objeto.push(new Entidade(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [1000, 600], [10, 100, 0.8]));
             objeto.push(new Entidade(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [720, 80], [10, 100, 0.8]));
-            objeto.push(new Entidade(["../Sprites/walkingsheetbro.png", [-10, -10], 7, 1, 60], [250, 200], [10, 100, 0.8]));
+        }
+        if(fase == 3){
+            whichScreen = 3;
         }
     }
 
@@ -87,6 +88,7 @@ addEventListener("DOMContentLoaded", () => {
         particulas = [];
     }
 
+    let ama = 0;
     function playerRoutine(){
         audio.send("../Audio/Cave-Story-Theme-Song-Remastered.wav", 0, false, 1);
 
@@ -106,6 +108,20 @@ addEventListener("DOMContentLoaded", () => {
 
             if(element.dead){
                 objeto.splice(id, 1);
+            }
+
+            if(element.ended || keys.p){
+                if(ama > 100){
+                    fase ++;
+                    clearComponents();
+                    setComponents();
+                    element.ended = false;
+                    loaded = false;
+
+                    player.objPos = { x: 30, y: 600 };
+                    ama = 0;
+                }
+                ama ++;
             }
         });
 
@@ -292,10 +308,6 @@ addEventListener("DOMContentLoaded", () => {
                     setComponents();
                     loaded = true;
                 }
-                if(keys.p){
-                    clearComponents();
-                    setComponents();
-                }
                 playerRoutine();
             }
         }
@@ -309,6 +321,13 @@ addEventListener("DOMContentLoaded", () => {
 
         if(whichScreen == 2){
             cutscene();
+        }
+
+        if(whichScreen == 3){
+            ctx.font = '24px SMW';
+            ctx.fillText("No fim, o brócolis", 600, 250);
+            ctx.fillText("afundou mais no buraco", 600, 350)
+            ctx.fillText("Fim", 600, 450)
         }
 
         requestAnimationFrame(loop);

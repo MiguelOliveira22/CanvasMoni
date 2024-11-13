@@ -18,9 +18,9 @@ class Sprites{
         this.atual = 0;
         this.clock = 0;
         this.fps = 1000 / sFrames;
-        for(let i = 0; i < this.hSprites; i ++){
-            for(let j = 0; j < this.vSprites; j ++){
-                this.spriteArray.push([(i * (this.wSprites)), j * (this.aSprites)]);
+        for(let i = 0; i < this.vSprites; i ++){
+            for(let j = 0; j < this.hSprites; j ++){
+                this.spriteArray.push([(j * (this.wSprites)), (i * (this.aSprites))]);
             }
         }
         this.animationEnded = false;

@@ -92,6 +92,7 @@ class Entidade extends Sprites{
                 this.timeout = 0;
                 this.spawn.push(new Objeto(["../Sprites/Projetil.png", [-35, -30], 1, 1, 60] , [this.objPos.x, this.objPos.y + (this.size.h / 2)], [32, 32, 0.7, !this.direction], [false, true, this], [100, 5, true], 0));
             }
+            this.standard();
         }
 
         this.objPos.taxaX = 0;

@@ -159,7 +159,7 @@ addEventListener("DOMContentLoaded", () => {
         // ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
-    let cutscenebg = new Objeto(["../Sprites/gifcutscene1.gif", [0, 0], 1, 1, 1], [150, 40], [canvas.width, canvas.height, 0.9, true], [false, false], [0, 0, false], null, false);
+    let cutscenebg = new Objeto(["../Sprites/cutsenefinal.png", [0, 0], 5, 29, 60], [150, 40], [canvas.width, canvas.height, 0.9, true], [false, false], [0, 0, false], null, false);
     function cutscene(){
         ctx.fillStyle = "bisque";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
